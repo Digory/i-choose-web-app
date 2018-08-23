@@ -20,6 +20,7 @@ public class Seeds {
         Symbol symbol2 = new Symbol("Orange", fruitCategory, "www.oranges.com");
         DBHelper.save(symbol2);
         Symbol symbol3 = new Symbol("Car", travelCategory, "www.cars.com");
+        symbol3.increasePopularity();
         DBHelper.save(symbol3);
 
 //        List<SymbolCategory> allCategories = DBHelper.getAll(SymbolCategory.class);

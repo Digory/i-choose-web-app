@@ -2,34 +2,35 @@ package controllers;
 
 import db.DBHelper;
 import db.Seeds;
+import spark.ModelAndView;
+import spark.template.velocity.VelocityTemplateEngine;
+import static spark.Spark.get;
+import static spark.Spark.post;
 import models.Symbol;
 import models.SymbolCategory;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MainController {
 
     public static void main(String[] args) {
 
         Seeds.seedData();
-//
-//         public ManagersController() {
-//            setupEndPoints();
-//        }
-//
-//        private void setupEndPoints () {
-//            //  INDEX
-//            get("/managers", (req, res) -> {
-//                Map<String, Object> model = new HashMap<>();
-//                model.put("template", "templates/managers/index.vtl");
-//                List<Manager> managers = DBHelper.getAll(Manager.class);
-//                model.put("managers", managers);
-//                return new ModelAndView(model, "templates/layout.vtl");
-//            }, new VelocityTemplateEngine());
-//
+
+            //  INDEX
+            get("/symbols", (req, res) -> {
+                Map<String, Object> model = new HashMap<>();
+                model.put("template", "templates/index.vtl");
+                List<Symbol> symbols = DBHelper.getAll(Symbol.class);
+                model.put("symbols", symbols);
+                return new ModelAndView(model, "templates/layout.vtl");
+            }, new VelocityTemplateEngine());
+
 //            //  CREATE
-//            post("/managers", (req, res) -> {
+//            post("/symbols", (req, res) -> {
 //                String firstName = req.queryParams("firstName");
 //                String lastName = req.queryParams("lastName");
 //                int salary = Integer.parseInt(req.queryParams("salary"));
@@ -43,7 +44,7 @@ public class MainController {
 //            });
 //
 //            //  NEW
-//            get("/managers/new", (req, res) -> {
+//            get("/symbols/new", (req, res) -> {
 //                Map<String, Object> model = new HashMap<>();
 //                model.put("template", "templates/managers/create.vtl");
 //                List<Department> departments = DBHelper.getAll(Department.class);
@@ -52,7 +53,7 @@ public class MainController {
 //            }, new VelocityTemplateEngine());
 //
 //            //  SHOW
-//            get("/managers/:id", (req, res) -> {
+//            get("/symbols/:id", (req, res) -> {
 //                Manager manager = DBHelper.find(Integer.parseInt(req.params("id")), Manager.class);
 //                Map<String, Object> model = new HashMap<>();
 //                model.put("template", "templates/managers/show.vtl");
@@ -60,8 +61,8 @@ public class MainController {
 //                return new ModelAndView(model, "templates/layout.vtl");
 //            }, new VelocityTemplateEngine());
 //
-//            //  EDIT  get /managers/:id/edit
-//            get("/managers/:id/edit", (req, res) -> {
+//            //  EDIT
+//            get("/symbols/:id/edit", (req, res) -> {
 //                Manager manager = DBHelper.find(Integer.parseInt(req.params("id")), Manager.class);
 //                Map<String, Object> model = new HashMap<>();
 //                List<Department> departments = DBHelper.getAll(Department.class);
@@ -71,8 +72,8 @@ public class MainController {
 //                return new ModelAndView(model, "templates/layout.vtl");
 //            }, new VelocityTemplateEngine());
 //
-//            //  UPDATE  post /managers/:id
-//            post("/managers/:id", (req, res) -> {
+//            //  UPDATE
+//            post("/symbols/:id", (req, res) -> {
 //                Manager manager = DBHelper.find(Integer.parseInt(req.params("id")), Manager.class);
 //                String firstName = req.queryParams("firstName");
 //                String lastName = req.queryParams("lastName");
@@ -93,8 +94,8 @@ public class MainController {
 //                return null;
 //            });
 //
-//            //  DESTROY  post /managers/:id/delete
-//            post("/managers/:id/delete", (req, res) -> {
+//            //  DESTROY
+//            post("/symbols/:id/delete", (req, res) -> {
 //                Manager manager = DBHelper.find(Integer.parseInt(req.params("id")), Manager.class);
 //                DBHelper.delete(manager);
 //                res.redirect("/managers");
@@ -102,6 +103,6 @@ public class MainController {
 //            });
 //
 //
-//        }
+
     }
 }
