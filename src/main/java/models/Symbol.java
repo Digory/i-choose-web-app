@@ -11,6 +11,8 @@ public class Symbol {
     private String imageUrl;
     private int popularityRating;
 
+    public Symbol(){}
+
     public Symbol(String name, SymbolCategory category, String imageUrl) {
         this.name = name;
         this.category = category;
@@ -38,7 +40,8 @@ public class Symbol {
         this.name = name;
     }
 
-    @Column
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
     public SymbolCategory getCategory() {
         return category;
     }
