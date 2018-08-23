@@ -1,8 +1,18 @@
-//package controllers;
-//
-//public class MainController {
-//
-//    public static void main(String[] args) {
+package controllers;
+
+import db.DBHelper;
+import db.Seeds;
+import models.Symbol;
+import models.SymbolCategory;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainController {
+
+    public static void main(String[] args) {
+
+        Seeds.seedData();
 //
 //         public ManagersController() {
 //            setupEndPoints();
@@ -93,5 +103,5 @@
 //
 //
 //        }
-//    }
-//}
+    }
+}

@@ -3,10 +3,9 @@ package models;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
-@Table(name="symbol_categories")
+@Table(name="categories")
 public class SymbolCategory {
     private int id;
     private String descriptor;

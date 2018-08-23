@@ -1,4 +1,6 @@
 package db;
+import models.Symbol;
+import models.SymbolCategory;
 import org.hibernate.*;
 import org.hibernate.criterion.Restrictions;
 
@@ -100,6 +102,13 @@ public class DBHelper {
         cr.add(Restrictions.eq("id", id));
         return getUnique(cr);
 
+    }
+
+    public static List<Symbol> findSymbolsInThisCategory(SymbolCategory category){
+        session = HibernateUtil.getSessionFactory().openSession();
+        Criteria cr = session.createCriteria(Symbol.class);
+        cr.add(Restrictions.eq("category", category));
+        return getList(cr);
     }
 
 }
