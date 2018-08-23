@@ -1,5 +1,7 @@
 package models;
 
+import db.DBHelper;
+
 import javax.persistence.*;
 
 @Entity
@@ -18,7 +20,8 @@ public class Symbol {
         this.category = category;
         this.imageUrl = imageUrl;
         popularityRating = 0;
-        category.addThisSymbol(this);
+//        category.addThisSymbol(this);
+//        DBHelper.save(category);
     }
 
     @Id
