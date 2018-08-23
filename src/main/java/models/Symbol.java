@@ -9,11 +9,13 @@ public class Symbol {
     private String name;
     private SymbolCategory category;
     private String imageUrl;
+    private int popularityRating;
 
     public Symbol(String name, SymbolCategory category, String imageUrl) {
         this.name = name;
         this.category = category;
         this.imageUrl = imageUrl;
+        popularityRating = 0;
     }
 
     @Id
@@ -52,5 +54,18 @@ public class Symbol {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    @Column
+    public int getPopularityRating() {
+        return popularityRating;
+    }
+
+    public void setPopularityRating(int popularityRating) {
+        this.popularityRating = popularityRating;
+    }
+
+    public void increasePopularity(){
+        popularityRating++;
     }
 }
