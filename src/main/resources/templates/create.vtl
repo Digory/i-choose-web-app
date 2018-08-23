@@ -1,0 +1,18 @@
+<p class="pageHeader">New Symbol</p>
+
+<form action="/symbols" method="post">
+    <label for="name">Symbol Name:</label>
+    <input class="inputbox" type="text" name="name" required="true" id="name">
+
+    <label for="category">Category:</label>
+    <select id="category" name="category">
+        #foreach( $category in $symbolCategories )
+        <option value="$category.getId()">$category.getDescriptor()</option>
+        #end
+    </select>
+
+    <label for="imgUrl">Image URL:</label>
+    <input class="inputbox" type="text" name="imgURL" required="true" id="imgUrl">
+
+    <input type="submit" value="Save" class="button">
+</form>

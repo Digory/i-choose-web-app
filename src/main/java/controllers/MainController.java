@@ -43,15 +43,15 @@ public class MainController {
 //                return null;
 //            });
 //
-//            //  NEW
-//            get("/symbols/new", (req, res) -> {
-//                Map<String, Object> model = new HashMap<>();
-//                model.put("template", "templates/managers/create.vtl");
-//                List<Department> departments = DBHelper.getAll(Department.class);
-//                model.put("departments", departments);
-//                return new ModelAndView(model, "templates/layout.vtl");
-//            }, new VelocityTemplateEngine());
-//
+            //  NEW
+            get("/symbols/new", (req, res) -> {
+                Map<String, Object> model = new HashMap<>();
+                model.put("template", "templates/create.vtl");
+                List<SymbolCategory> symbolCategories = DBHelper.getAll(SymbolCategory.class);
+                model.put("symbolCategories", symbolCategories);
+                return new ModelAndView(model, "templates/layout.vtl");
+            }, new VelocityTemplateEngine());
+
 //            //  SHOW
 //            get("/symbols/:id", (req, res) -> {
 //                Manager manager = DBHelper.find(Integer.parseInt(req.params("id")), Manager.class);
