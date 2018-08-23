@@ -1,10 +1,12 @@
+import models.Symbol;
 import org.junit.Test;
 
 public class SymbolTest {
-
+    private Symbol symbol;
 
     @Test
     public void getId() {
+
     }
 
     @Test

@@ -6,10 +6,10 @@ import javax.persistence.*;
 @Table(name="symbol_categories")
 public class SymbolCategory {
     private int id;
-    private String category;
+    private String descriptor;
 
-    public SymbolCategory(String category) {
-        this.category = category;
+    public SymbolCategory(String descriptor) {
+        this.descriptor = descriptor;
     }
 
     @Id
@@ -24,11 +24,11 @@ public class SymbolCategory {
     }
 
     @Column
-    public String getCategory() {
-        return category;
+    public String getDescriptor() {
+        return descriptor;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setDescriptor(String descriptor) {
+        this.descriptor = descriptor;
     }
 }
