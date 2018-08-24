@@ -20,7 +20,7 @@ public class MainController {
             //  INDEX
             get("/symbols", (req, res) -> {
                 Map<String, Object> model = new HashMap<>();
-                model.put("template", "templates/index.vtl");
+                model.put("template", "templates/symbols/index.vtl");
                 List<Symbol> symbols = DBHelper.getAll(Symbol.class);
                 model.put("symbols", symbols);
                 return new ModelAndView(model, "templates/layout.vtl");
@@ -41,7 +41,7 @@ public class MainController {
             //  NEW
             get("/symbols/new", (req, res) -> {
                 Map<String, Object> model = new HashMap<>();
-                model.put("template", "templates/create.vtl");
+                model.put("template", "templates/symbols/create.vtl");
                 List<SymbolCategory> symbolCategories = DBHelper.getAll(SymbolCategory.class);
                 model.put("symbolCategories", symbolCategories);
                 return new ModelAndView(model, "templates/layout.vtl");
@@ -50,7 +50,7 @@ public class MainController {
             //  SHOW
             get("/symbols/:id", (req, res) -> {
                 Map<String, Object> model = new HashMap<>();
-                model.put("template", "templates/show.vtl");
+                model.put("template", "templates/symbols/show.vtl");
                 int id = Integer.parseInt(req.params("id"));
                 Symbol symbol = DBHelper.find(id, Symbol.class);
                 model.put("symbol", symbol);
@@ -65,7 +65,7 @@ public class MainController {
 
                 Map<String, Object> model = new HashMap<>();
                 model.put("categories", categories);
-                model.put("template", "templates/edit.vtl");
+                model.put("template", "templates/symbols/edit.vtl");
                 model.put("symbol", symbol);
 
                 return new ModelAndView(model, "templates/layout.vtl");

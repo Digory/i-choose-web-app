@@ -1,0 +1,26 @@
+<p class="pageHeader">All Timetables</p>
+
+
+<div class="container">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th></th>
+        </tr>
+
+
+        #foreach($timetable in $timetables)
+        <tr>
+            <td>$timetable.getName()</td>
+            <td><a href="/timetables/$timetable.getId()/show_symbols">SHOW SYMBOLS</a></td>
+        </tr>
+
+        #end
+
+
+
+    </table>
+</div>
+
+
+
