@@ -2,7 +2,9 @@ package models;
 
 public class Timetable {
 
-    public Timetable(){
-        
+    String title;
+
+    public Timetable(String title){
+        this.title = title;
     }
 }
