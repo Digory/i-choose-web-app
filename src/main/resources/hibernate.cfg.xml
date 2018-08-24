@@ -16,6 +16,6 @@
 
         <mapping class = "models.Symbol"/>
         <mapping class= "models.SymbolCategory"/>
-        <mapping class= "models.Timetable"/>
+        <mapping class= "models.Brinetable"/>
     </session-factory>
 </hibernate-configuration>
