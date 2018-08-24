@@ -2,6 +2,7 @@ package models;
 
 import db.DBHelper;
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.sql.Time;
@@ -80,7 +81,8 @@ public class Symbol {
         popularityRating++;
     }
 
-    @ManyToMany
+    //@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "symbols_timetables",
             joinColumns = {@JoinColumn(name = "symbol_id", nullable = false, updatable = false)},

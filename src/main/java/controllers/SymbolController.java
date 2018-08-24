@@ -2,6 +2,7 @@ package controllers;
 
 import db.DBHelper;
 import db.Seeds;
+import models.Timetable;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 import static spark.Spark.get;
@@ -23,6 +24,28 @@ public class SymbolController {
             model.put("symbols", symbols);
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
+
+        //  SHOW BEFORE ADD
+        get("/symbols/add", (req, res) -> {
+            int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
+            Map<String, Object> model = new HashMap<>();
+            List<Symbol> symbols = DBHelper.getAll(Symbol.class);
+            model.put("symbols", symbols);
+            model.put("template", "templates/symbols/add.vtl");
+            model.put("timetableID", timetableID);
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        // ADD
+        post("/symbols/add/:id", (req, res) -> {
+            int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
+            int symbolID = Integer.parseInt(req.params("id"));
+            Timetable timetable = DBHelper.find(timetableID, Timetable.class);
+            Symbol symbol = DBHelper.find(symbolID, Symbol.class);
+            DBHelper.associateTimetableWithSymbol(timetable, symbol);
+            res.redirect("/timetables/"+timetableID+"/show_symbols");
+            return null;
+        });
 
         //  CREATE
         post("/symbols", (req, res) -> {

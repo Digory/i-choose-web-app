@@ -94,6 +94,7 @@ public class DBHelper {
     public static <T> List<T> getAll(Class classType) {
         session = HibernateUtil.getSessionFactory().openSession();
         Criteria cr = session.createCriteria(classType);
+        cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         return getList(cr);
     }
 
@@ -114,8 +115,9 @@ public class DBHelper {
 
     public static void associateTimetableWithSymbol(Timetable timetable, Symbol symbol){
         symbol.addTimetable(timetable);
-        timetable.addSymbol(symbol);
-        save(timetable);
+       // timetable.addSymbol(symbol);
+
+        save(symbol);
     }
 
     public static List<Symbol> getAllSymbolsForTimetable(Timetable timetable){

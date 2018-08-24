@@ -37,6 +37,7 @@ public class TimetableController {
             Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/timetables/show_symbols.vtl");
             model.put("symbols", symbols);
+            model.put("timetable", timetable);
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 //

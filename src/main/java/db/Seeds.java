@@ -31,6 +31,8 @@ public class Seeds {
 
         DBHelper.associateTimetableWithSymbol(timetable, symbol1);
 
+        DBHelper.associateTimetableWithSymbol(timetable, symbol2);
+
         List<Symbol> symbolsOfTimetable = DBHelper.getAllSymbolsForTimetable(timetable);
 
 //        List<SymbolCategory> allCategories = DBHelper.getAll(SymbolCategory.class);
