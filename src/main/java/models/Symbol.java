@@ -1,8 +1,12 @@
 package models;
 
 import db.DBHelper;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="symbols")
@@ -12,6 +16,7 @@ public class Symbol {
     private SymbolCategory category;
     private String imageUrl;
     private int popularityRating;
+    private List<Timetable> timetables;
 
     public Symbol(){}
 
@@ -19,9 +24,8 @@ public class Symbol {
         this.name = name;
         this.category = category;
         this.imageUrl = imageUrl;
+        this.timetables = new ArrayList<>();
         popularityRating = 0;
-//        category.addThisSymbol(this);
-//        DBHelper.save(category);
     }
 
     @Id
@@ -74,5 +78,25 @@ public class Symbol {
 
     public void increasePopularity(){
         popularityRating++;
+    }
+
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @ManyToMany
+    @JoinTable(
+            name = "symbols_timetables",
+            joinColumns = {@JoinColumn(name = "symbol_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "timetable_id", nullable = false, updatable = false)}
+
+    )
+    public List<Timetable> getTimetables() {
+        return timetables;
+    }
+
+    public void setTimetables(List<Timetable> timetables) {
+        this.timetables = timetables;
+    }
+
+    public void addTimetable(Timetable timetable){
+        this.timetables.add(timetable);
     }
 }

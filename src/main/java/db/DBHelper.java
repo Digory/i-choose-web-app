@@ -1,6 +1,7 @@
 package db;
 import models.Symbol;
 import models.SymbolCategory;
+import models.Timetable;
 import org.hibernate.*;
 import org.hibernate.criterion.Restrictions;
 
@@ -109,6 +110,27 @@ public class DBHelper {
         Criteria cr = session.createCriteria(Symbol.class);
         cr.add(Restrictions.eq("category", category));
         return getList(cr);
+    }
+
+    public static void associateTimetableWithSymbol(Timetable timetable, Symbol symbol){
+        symbol.addTimetable(timetable);
+        save(timetable);
+    }
+
+    public static List<Symbol> getAllSymbolsForTimetable(Timetable timetable){
+        session = HibernateUtil.getSessionFactory().openSession();
+        List<Symbol> results = null;
+        try {
+            Criteria cr = session.createCriteria(Symbol.class);
+            cr.createAlias("timetables", "timetable");
+            cr.add(Restrictions.eq("timetable", timetable));
+        } catch (HibernateException e) {
+            transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return results;
     }
 
 }

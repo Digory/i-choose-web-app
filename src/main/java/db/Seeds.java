@@ -2,14 +2,18 @@ package db;
 
 import models.Symbol;
 import models.SymbolCategory;
+import models.Timetable;
 
 import java.util.List;
 
 public class Seeds {
 
     public static void seedData(){
-        DBHelper.deleteAll(Symbol.class);
-        DBHelper.deleteAll(SymbolCategory.class);
+//        DBHelper.deleteAll(Symbol.class);
+//        DBHelper.deleteAll(SymbolCategory.class);
+
+        Timetable timetable = new Timetable("Party Day");
+        DBHelper.save(timetable);
 
         SymbolCategory fruitCategory = new SymbolCategory("Fruit");
         DBHelper.save(fruitCategory);
@@ -22,6 +26,11 @@ public class Seeds {
         Symbol symbol3 = new Symbol("Car", travelCategory, "www.cars.com");
         symbol3.increasePopularity();
         DBHelper.save(symbol3);
+
+
+        DBHelper.associateTimetableWithSymbol(timetable, symbol1);
+
+        List<Symbol> symbolsOfTimetable = DBHelper.getAllSymbolsForTimetable(timetable);
 
 //        List<SymbolCategory> allCategories = DBHelper.getAll(SymbolCategory.class);
 //        List<Symbol> allSymbols = DBHelper.getAll(Symbol.class);
