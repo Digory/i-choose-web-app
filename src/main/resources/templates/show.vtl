@@ -1,5 +1,4 @@
-<p class="pageHeader">All Symbols</p>
-
+<p class="pageHeader">Details for: $symbol.getName()</p>
 
 <div class="container">
     <table>
@@ -10,14 +9,11 @@
             <th>Popularity Rating</th>
             <th></th>
         </tr>
-        #foreach($symbol in $symbols)
         <tr>
             <td>$symbol.getName()</td>
             <td>$symbol.getCategory().getDescriptor()</td>
             <td>$symbol.getImageUrl()</td>
             <td>$symbol.getPopularityRating()</td>
-            <td><a href="/symbols/$symbol.getId()">VIEW DETAILS</a></td>
         <tr>
-            #end
     </table>
 </div>

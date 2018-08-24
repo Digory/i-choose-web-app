@@ -50,10 +50,16 @@ public class MainController {
                 return new ModelAndView(model, "templates/layout.vtl");
             }, new VelocityTemplateEngine());
 
-//            //  SHOW
-//            get("/symbols/:id", (req, res) -> {
-//            }, new VelocityTemplateEngine());
-//
+            //  SHOW
+            get("/symbols/:id", (req, res) -> {
+                Map<String, Object> model = new HashMap<>();
+                model.put("template", "templates/show.vtl");
+                int id = Integer.parseInt(req.params("id"));
+                Symbol symbol = DBHelper.find(id, Symbol.class);
+                model.put("symbol", symbol);
+                return new ModelAndView(model, "templates/layout.vtl");
+            }, new VelocityTemplateEngine());
+
 //            //  EDIT
 //            get("/symbols/:id/edit", (req, res) -> {
 //            }, new VelocityTemplateEngine());
