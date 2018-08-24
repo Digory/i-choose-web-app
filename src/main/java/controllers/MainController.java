@@ -9,10 +9,7 @@ import static spark.Spark.post;
 import models.Symbol;
 import models.SymbolCategory;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MainController {
 
@@ -60,14 +57,36 @@ public class MainController {
                 return new ModelAndView(model, "templates/layout.vtl");
             }, new VelocityTemplateEngine());
 
-//            //  EDIT
-//            get("/symbols/:id/edit", (req, res) -> {
-//            }, new VelocityTemplateEngine());
-//
-//            //  UPDATE
-//            post("/symbols/:id", (req, res) -> {
-//                return null;
-//            });
+            //  EDIT
+            get("/symbols/:id/edit", (req, res) -> {
+                int id = Integer.parseInt(req.params(":id"));
+                Symbol symbol = DBHelper.find(id, Symbol.class);
+                List<SymbolCategory> categories = DBHelper.getAll(SymbolCategory.class);
+
+                Map<String, Object> model = new HashMap<>();
+                model.put("categories", categories);
+                model.put("template", "templates/edit.vtl");
+                model.put("symbol", symbol);
+
+                return new ModelAndView(model, "templates/layout.vtl");
+            }, new VelocityTemplateEngine());
+
+            //  UPDATE
+            post("/symbols/:id", (req, res) -> {
+                int id = Integer.parseInt(req.params(":id"));
+                Symbol symbol = DBHelper.find(id, Symbol.class);
+                int categoryId = Integer.parseInt(req.queryParams("category"));
+                SymbolCategory category = DBHelper.find(categoryId, SymbolCategory.class);
+                String name = req.queryParams("name");
+                String imgUrl = req.queryParams("imgUrl");
+
+                symbol.setName(name);
+                symbol.setImageUrl(imgUrl);
+                symbol.setCategory(category);
+                DBHelper.save(symbol);
+                res.redirect("/symbols");
+                return null;
+            });
 //
 //            //  DESTROY
 //            post("/symbols/:id/delete", (req, res) -> {

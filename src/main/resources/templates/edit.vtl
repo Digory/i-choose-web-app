@@ -1,0 +1,24 @@
+<p class="pageHeader">Edit Manager</p>
+
+<form action="/symbols/$symbol.getId()" method="post">
+    <label for="name">Name:</label>
+    <input class="inputbox" type="text" name="name" id="name" required="true" value="$symbol.getName()">
+
+    <label for="category">Categoryt:</label>
+    <select id="category" name="category">
+        #foreach( $category in $categories )
+        <option value="$category.getId()"
+                #if ($category.getId() == $symbol.getCategory().getId())
+                selected="selected"
+                #end>
+            $category.getDescriptor()</option>
+        #end
+    </select>
+
+    <label for="imgUrl">Image URL:</label>
+    <input class="inputbox" type="text" name="imgUrl" id="imgUrl" required="true" value="$symbol.getImageUrl()">
+
+
+    <input type="submit" value="Save" class="button">
+</form>
+<a href="/symbols/$symbol.getId()" class="button center">Cancel</a>
