@@ -87,13 +87,17 @@ public class MainController {
                 res.redirect("/symbols");
                 return null;
             });
-//
-//            //  DESTROY
-//            post("/symbols/:id/delete", (req, res) -> {
-//                return null;
-//            });
-//
-//
+
+            //  DESTROY
+            post("/symbols/:id/delete", (req, res) -> {
+                int id = Integer.parseInt(req.params(":id"));
+                Symbol symbol = DBHelper.find(id, Symbol.class);
+                DBHelper.delete(symbol);
+                res.redirect("/symbols");
+                return null;
+            });
+
+
 
     }
 }
