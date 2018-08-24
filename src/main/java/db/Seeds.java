@@ -33,7 +33,9 @@ public class Seeds {
         DBHelper.save(symbol3);
 
         Symbol symbol1Copy = new Symbol(symbol1.getName(), symbol1.getCategory(), symbol1.getImageUrl());
+        DBHelper.save(symbol1Copy);
         Symbol symbol2Copy = new Symbol(symbol2.getName(), symbol2.getCategory(), symbol2.getImageUrl());
+        DBHelper.save(symbol2Copy);
 
         DBHelper.associateTimetableWithSymbol(timetable, symbol1Copy);
 
