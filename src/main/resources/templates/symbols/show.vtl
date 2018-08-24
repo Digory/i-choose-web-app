@@ -14,10 +14,14 @@
             <td>$symbol.getCategory().getDescriptor()</td>
             <td>$symbol.getImageUrl()</td>
             <td>$symbol.getPopularityRating()</td>
+            <td><a href="/symbols/$symbol.getId()/edit">EDIT</a></td>
+            <td>
+                <form action="/symbols/$symbol.getId()/delete" method="post">
+                    <input type="submit" value="Delete" class="button center">
+                </form>
+            </td>
         <tr>
     </table>
-    <a href="/symbols/$symbol.getId()/edit">EDIT</a>
-    <form action="/symbols/$symbol.getId()/delete" method="post">
-        <input type="submit" value="Delete" class="button center">
-    </form>
+
 </div>
+<a href="javascript:history.back()">Go Back</a>

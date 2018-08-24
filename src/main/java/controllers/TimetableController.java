@@ -17,9 +17,8 @@ import static spark.Spark.get;
 import static spark.Spark.post;
 
 public class TimetableController {
-    public static void main(String[] args) {
 
-        Seeds.seedData();
+    public TimetableController() {
 
         //  INDEX
         get("/timetables", (req, res) -> {
@@ -36,7 +35,7 @@ public class TimetableController {
             Timetable timetable = DBHelper.find(id, Timetable.class);
             List<Symbol> symbols = DBHelper.getAllSymbolsForTimetable(timetable);
             Map<String, Object> model = new HashMap<>();
-            model.put("template", "templates/timetables/showSymbols.vtl");
+            model.put("template", "templates/timetables/show_symbols.vtl");
             model.put("symbols", symbols);
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
