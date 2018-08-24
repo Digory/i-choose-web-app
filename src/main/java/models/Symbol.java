@@ -7,6 +7,8 @@ import org.hibernate.annotations.Fetch;
 import javax.persistence.*;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Entity
@@ -18,6 +20,7 @@ public class Symbol {
     private String imageUrl;
     private int popularityRating;
     private List<Timetable> timetables;
+    private List<SymbolRank> ranksWithinTimetables;
 
     public Symbol(){}
 
@@ -27,6 +30,7 @@ public class Symbol {
         this.imageUrl = imageUrl;
         this.timetables = new ArrayList<>();
         popularityRating = 0;
+        ranksWithinTimetables = new ArrayList<>();
     }
 
     @Id
@@ -100,4 +104,14 @@ public class Symbol {
     public void addTimetable(Timetable timetable){
         this.timetables.add(timetable);
     }
+
+    @OneToMany(mappedBy = "symbol")
+    public List<SymbolRank> getRanksWithinTimetables() {
+        return ranksWithinTimetables;
+    }
+
+    public void setRanksWithinTimetables(List<SymbolRank> ranksWithinTimetables) {
+        this.ranksWithinTimetables = ranksWithinTimetables;
+    }
+
 }

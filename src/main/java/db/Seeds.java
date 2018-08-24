@@ -2,6 +2,7 @@ package db;
 
 import models.Symbol;
 import models.SymbolCategory;
+import models.SymbolRank;
 import models.Timetable;
 
 import java.util.List;
@@ -9,9 +10,12 @@ import java.util.List;
 public class Seeds {
 
     public static void seedData(){
-        DBHelper.deleteAll(Timetable.class);
+        DBHelper.deleteAll(SymbolRank.class);
         DBHelper.deleteAll(Symbol.class);
+        DBHelper.deleteAll(Timetable.class);
+
         DBHelper.deleteAll(SymbolCategory.class);
+
 
         Timetable timetable = new Timetable("Party Day");
         DBHelper.save(timetable);
@@ -28,12 +32,18 @@ public class Seeds {
         symbol3.increasePopularity();
         DBHelper.save(symbol3);
 
+        Symbol symbol1Copy = new Symbol(symbol1.getName(), symbol1.getCategory(), symbol1.getImageUrl());
+        Symbol symbol2Copy = new Symbol(symbol2.getName(), symbol2.getCategory(), symbol2.getImageUrl());
 
-        DBHelper.associateTimetableWithSymbol(timetable, symbol1);
+        DBHelper.associateTimetableWithSymbol(timetable, symbol1Copy);
 
-        DBHelper.associateTimetableWithSymbol(timetable, symbol2);
+        DBHelper.associateTimetableWithSymbol(timetable, symbol2Copy);
 
-        List<Symbol> symbolsOfTimetable = DBHelper.getAllSymbolsForTimetable(timetable);
+//        List<Symbol> symbolsOfTimetable = DBHelper.getAllSymbolsForTimetable(timetable);
+//
+//        DBHelper.increaseRankingOfSymbolInTimetable(symbol2, timetable);
+//
+//        List<Symbol> orderedSymbolsOfTimetable = DBHelper.orderSymbolsByRank(timetable);
 
 //        List<SymbolCategory> allCategories = DBHelper.getAll(SymbolCategory.class);
 //        List<Symbol> allSymbols = DBHelper.getAll(Symbol.class);

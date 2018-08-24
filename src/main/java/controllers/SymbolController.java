@@ -2,6 +2,7 @@ package controllers;
 
 import db.DBHelper;
 import db.Seeds;
+import models.SymbolRank;
 import models.Timetable;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
@@ -20,29 +21,56 @@ public class SymbolController {
         get("/symbols", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/symbols/index.vtl");
-            List<Symbol> symbols = DBHelper.getAll(Symbol.class);
+            List<Symbol> symbols = DBHelper.getAllUniqueSymbols();
             model.put("symbols", symbols);
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        //  SHOW BEFORE ADD
+        //  SHOW BEFORE ADDING TO TIMETABLE
         get("/symbols/add", (req, res) -> {
             int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
             Map<String, Object> model = new HashMap<>();
-            List<Symbol> symbols = DBHelper.getAll(Symbol.class);
+            List<Symbol> symbols = DBHelper.getAllUniqueSymbols();
             model.put("symbols", symbols);
             model.put("template", "templates/symbols/add.vtl");
             model.put("timetableID", timetableID);
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        // ADD
+        //  ADD TO TIMETABLE
         post("/symbols/add/:id", (req, res) -> {
             int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
             int symbolID = Integer.parseInt(req.params("id"));
             Timetable timetable = DBHelper.find(timetableID, Timetable.class);
             Symbol symbol = DBHelper.find(symbolID, Symbol.class);
-            DBHelper.associateTimetableWithSymbol(timetable, symbol);
+            Symbol symbolCopy = new Symbol(symbol.getName(), symbol.getCategory(), symbol.getImageUrl());
+            DBHelper.save(symbolCopy);
+            List<Symbol> symbols = DBHelper.orderSymbolsByRank(timetable);
+            Symbol currentFinalSymbol = symbols.get(symbols.size()-1);
+            DBHelper.associateTimetableWithSymbol(timetable, symbolCopy);
+
+            // This is for ensuring that the symbol ranking of the new symbol is always above the last symbol in the timetable.
+            // TODO: Make this into a nicer looking method
+            if(symbols.size() >= 2){
+                while(DBHelper.getRankOfSymbol(symbolCopy, timetable) <= DBHelper.getRankOfSymbol(currentFinalSymbol, timetable)){
+                    DBHelper.increaseRankingOfSymbolInTimetable(symbolCopy, timetable);
+                }
+            }
+            res.redirect("/timetables/"+timetableID+"/show_symbols");
+            return null;
+        });
+
+        //  REMOVE FROM TIMETABLE
+        post("/symbols/remove_from_timetable/:id", (req, res) -> {
+            int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
+            int symbolID = Integer.parseInt(req.params("id"));
+            Timetable timetable = DBHelper.find(timetableID, Timetable.class);
+            Symbol symbol = DBHelper.find(symbolID, Symbol.class);
+            SymbolRank symbolRank = DBHelper.getSymbolRankForThisSymbolForThisTimetable(symbol, timetable);
+            DBHelper.delete(symbolRank);
+            DBHelper.delete(symbol);
+            DBHelper.save(timetable);
+            Map<String, Object> model = new HashMap<>();
             res.redirect("/timetables/"+timetableID+"/show_symbols");
             return null;
         });

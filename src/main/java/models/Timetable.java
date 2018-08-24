@@ -13,6 +13,7 @@ public class Timetable {
     private int id;
     private String name;
     private List<Symbol> symbols;
+    private List<SymbolRank> symbolRanks;
 
     public Timetable(){
 
@@ -21,6 +22,7 @@ public class Timetable {
     public Timetable(String name){
         this.name = name;
         this.symbols = new ArrayList<>();
+        this.symbolRanks = new ArrayList<>();
     }
 
     @Id
@@ -60,5 +62,14 @@ public class Timetable {
 
     public void addSymbol(Symbol symbol){
         this.symbols.add(symbol);
+    }
+
+    @OneToMany(mappedBy = "timetable")
+    public List<SymbolRank> getSymbolRanks() {
+        return symbolRanks;
+    }
+
+    public void setSymbolRanks(List<SymbolRank> symbolRanks) {
+        this.symbolRanks = symbolRanks;
     }
 }

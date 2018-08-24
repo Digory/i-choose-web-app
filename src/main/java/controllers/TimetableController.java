@@ -33,7 +33,7 @@ public class TimetableController {
         get("/timetables/:id/show_symbols", (req, res) ->{
             int id = Integer.parseInt(req.params("id"));
             Timetable timetable = DBHelper.find(id, Timetable.class);
-            List<Symbol> symbols = DBHelper.getAllSymbolsForTimetable(timetable);
+            List<Symbol> symbols = DBHelper.orderSymbolsByRank(timetable);
             Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/timetables/show_symbols.vtl");
             model.put("symbols", symbols);
