@@ -43,7 +43,6 @@ public class Timetable {
         this.name = name;
     }
 
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @ManyToMany
     @JoinTable(
         name = "symbols_timetables",

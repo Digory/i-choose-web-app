@@ -114,6 +114,7 @@ public class DBHelper {
 
     public static void associateTimetableWithSymbol(Timetable timetable, Symbol symbol){
         symbol.addTimetable(timetable);
+        timetable.addSymbol(symbol);
         save(timetable);
     }
 
@@ -123,7 +124,8 @@ public class DBHelper {
         try {
             Criteria cr = session.createCriteria(Symbol.class);
             cr.createAlias("timetables", "timetable");
-            cr.add(Restrictions.eq("timetable", timetable));
+            cr.add(Restrictions.eq("timetable.id", timetable.getId()));
+            results = cr.list();
         } catch (HibernateException e) {
             transaction.rollback();
             e.printStackTrace();

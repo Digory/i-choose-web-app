@@ -80,7 +80,6 @@ public class Symbol {
         popularityRating++;
     }
 
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @ManyToMany
     @JoinTable(
             name = "symbols_timetables",
