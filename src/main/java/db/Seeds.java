@@ -17,22 +17,40 @@ public class Seeds {
         Timetable timetable = new Timetable("Party Day");
         DBHelper.save(timetable);
 
-        SymbolCategory fruitCategory = new SymbolCategory("Fruit");
-        DBHelper.save(fruitCategory);
-        SymbolCategory travelCategory = new SymbolCategory("Travel");
-        DBHelper.save(travelCategory);
-        Symbol symbol1 = new Symbol("Banana", fruitCategory, "www.bananas.com");
+        SymbolCategory category1 = new SymbolCategory("Food");
+        DBHelper.save(category1);
+
+        SymbolCategory category2 = new SymbolCategory("Drink");
+        DBHelper.save(category2);
+
+        SymbolCategory category3 = new SymbolCategory("Places");
+        DBHelper.save(category3);
+
+        SymbolCategory category4 = new SymbolCategory("Activities");
+        DBHelper.save(category4);
+
+        SymbolCategory category5 = new SymbolCategory("Things");
+        DBHelper.save(category5);
+
+        SymbolCategory category6 = new SymbolCategory("Feelings");
+        DBHelper.save(category6);
+
+        SymbolCategory category7 = new SymbolCategory("People");
+        DBHelper.save(category7);
+
+        SymbolCategory category8 = new SymbolCategory("Travel");
+        DBHelper.save(category8);
+
+        Symbol symbol1 = new Symbol("Banana", category1, "www.bananas.com");
         DBHelper.save(symbol1);
-        Symbol symbol2 = new Symbol("Orange", fruitCategory, "www.oranges.com");
+
+        Symbol symbol2 = new Symbol("Orange", category1, "www.oranges.com");
         DBHelper.save(symbol2);
-        Symbol symbol3 = new Symbol("Car", travelCategory, "www.cars.com");
+
+        Symbol symbol3 = new Symbol("Car", category8, "www.cars.com");
         symbol3.increasePopularity();
         DBHelper.save(symbol3);
 
-        Symbol symbol1Copy = new Symbol(symbol1.getName(), symbol1.getCategory(), symbol1.getImageUrl());
-        DBHelper.save(symbol1Copy);
-        Symbol symbol2Copy = new Symbol(symbol2.getName(), symbol2.getCategory(), symbol2.getImageUrl());
-        DBHelper.save(symbol2Copy);
 
         DBHelper.addSymbolToTimetable(timetable, symbol1);
 

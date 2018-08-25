@@ -11,8 +11,11 @@
 </div>
 <div class="categories">
     #foreach($category in $categories)
-    <div></div>
+    <div>$category.getDescriptor()</div>
     #end
+
+    <hr/>
+    <br>
     <a href="/symbols">View all symbols</a><br>
     <a href="/symbol-categories">View all categories</a><br>
     <a href="/timetables">View all timetables</a><br>
