@@ -1,0 +1,26 @@
+<p class="pageHeader">Search results</p>
+
+<div class="container">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Image URL</th>
+            <th>Popularity Rating</th>
+            <th></th>
+        </tr>
+        #foreach($symbol in $results)
+        <tr>
+            <td>$symbol.getName()</td>
+            <td>$symbol.getCategory().getDescriptor()</td>
+            <td>$symbol.getImageUrl()</td>
+            <td>$symbol.getPopularityRating()</td>
+            <td> <form action="/symbols/add/$symbol.getId()?timetable_id=$timetableID" method="post">
+                <input type="submit" value="ADD TO TIMETABLE" class="button center">
+            </form> </td>
+        <tr>
+            #end
+    </table>
+</div>
+
+<a href="javascript:history.back()">Go Back</a>

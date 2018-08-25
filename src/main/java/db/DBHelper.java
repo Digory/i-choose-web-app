@@ -268,5 +268,16 @@ public class DBHelper {
 //        save(symbolToMove);
 //    }
 
+    public static List<Symbol> searchForSymbol(String keyword){
+        List<Symbol> allSymbols = getAllUniqueSymbols();
+        List<Symbol> results = new ArrayList<>();
+        for(Symbol symbol : allSymbols){
+            if(symbol.getName().toLowerCase().equals(keyword.toLowerCase()) ||
+                    symbol.getCategory().getDescriptor().toLowerCase().equals(keyword.toLowerCase())){
+                results.add(symbol);
+            }
+        }
+        return results;
+    }
 
 }

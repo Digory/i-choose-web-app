@@ -26,6 +26,16 @@ public class SymbolController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        //  SEARCH BY KEYWORD
+        post("/symbols/search_results", (req, res) -> {
+            String searchQuery = req.queryParams("search");
+            List<Symbol> searchResults = DBHelper.searchForSymbol(searchQuery);
+            Map<String, Object> model = new HashMap<>();
+            model.put("results", searchResults);
+            model.put("template", "templates/symbols/search_results.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
         //  SHOW BEFORE ADDING TO TIMETABLE
         get("/symbols/add", (req, res) -> {
             int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
