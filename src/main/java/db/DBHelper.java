@@ -1,15 +1,11 @@
 package db;
 import models.Symbol;
 import models.SymbolCategory;
-//import models.SymbolRank;
 import models.Timetable;
 import org.hibernate.*;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class DBHelper {
@@ -143,74 +139,6 @@ public class DBHelper {
         return results;
     }
 
-//    public static SymbolRank getSymbolRankForThisSymbolForThisTimetable(Symbol symbol, Timetable timetable){
-//        session = HibernateUtil.getSessionFactory().openSession();
-//        Criteria cr = session.createCriteria(SymbolRank.class);
-//        cr.add(Restrictions.eq("symbol", symbol));
-//        cr.add(Restrictions.eq("timetable", timetable));
-//        return getUnique(cr);
-//    }
-
-//    public static boolean doesTimetableContainSymbolAlready(Symbol symbol, Timetable timetable){
-//        session = HibernateUtil.getSessionFactory().openSession();
-//        Criteria cr = session.createCriteria(Symbol.class);
-//        cr.createAlias("timetables", "timetable");
-//        cr.add(Restrictions.eq("timetable.id", timetable.getId()));
-//        if(cr.list().size() == 0){
-//            return false;
-//        }
-//        return true;
-//    }
-
-//    public static void increaseRankingOfSymbolInTimetable(Symbol symbol, Timetable timetable){
-//        session = HibernateUtil.getSessionFactory().openSession();
-//        Criteria cr = session.createCriteria(SymbolRank.class);
-//        cr.add(Restrictions.eq("symbol.id", symbol.getId()));
-//        cr.add(Restrictions.eq("timetable.id", timetable.getId()));
-//        SymbolRank symbolRank = (SymbolRank) cr.uniqueResult();
-//        symbolRank.increaseRank();
-//        save(symbolRank);
-//    }
-
-//    public static void increaseRankingOfSymbolInTimetable(Symbol symbol){
-//        symbol.increaseRankWithinTimetable();
-//        save(symbol);
-//    }
-//
-//    public static void decreaseRankingOfSymbolInTimetable(Symbol symbol){
-//        symbol.decreaseRankWithinTimetable();
-//        save(symbol);
-//    }
-//
-//
-//    public static List<Symbol> orderSymbolsByRank(Timetable timetable){
-//        List<Symbol> results = getAllSymbolsForTimetable(timetable);
-//        Collections.sort(results, new Comparator<Symbol>() {
-//            @Override
-//            public int compare(Symbol symbol1, Symbol symbol2) {
-//                //return getRankOfSymbol(symbol1, timetable) - getRankOfSymbol(symbol2, timetable);
-//                return symbol1.getRankWithinTimetable() - symbol2.getRankWithinTimetable();
-//            }
-//        });
-//        return results;
-//    }
-
-//    public static int getRankOfSymbol(Symbol symbol, Timetable timetable){
-//        session = HibernateUtil.getSessionFactory().openSession();
-//        int result = 0;
-//        try {
-//            Criteria cr = session.createCriteria(SymbolRank.class);
-//            cr.add(Restrictions.eq("symbol.id", symbol.getId()));
-//            cr.add(Restrictions.eq("timetable.id", timetable.getId()));
-//            SymbolRank symbolRank = (SymbolRank) cr.uniqueResult();
-//            result = symbolRank.getRank();
-//        } catch(HibernateException ex){
-//            ex.printStackTrace();
-//        } finally {
-//            session.close();
-//        }
-//        return result;
-//    }
 
     public static List<Symbol> getAllUniqueSymbols(){
         List<Symbol> allSymbols = getAll(Symbol.class);
@@ -232,42 +160,6 @@ public class DBHelper {
         return false;
     }
 
-//    public static void moveSymbolUpTimetable(Symbol symbolToMove, Timetable timetable){
-//        List<Symbol> symbolsOrderedByRank = orderSymbolsByRank(timetable);
-//        int currentPosition = 0;
-//        for(int i = 0; i < symbolsOrderedByRank.size(); i++){
-//            if(symbolsOrderedByRank.get(i).getId() == symbolToMove.getId()){
-//                currentPosition = i;
-//            }
-//        }
-//        if(currentPosition == 0){
-//            return;
-//        }
-//        Symbol theSymbolAbove = symbolsOrderedByRank.get(currentPosition-1);
-//        theSymbolAbove.increaseRankWithinTimetable();
-//        save(theSymbolAbove);
-//        symbolToMove.decreaseRankWithinTimetable();
-//        save(symbolToMove);
-//    }
-//
-//    public static void moveSymbolDownTimetable(Symbol symbolToMove, Timetable timetable){
-//        List<Symbol> symbolsOrderedByRank = orderSymbolsByRank(timetable);
-//        int currentPosition = symbolsOrderedByRank.size()-1;
-//        for(int i = 0; i < symbolsOrderedByRank.size(); i++){
-//            if(symbolsOrderedByRank.get(i).getId() == symbolToMove.getId()){
-//                currentPosition = i;
-//            }
-//        }
-//        if(currentPosition == symbolsOrderedByRank.size()-1){
-//            return;
-//        }
-//        Symbol theSymbolBelow = symbolsOrderedByRank.get(currentPosition+1);
-//        theSymbolBelow.decreaseRankWithinTimetable();
-//        save(theSymbolBelow);
-//        symbolToMove.increaseRankWithinTimetable();
-//        save(symbolToMove);
-//    }
-
     public static List<Symbol> searchForSymbol(String keyword){
         List<Symbol> allSymbols = getAllUniqueSymbols();
         List<Symbol> results = new ArrayList<>();
@@ -279,5 +171,6 @@ public class DBHelper {
         }
         return results;
     }
+
 
 }

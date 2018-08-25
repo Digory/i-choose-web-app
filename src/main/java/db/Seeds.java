@@ -10,7 +10,6 @@ import java.util.List;
 public class Seeds {
 
     public static void seedData(){
-    //    DBHelper.deleteAll(SymbolRank.class);
         DBHelper.deleteAll(Timetable.class);
         DBHelper.deleteAll(Symbol.class);
         DBHelper.deleteAll(SymbolCategory.class);
@@ -38,6 +37,13 @@ public class Seeds {
         DBHelper.addSymbolToTimetable(timetable, symbol1);
 
         DBHelper.addSymbolToTimetable(timetable, symbol2);
+
+        DBHelper.addSymbolToTimetable(timetable, symbol1);
+
+        Timetable timetable2 = new Timetable("Relax day");
+        DBHelper.save(timetable2);
+
+ //       DBHelper.getRankOfSymbol(symbol1, timetable);
 
 //        List<Symbol> symbolsOfTimetable = DBHelper.getAllSymbolsForTimetable(timetable);
 //
