@@ -5,6 +5,7 @@
     <th>Image URL</th>
     <th>Popularity Rating</th>
     <th></th>
+    <th></th>
 
     #foreach($symbol in $symbols)
     <tr>
@@ -15,6 +16,8 @@
         <td> <form action="/symbols/remove_from_timetable/$symbol.getId()?timetable_id=$timetable.getId()" method="post">
             <input type="submit" value="REMOVE FROM TIMETABLE" class="button center">
         </form> </td>
+        <td><a href="/symbols/move_up/$symbol.getId()?timetable_id=$timetable.getId()">MOVE UP</a></td>
+        <td><a href="/symbols/move_down/$symbol.getId()?timetable_id=$timetable.getId()">MOVE DOWN</a></td>
     <tr>
         #end
 

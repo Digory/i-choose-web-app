@@ -19,18 +19,23 @@ public class Symbol {
     private SymbolCategory category;
     private String imageUrl;
     private int popularityRating;
-    private List<Timetable> timetables;
-    private List<SymbolRank> ranksWithinTimetables;
+    //  private List<Timetable> timetables;
+    // private List<SymbolRank> ranksWithinTimetables;
+    private Timetable timetable;
+    private int rankWithinTimetable;
 
-    public Symbol(){}
+    public Symbol() {
+    }
 
     public Symbol(String name, SymbolCategory category, String imageUrl) {
         this.name = name;
         this.category = category;
         this.imageUrl = imageUrl;
-        this.timetables = new ArrayList<>();
         popularityRating = 0;
-        ranksWithinTimetables = new ArrayList<>();
+        //  this.timetables = new ArrayList<>();
+        // ranksWithinTimetables = new ArrayList<>();
+        timetable = null;
+        rankWithinTimetable = 1;
     }
 
     @Id
@@ -81,37 +86,61 @@ public class Symbol {
         this.popularityRating = popularityRating;
     }
 
-    public void increasePopularity(){
+    public void increasePopularity() {
         popularityRating++;
     }
 
-    //@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "symbols_timetables",
-            joinColumns = {@JoinColumn(name = "symbol_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "timetable_id", nullable = false, updatable = false)}
-
-    )
-    public List<Timetable> getTimetables() {
-        return timetables;
+    @ManyToOne
+    @JoinColumn(name = "timetable_id", nullable = true)
+    public Timetable getTimetable() {
+        return timetable;
     }
 
-    public void setTimetables(List<Timetable> timetables) {
-        this.timetables = timetables;
+    public void setTimetable(Timetable timetable) {
+        this.timetable = timetable;
+    }
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(
+//            name = "symbols_timetables",
+//            joinColumns = {@JoinColumn(name = "symbol_id", nullable = false, updatable = false)},
+//            inverseJoinColumns = {@JoinColumn(name = "timetable_id", nullable = false, updatable = false)}
+//
+//    )
+//    public List<Timetable> getTimetables() {
+//        return timetables;
+//    }
+//
+//    public void setTimetables(List<Timetable> timetables) {
+//        this.timetables = timetables;
+//    }
+//
+//    public void addTimetable(Timetable timetable){
+//        this.timetables.add(timetable);
+//    }
+
+    @Column
+    public int getRankWithinTimetable() {
+        return rankWithinTimetable;
     }
 
-    public void addTimetable(Timetable timetable){
-        this.timetables.add(timetable);
+    public void setRankWithinTimetable(int rankWithinTimetable) {
+        this.rankWithinTimetable = rankWithinTimetable;
     }
 
-    @OneToMany(mappedBy = "symbol")
-    public List<SymbolRank> getRanksWithinTimetables() {
-        return ranksWithinTimetables;
+    public void increaseRankWithinTimetable() {
+        rankWithinTimetable++;
     }
 
-    public void setRanksWithinTimetables(List<SymbolRank> ranksWithinTimetables) {
-        this.ranksWithinTimetables = ranksWithinTimetables;
+    public void decreaseRankWithinTimetable() {
+        rankWithinTimetable--;
     }
+//    @OneToMany(mappedBy = "symbol")
+//    public List<SymbolRank> getRanksWithinTimetables() {
+//        return ranksWithinTimetables;
+//    }
+//
+//    public void setRanksWithinTimetables(List<SymbolRank> ranksWithinTimetables) {
+//        this.ranksWithinTimetables = ranksWithinTimetables;
+//}
 
 }

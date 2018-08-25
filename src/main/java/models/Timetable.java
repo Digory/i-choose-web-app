@@ -13,7 +13,7 @@ public class Timetable {
     private int id;
     private String name;
     private List<Symbol> symbols;
-    private List<SymbolRank> symbolRanks;
+  //  private List<SymbolRank> symbolRanks;
 
     public Timetable(){
 
@@ -22,7 +22,7 @@ public class Timetable {
     public Timetable(String name){
         this.name = name;
         this.symbols = new ArrayList<>();
-        this.symbolRanks = new ArrayList<>();
+     //   this.symbolRanks = new ArrayList<>();
     }
 
     @Id
@@ -45,13 +45,13 @@ public class Timetable {
         this.name = name;
     }
 
-    //@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @ManyToMany
-    @JoinTable(
-        name = "symbols_timetables",
-        joinColumns = {@JoinColumn(name = "timetable_id", nullable = false, updatable = false)},
-        inverseJoinColumns = {@JoinColumn(name = "symbol_id", nullable = false, updatable = false)}
-    )
+//    @ManyToMany
+//    @JoinTable(
+//        name = "symbols_timetables",
+//        joinColumns = {@JoinColumn(name = "timetable_id", nullable = false, updatable = false)},
+//        inverseJoinColumns = {@JoinColumn(name = "symbol_id", nullable = false, updatable = false)}
+//    )
+    @OneToMany(mappedBy = "timetable")
     public List<Symbol> getSymbols() {
         return symbols;
     }
@@ -63,13 +63,13 @@ public class Timetable {
     public void addSymbol(Symbol symbol){
         this.symbols.add(symbol);
     }
-
-    @OneToMany(mappedBy = "timetable")
-    public List<SymbolRank> getSymbolRanks() {
-        return symbolRanks;
-    }
-
-    public void setSymbolRanks(List<SymbolRank> symbolRanks) {
-        this.symbolRanks = symbolRanks;
-    }
+//
+//    @OneToMany(mappedBy = "timetable")
+//    public List<SymbolRank> getSymbolRanks() {
+//        return symbolRanks;
+//    }
+//
+//    public void setSymbolRanks(List<SymbolRank> symbolRanks) {
+//        this.symbolRanks = symbolRanks;
+//    }
 }
