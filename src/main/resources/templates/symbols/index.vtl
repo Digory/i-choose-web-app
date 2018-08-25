@@ -2,17 +2,13 @@
     <table>
         <tr>
             <th>Name</th>
-            <th>Category</th>
             <th>Image URL</th>
-            <th>Popularity Rating</th>
             <th></th>
         </tr>
         #foreach($symbol in $symbols)
         <tr>
             <td>$symbol.getName()</td>
-            <td>$symbol.getCategory().getDescriptor()</td>
             <td>$symbol.getImageUrl()</td>
-            <td>$symbol.getPopularityRating()</td>
             <td><a href="/symbols/$symbol.getId()">VIEW DETAILS</a></td>
         <tr>
             #end
