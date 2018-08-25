@@ -11,10 +11,10 @@ public class Seeds {
 
     public static void seedData(){
     //    DBHelper.deleteAll(SymbolRank.class);
-
+        DBHelper.deleteAll(Timetable.class);
         DBHelper.deleteAll(SymbolCategory.class);
         DBHelper.deleteAll(Symbol.class);
-        DBHelper.deleteAll(Timetable.class);
+
 
 
 
@@ -38,9 +38,9 @@ public class Seeds {
         Symbol symbol2Copy = new Symbol(symbol2.getName(), symbol2.getCategory(), symbol2.getImageUrl());
         DBHelper.save(symbol2Copy);
 
-        DBHelper.associateTimetableWithSymbol(timetable, symbol1Copy);
+        DBHelper.addSymbolToTimetable(timetable, symbol1);
 
-        DBHelper.associateTimetableWithSymbol(timetable, symbol2Copy);
+        DBHelper.addSymbolToTimetable(timetable, symbol2);
 
 //        List<Symbol> symbolsOfTimetable = DBHelper.getAllSymbolsForTimetable(timetable);
 //

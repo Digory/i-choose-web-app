@@ -1,1 +1,16 @@
+<p class="pageHeader">All Symbols</p>
+
+<div class="container">
+    <table>
+        <tr>
+            <th>Descriptor</th>
+        </tr>
+        #foreach($symbolCategory in $symbolCategories)
+        <tr>
+            <td>$symbolCategory.getDescriptor()</td>
+            <td><a href="/symbol-categories/$symbolCategory.getId()">VIEW DETAILS</a></td>
+        <tr>
+            #end
+    </table>
+</div>
 <a href="javascript:history.back()">Go Back</a>

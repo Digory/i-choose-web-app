@@ -19,10 +19,10 @@ public class Symbol {
     private SymbolCategory category;
     private String imageUrl;
     private int popularityRating;
-    //  private List<Timetable> timetables;
+    //private List<Timetable> timetables;
     // private List<SymbolRank> ranksWithinTimetables;
-    private Timetable timetable;
-    private int rankWithinTimetable;
+    //private Timetable timetable;
+    //private int rankWithinTimetable;
 
     public Symbol() {
     }
@@ -34,8 +34,8 @@ public class Symbol {
         popularityRating = 0;
         //  this.timetables = new ArrayList<>();
         // ranksWithinTimetables = new ArrayList<>();
-        timetable = null;
-        rankWithinTimetable = 1;
+        //timetable = null;
+        //rankWithinTimetable = 1;
     }
 
     @Id
@@ -90,16 +90,16 @@ public class Symbol {
         popularityRating++;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "timetable_id", nullable = true)
-    public Timetable getTimetable() {
-        return timetable;
-    }
+//    @ManyToOne
+//    @JoinColumn(name = "timetable_id", nullable = true)
+//    public Timetable getTimetable() {
+//        return timetable;
+//    }
 
-    public void setTimetable(Timetable timetable) {
-        this.timetable = timetable;
-    }
-//    @ManyToMany(fetch = FetchType.EAGER)
+//    public void setTimetable(Timetable timetable) {
+//        this.timetable = timetable;
+//    }
+//    @ManyToMany(fetch = FetchType.LAZY)
 //    @JoinTable(
 //            name = "symbols_timetables",
 //            joinColumns = {@JoinColumn(name = "symbol_id", nullable = false, updatable = false)},
@@ -118,22 +118,22 @@ public class Symbol {
 //        this.timetables.add(timetable);
 //    }
 
-    @Column
-    public int getRankWithinTimetable() {
-        return rankWithinTimetable;
-    }
+//    @Column(nullable = true)
+//    public int getRankWithinTimetable() {
+//        return rankWithinTimetable;
+//    }
 
-    public void setRankWithinTimetable(int rankWithinTimetable) {
-        this.rankWithinTimetable = rankWithinTimetable;
-    }
-
-    public void increaseRankWithinTimetable() {
-        rankWithinTimetable++;
-    }
-
-    public void decreaseRankWithinTimetable() {
-        rankWithinTimetable--;
-    }
+//    public void setRankWithinTimetable(int rankWithinTimetable) {
+//        this.rankWithinTimetable = rankWithinTimetable;
+//    }
+//
+//    public void increaseRankWithinTimetable() {
+//        rankWithinTimetable++;
+//    }
+//
+//    public void decreaseRankWithinTimetable() {
+//        rankWithinTimetable--;
+//    }
 //    @OneToMany(mappedBy = "symbol")
 //    public List<SymbolRank> getRanksWithinTimetables() {
 //        return ranksWithinTimetables;

@@ -119,9 +119,10 @@ public class DBHelper {
         return getList(cr);
     }
 
-    public static void associateTimetableWithSymbol(Timetable timetable, Symbol symbol){
-        symbol.setTimetable(timetable);
-        save(symbol);
+    public static void addSymbolToTimetable(Timetable timetable, Symbol symbol){
+        timetable.addSymbol(symbol);
+        //symbol.setTimetable(timetable);
+        save(timetable);
 
 //        SymbolRank symbolRank = new SymbolRank(symbol, timetable);
 //        save(symbolRank);
@@ -171,28 +172,28 @@ public class DBHelper {
 //        save(symbolRank);
 //    }
 
-    public static void increaseRankingOfSymbolInTimetable(Symbol symbol){
-        symbol.increaseRankWithinTimetable();
-        save(symbol);
-    }
-
-    public static void decreaseRankingOfSymbolInTimetable(Symbol symbol){
-        symbol.decreaseRankWithinTimetable();
-        save(symbol);
-    }
-
-
-    public static List<Symbol> orderSymbolsByRank(Timetable timetable){
-        List<Symbol> results = getAllSymbolsForTimetable(timetable);
-        Collections.sort(results, new Comparator<Symbol>() {
-            @Override
-            public int compare(Symbol symbol1, Symbol symbol2) {
-                //return getRankOfSymbol(symbol1, timetable) - getRankOfSymbol(symbol2, timetable);
-                return symbol1.getRankWithinTimetable() - symbol2.getRankWithinTimetable();
-            }
-        });
-        return results;
-    }
+//    public static void increaseRankingOfSymbolInTimetable(Symbol symbol){
+//        symbol.increaseRankWithinTimetable();
+//        save(symbol);
+//    }
+//
+//    public static void decreaseRankingOfSymbolInTimetable(Symbol symbol){
+//        symbol.decreaseRankWithinTimetable();
+//        save(symbol);
+//    }
+//
+//
+//    public static List<Symbol> orderSymbolsByRank(Timetable timetable){
+//        List<Symbol> results = getAllSymbolsForTimetable(timetable);
+//        Collections.sort(results, new Comparator<Symbol>() {
+//            @Override
+//            public int compare(Symbol symbol1, Symbol symbol2) {
+//                //return getRankOfSymbol(symbol1, timetable) - getRankOfSymbol(symbol2, timetable);
+//                return symbol1.getRankWithinTimetable() - symbol2.getRankWithinTimetable();
+//            }
+//        });
+//        return results;
+//    }
 
 //    public static int getRankOfSymbol(Symbol symbol, Timetable timetable){
 //        session = HibernateUtil.getSessionFactory().openSession();
@@ -231,41 +232,41 @@ public class DBHelper {
         return false;
     }
 
-    public static void moveSymbolUpTimetable(Symbol symbolToMove, Timetable timetable){
-        List<Symbol> symbolsOrderedByRank = orderSymbolsByRank(timetable);
-        int currentPosition = 0;
-        for(int i = 0; i < symbolsOrderedByRank.size(); i++){
-            if(symbolsOrderedByRank.get(i).getId() == symbolToMove.getId()){
-                currentPosition = i;
-            }
-        }
-        if(currentPosition == 0){
-            return;
-        }
-        Symbol theSymbolAbove = symbolsOrderedByRank.get(currentPosition-1);
-        theSymbolAbove.increaseRankWithinTimetable();
-        save(theSymbolAbove);
-        symbolToMove.decreaseRankWithinTimetable();
-        save(symbolToMove);
-    }
-
-    public static void moveSymbolDownTimetable(Symbol symbolToMove, Timetable timetable){
-        List<Symbol> symbolsOrderedByRank = orderSymbolsByRank(timetable);
-        int currentPosition = symbolsOrderedByRank.size()-1;
-        for(int i = 0; i < symbolsOrderedByRank.size(); i++){
-            if(symbolsOrderedByRank.get(i).getId() == symbolToMove.getId()){
-                currentPosition = i;
-            }
-        }
-        if(currentPosition == symbolsOrderedByRank.size()-1){
-            return;
-        }
-        Symbol theSymbolBelow = symbolsOrderedByRank.get(currentPosition+1);
-        theSymbolBelow.decreaseRankWithinTimetable();
-        save(theSymbolBelow);
-        symbolToMove.increaseRankWithinTimetable();
-        save(symbolToMove);
-    }
+//    public static void moveSymbolUpTimetable(Symbol symbolToMove, Timetable timetable){
+//        List<Symbol> symbolsOrderedByRank = orderSymbolsByRank(timetable);
+//        int currentPosition = 0;
+//        for(int i = 0; i < symbolsOrderedByRank.size(); i++){
+//            if(symbolsOrderedByRank.get(i).getId() == symbolToMove.getId()){
+//                currentPosition = i;
+//            }
+//        }
+//        if(currentPosition == 0){
+//            return;
+//        }
+//        Symbol theSymbolAbove = symbolsOrderedByRank.get(currentPosition-1);
+//        theSymbolAbove.increaseRankWithinTimetable();
+//        save(theSymbolAbove);
+//        symbolToMove.decreaseRankWithinTimetable();
+//        save(symbolToMove);
+//    }
+//
+//    public static void moveSymbolDownTimetable(Symbol symbolToMove, Timetable timetable){
+//        List<Symbol> symbolsOrderedByRank = orderSymbolsByRank(timetable);
+//        int currentPosition = symbolsOrderedByRank.size()-1;
+//        for(int i = 0; i < symbolsOrderedByRank.size(); i++){
+//            if(symbolsOrderedByRank.get(i).getId() == symbolToMove.getId()){
+//                currentPosition = i;
+//            }
+//        }
+//        if(currentPosition == symbolsOrderedByRank.size()-1){
+//            return;
+//        }
+//        Symbol theSymbolBelow = symbolsOrderedByRank.get(currentPosition+1);
+//        theSymbolBelow.decreaseRankWithinTimetable();
+//        save(theSymbolBelow);
+//        symbolToMove.increaseRankWithinTimetable();
+//        save(symbolToMove);
+//    }
 
 
 }

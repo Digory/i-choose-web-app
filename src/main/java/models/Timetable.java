@@ -45,13 +45,15 @@ public class Timetable {
         this.name = name;
     }
 
-//    @ManyToMany
-//    @JoinTable(
-//        name = "symbols_timetables",
-//        joinColumns = {@JoinColumn(name = "timetable_id", nullable = false, updatable = false)},
-//        inverseJoinColumns = {@JoinColumn(name = "symbol_id", nullable = false, updatable = false)}
-//    )
-    @OneToMany(mappedBy = "timetable")
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "symbols_timetables",
+        joinColumns = {@JoinColumn(name = "timetable_id", nullable = false, updatable = false)},
+        inverseJoinColumns = {@JoinColumn(name = "symbol_id", nullable = false, updatable = false)}
+    )
+    @OrderColumn(name="order_in_timetable")
+//    @OneToMany(mappedBy = "timetable")
     public List<Symbol> getSymbols() {
         return symbols;
     }
@@ -62,6 +64,10 @@ public class Timetable {
 
     public void addSymbol(Symbol symbol){
         this.symbols.add(symbol);
+    }
+
+    public void removeSymbolAtPosition(int position){
+        this.symbols.remove(position);
     }
 //
 //    @OneToMany(mappedBy = "timetable")

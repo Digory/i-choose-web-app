@@ -29,11 +29,11 @@ public class TimetableController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        // SHOW ASSOCIATED SYMBOLS
+        // SHOW SYMBOLS IN TIMETABLE
         get("/timetables/:id/show_symbols", (req, res) ->{
             int id = Integer.parseInt(req.params("id"));
             Timetable timetable = DBHelper.find(id, Timetable.class);
-            List<Symbol> symbols = DBHelper.orderSymbolsByRank(timetable);
+            List<Symbol> symbols = timetable.getSymbols();
             Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/timetables/show_symbols.vtl");
             model.put("symbols", symbols);

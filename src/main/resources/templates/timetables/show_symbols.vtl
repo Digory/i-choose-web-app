@@ -13,7 +13,7 @@
         <td>$symbol.getCategory().getDescriptor()</td>
         <td>$symbol.getImageUrl()</td>
         <td>$symbol.getPopularityRating()</td>
-        <td> <form action="/symbols/remove_from_timetable/$symbol.getId()?timetable_id=$timetable.getId()" method="post">
+        <td> <form action="/symbols/remove_from_timetable/$symbol.getId()?timetable_id=$timetable.getId()&symbol_position=$velocityCount" method="post">
             <input type="submit" value="REMOVE FROM TIMETABLE" class="button center">
         </form> </td>
         <td><a href="/symbols/move_up/$symbol.getId()?timetable_id=$timetable.getId()">MOVE UP</a></td>
