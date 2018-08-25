@@ -35,7 +35,7 @@ body {
 
 .search {
     grid-area: search;
-    background-color: #ececec;
+    background-color: white;
     display: flex;
     flex-direction: row;
 }
@@ -43,16 +43,15 @@ body {
 .most-used {
     grid-area: most-used;
     display: flex;
-    background-color: #ececec;
+    background-color: white;
     justify-content: space-between;
     padding-left: 2rem;
     padding-right: 2rem;
 }
 
 .categories {
-    padding-top: 2rem;
     display: flex;
-    background-color: #90ccf4;
+    background-color: white;
     grid-area: categories;
 }
 
