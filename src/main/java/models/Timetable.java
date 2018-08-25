@@ -4,6 +4,7 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -13,16 +14,13 @@ public class Timetable {
     private int id;
     private String name;
     private List<Symbol> symbols;
-  //  private List<SymbolRank> symbolRanks;
 
     public Timetable(){
-
     }
 
     public Timetable(String name){
         this.name = name;
         this.symbols = new ArrayList<>();
-     //   this.symbolRanks = new ArrayList<>();
     }
 
     @Id
@@ -69,13 +67,22 @@ public class Timetable {
     public void removeSymbolAtPosition(int position){
         this.symbols.remove(position);
     }
-//
-//    @OneToMany(mappedBy = "timetable")
-//    public List<SymbolRank> getSymbolRanks() {
-//        return symbolRanks;
-//    }
-//
-//    public void setSymbolRanks(List<SymbolRank> symbolRanks) {
-//        this.symbolRanks = symbolRanks;
-//    }
+
+    public void moveSymbolAtThisPositionUpByOne(int position){
+        if(position == 0){
+            return;
+        }
+        Symbol symbol = symbols.get(position);
+        Collections.swap(symbols, position, position-1);
+    }
+
+
+    public void moveSymbolAtThisPositionDownByOne(int position){
+        if(position == symbols.size()-1){
+            return;
+        }
+        Symbol symbol = symbols.get(position);
+        Collections.swap(symbols, position, position+1);
+    }
+
 }

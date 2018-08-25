@@ -53,19 +53,7 @@ public class SymbolController {
             int symbolID = Integer.parseInt(req.params("id"));
             Timetable timetable = DBHelper.find(timetableID, Timetable.class);
             Symbol symbol = DBHelper.find(symbolID, Symbol.class);
-            //Symbol symbolCopy = new Symbol(symbol.getName(), symbol.getCategory(), symbol.getImageUrl());
-           // DBHelper.save(symbolCopy);
-            //List<Symbol> symbols = DBHelper.orderSymbolsByRank(timetable);
-            //Symbol currentFinalSymbol = symbols.get(symbols.size()-1);
             DBHelper.addSymbolToTimetable(timetable, symbol);
-
-            // This is for ensuring that the symbol ranking of the new symbol is always above the last symbol in the timetable.
-            // TODO: Make this into a nicer looking method
-//            if(symbols.size() >= 2){
-//                while(symbolCopy.getRankWithinTimetable() <= currentFinalSymbol.getRankWithinTimetable()){
-//                    DBHelper.increaseRankingOfSymbolInTimetable(symbolCopy);
-//                }
-//            }
             res.redirect("/timetables/"+timetableID+"/show_symbols");
             return null;
         });
@@ -78,8 +66,6 @@ public class SymbolController {
             Symbol symbol = DBHelper.find(symbolID, Symbol.class);
             int position = Integer.parseInt(req.queryParams("symbol_position"));
             position -= 1;
-           // SymbolRank symbolRank = DBHelper.getSymbolRankForThisSymbolForThisTimetable(symbol, timetable);
-           // DBHelper.delete(symbolRank);
             timetable.removeSymbolAtPosition(position);
             DBHelper.save(timetable);
             Map<String, Object> model = new HashMap<>();
@@ -96,27 +82,29 @@ public class SymbolController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
-//        //  MOVE SYMBOL UP TIMETABLE
-//        get("/symbols/move_up/:id", (req, res) -> {
-//            int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
-//            int symbolID = Integer.parseInt(req.params("id"));
-//            Timetable timetable = DBHelper.find(timetableID, Timetable.class);
-//            Symbol symbol = DBHelper.find(symbolID, Symbol.class);
-//           // DBHelper.moveSymbolUpTimetable(symbol, timetable);
-//            res.redirect("/timetables/"+timetableID+"/show_symbols");
-//            return null;
-//        });
-//
-//        //  MOVE SYMBOL DOWN TIMETABLE
-//        get("/symbols/move_down/:id", (req, res) -> {
-//            int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
-//            int symbolID = Integer.parseInt(req.params("id"));
-//            Timetable timetable = DBHelper.find(timetableID, Timetable.class);
-//            Symbol symbol = DBHelper.find(symbolID, Symbol.class);
-//           // DBHelper.moveSymbolDownTimetable(symbol, timetable);
-//            res.redirect("/timetables/"+timetableID+"/show_symbols");
-//            return null;
-//        });
+        //  MOVE SYMBOL UP TIMETABLE
+        get("/symbols/move_up", (req, res) -> {
+            int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
+            int position = Integer.parseInt(req.queryParams("symbol_position"));
+            position -= 1;
+            Timetable timetable = DBHelper.find(timetableID, Timetable.class);
+            timetable.moveSymbolAtThisPositionUpByOne(position);
+            DBHelper.save(timetable);
+            res.redirect("/timetables/"+timetableID+"/show_symbols");
+            return null;
+        });
+
+        //  MOVE SYMBOL DOWN TIMETABLE
+        get("/symbols/move_down", (req, res) -> {
+            int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
+            int position = Integer.parseInt(req.queryParams("symbol_position"));
+            position -= 1;
+            Timetable timetable = DBHelper.find(timetableID, Timetable.class);
+            timetable.moveSymbolAtThisPositionDownByOne(position);
+            DBHelper.save(timetable);
+            res.redirect("/timetables/"+timetableID+"/show_symbols");
+            return null;
+        });
 
         //  CREATE
         post("/symbols", (req, res) -> {
