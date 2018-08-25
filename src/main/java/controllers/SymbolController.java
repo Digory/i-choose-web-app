@@ -75,6 +75,15 @@ public class SymbolController {
             return null;
         });
 
+        //  NEW
+        get("/symbols/new", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("template", "templates/symbols/create.vtl");
+            List<SymbolCategory> symbolCategories = DBHelper.getAll(SymbolCategory.class);
+            model.put("symbolCategories", symbolCategories);
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
         //  CREATE
         post("/symbols", (req, res) -> {
             String name = req.queryParams("name");
@@ -86,15 +95,6 @@ public class SymbolController {
             res.redirect("/symbols");
             return null;
         });
-
-        //  NEW
-        get("/symbols/new", (req, res) -> {
-            Map<String, Object> model = new HashMap<>();
-            model.put("template", "templates/symbols/create.vtl");
-            List<SymbolCategory> symbolCategories = DBHelper.getAll(SymbolCategory.class);
-            model.put("symbolCategories", symbolCategories);
-            return new ModelAndView(model, "templates/layout.vtl");
-        }, new VelocityTemplateEngine());
 
         //  SHOW
         get("/symbols/:id", (req, res) -> {
