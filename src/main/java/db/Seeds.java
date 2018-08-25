@@ -14,7 +14,6 @@ public class Seeds {
         DBHelper.deleteAll(Symbol.class);
         DBHelper.deleteAll(SymbolCategory.class);
 
-
         Timetable timetable = new Timetable("Party Day");
         DBHelper.save(timetable);
 

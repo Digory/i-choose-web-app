@@ -42,7 +42,7 @@ public class Symbol {
     }
 
     @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
+    @JoinColumn(name = "category_id", nullable = true)
     public SymbolCategory getCategory() {
         return category;
     }
