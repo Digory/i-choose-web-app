@@ -231,5 +231,41 @@ public class DBHelper {
         return false;
     }
 
+    public static void moveSymbolUpTimetable(Symbol symbolToMove, Timetable timetable){
+        List<Symbol> symbolsOrderedByRank = orderSymbolsByRank(timetable);
+        int currentPosition = 0;
+        for(int i = 0; i < symbolsOrderedByRank.size(); i++){
+            if(symbolsOrderedByRank.get(i).getId() == symbolToMove.getId()){
+                currentPosition = i;
+            }
+        }
+        if(currentPosition == 0){
+            return;
+        }
+        Symbol theSymbolAbove = symbolsOrderedByRank.get(currentPosition-1);
+        theSymbolAbove.increaseRankWithinTimetable();
+        save(theSymbolAbove);
+        symbolToMove.decreaseRankWithinTimetable();
+        save(symbolToMove);
+    }
+
+    public static void moveSymbolDownTimetable(Symbol symbolToMove, Timetable timetable){
+        List<Symbol> symbolsOrderedByRank = orderSymbolsByRank(timetable);
+        int currentPosition = symbolsOrderedByRank.size()-1;
+        for(int i = 0; i < symbolsOrderedByRank.size(); i++){
+            if(symbolsOrderedByRank.get(i).getId() == symbolToMove.getId()){
+                currentPosition = i;
+            }
+        }
+        if(currentPosition == symbolsOrderedByRank.size()-1){
+            return;
+        }
+        Symbol theSymbolBelow = symbolsOrderedByRank.get(currentPosition+1);
+        theSymbolBelow.decreaseRankWithinTimetable();
+        save(theSymbolBelow);
+        symbolToMove.increaseRankWithinTimetable();
+        save(symbolToMove);
+    }
+
 
 }

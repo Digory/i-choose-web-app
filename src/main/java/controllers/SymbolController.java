@@ -75,6 +75,28 @@ public class SymbolController {
             return null;
         });
 
+        //  MOVE SYMBOL UP TIMETABLE
+        get("/symbols/move_up/:id", (req, res) -> {
+            int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
+            int symbolID = Integer.parseInt(req.params("id"));
+            Timetable timetable = DBHelper.find(timetableID, Timetable.class);
+            Symbol symbol = DBHelper.find(symbolID, Symbol.class);
+            DBHelper.moveSymbolUpTimetable(symbol, timetable);
+            res.redirect("/timetables/"+timetableID+"/show_symbols");
+            return null;
+        });
+
+        //  MOVE SYMBOL DOWN TIMETABLE
+        get("/symbols/move_down/:id", (req, res) -> {
+            int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
+            int symbolID = Integer.parseInt(req.params("id"));
+            Timetable timetable = DBHelper.find(timetableID, Timetable.class);
+            Symbol symbol = DBHelper.find(symbolID, Symbol.class);
+            DBHelper.moveSymbolDownTimetable(symbol, timetable);
+            res.redirect("/timetables/"+timetableID+"/show_symbols");
+            return null;
+        });
+
         //  CREATE
         post("/symbols", (req, res) -> {
             String name = req.queryParams("name");
