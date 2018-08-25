@@ -1,0 +1,9 @@
+<p class="pageHeader">Edit Category</p>
+
+<form action="/symbol-categories/$symbolCategory.getId()" method="post">
+    <label for="descriptor">Descriptor:</label>
+    <input class="inputbox" type="text" name="descriptor" id="descriptor" required="true" value="$symbolCategory.getDescriptor()">
+
+    <input type="submit" value="Save" class="button">
+</form>
+<a href="/symbol-categories/$symbolCategory.getId()" class="button center">Cancel</a>

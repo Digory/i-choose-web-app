@@ -3,6 +3,8 @@ package models;
 import db.DBHelper;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.sql.Time;
@@ -59,7 +61,7 @@ public class Symbol {
     }
 
     @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
+    @JoinColumn(name = "category_id", nullable = true)
     public SymbolCategory getCategory() {
         return category;
     }
