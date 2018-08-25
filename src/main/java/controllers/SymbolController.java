@@ -36,6 +36,16 @@ public class SymbolController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        //  SHOW CATEGORY
+        get("symbols/category", (req, res) -> {
+            String categoryName = req.queryParams("category");
+            List<Symbol> searchResults = DBHelper.searchForSymbol(categoryName);
+            Map<String, Object> model = new HashMap<>();
+            model.put("results", searchResults);
+            model.put("template", "templates/symbols/search_results.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
         //  SHOW BEFORE ADDING TO TIMETABLE
         get("/symbols/add", (req, res) -> {
             int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
