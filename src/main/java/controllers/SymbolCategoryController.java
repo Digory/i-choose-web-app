@@ -46,8 +46,9 @@ public class SymbolCategoryController {
 
         //  CREATE
         post("/symbol-categories", (req, res) -> {
+            String icon = req.queryParams("icon");
             String descriptor = req.queryParams("descriptor");
-            SymbolCategory symbolCategory = new SymbolCategory(descriptor);
+            SymbolCategory symbolCategory = new SymbolCategory(icon, descriptor);
             DBHelper.save(symbolCategory);
             res.redirect("/symbol-categories");
             return null;

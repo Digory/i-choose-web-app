@@ -11,7 +11,7 @@ public class SymbolTest {
 
     @Before
     public void before(){
-        category = new SymbolCategory("Food");
+        category = new SymbolCategory("<i class=\"fas fa-utensils\"></i>","Food");
         symbol = new Symbol("Banana", category, "www.nicepictures.com");
     }
 
@@ -33,7 +33,7 @@ public class SymbolTest {
 
     @Test
     public void setCategory() {
-        SymbolCategory category2 = new SymbolCategory("Travel");
+        SymbolCategory category2 = new SymbolCategory("<i class=\"fas fa-car-side\"></i>", "Travel");
         symbol.setCategory(category2);
         assertEquals(category2, symbol.getCategory());
     }

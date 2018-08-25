@@ -17,29 +17,26 @@ public class Seeds {
         Timetable timetable = new Timetable("Party Day");
         DBHelper.save(timetable);
 
-        SymbolCategory category1 = new SymbolCategory("Food");
+        SymbolCategory category1 = new SymbolCategory( "fas fa-utensils", "Food");
         DBHelper.save(category1);
 
-        SymbolCategory category2 = new SymbolCategory("Drink");
+        SymbolCategory category2 = new SymbolCategory("fas fa-coffee","Drinks");
         DBHelper.save(category2);
 
-        SymbolCategory category3 = new SymbolCategory("Places");
+        SymbolCategory category3 = new SymbolCategory("fas fa-map-marked-alt","Places");
         DBHelper.save(category3);
 
-        SymbolCategory category4 = new SymbolCategory("Activities");
+        SymbolCategory category4 = new SymbolCategory("fas fa-walking","Activities");
         DBHelper.save(category4);
 
-        SymbolCategory category5 = new SymbolCategory("Things");
+        SymbolCategory category5 = new SymbolCategory("far fa-smile","Feelings");
         DBHelper.save(category5);
 
-        SymbolCategory category6 = new SymbolCategory("Feelings");
+        SymbolCategory category6 = new SymbolCategory("fas fa-users","People");
         DBHelper.save(category6);
 
-        SymbolCategory category7 = new SymbolCategory("People");
+        SymbolCategory category7 = new SymbolCategory("fas fa-car-side", "Travel");
         DBHelper.save(category7);
-
-        SymbolCategory category8 = new SymbolCategory("Travel");
-        DBHelper.save(category8);
 
         Symbol symbol1 = new Symbol("Banana", category1, "www.bananas.com");
         DBHelper.save(symbol1);
@@ -47,7 +44,7 @@ public class Seeds {
         Symbol symbol2 = new Symbol("Orange", category1, "www.oranges.com");
         DBHelper.save(symbol2);
 
-        Symbol symbol3 = new Symbol("Car", category8, "www.cars.com");
+        Symbol symbol3 = new Symbol("Car", category7, "www.cars.com");
         symbol3.increasePopularity();
         DBHelper.save(symbol3);
 

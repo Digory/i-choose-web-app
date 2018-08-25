@@ -3,10 +3,12 @@
 <div class="container">
     <table>
         <tr>
+            <th>Icon</th>
             <th>Descriptor</th>
         </tr>
         #foreach($symbolCategory in $symbolCategories)
         <tr>
+            <td>$symbolCategory.getIcon()</td>
             <td>$symbolCategory.getDescriptor()</td>
             <td><a href="/symbol-categories/$symbolCategory.getId()">VIEW DETAILS</a></td>
         <tr>

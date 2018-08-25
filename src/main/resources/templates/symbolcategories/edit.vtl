@@ -1,6 +1,10 @@
 <p class="pageHeader">Edit Category</p>
 
 <form action="/symbol-categories/$symbolCategory.getId()" method="post">
+
+    <label for="icon">Category Icon:</label>
+    <input class="inputbox" type="text" name="icon" required = true id="icon" value="$symbolCategory.getIcon()">
+
     <label for="descriptor">Descriptor:</label>
     <input class="inputbox" type="text" name="descriptor" id="descriptor" required="true" value="$symbolCategory.getDescriptor()">
 

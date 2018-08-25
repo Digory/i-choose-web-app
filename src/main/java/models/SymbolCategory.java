@@ -11,12 +11,14 @@ import java.util.List;
 @Table(name="categories")
 public class SymbolCategory {
     private int id;
+    private String icon;
     private String descriptor;
     private List<Symbol> symbols;
 
     public SymbolCategory(){}
 
-    public SymbolCategory(String descriptor) {
+    public SymbolCategory(String icon, String descriptor) {
+        this.icon = icon;
         this.descriptor = descriptor;
         symbols = new ArrayList<Symbol>();
     }
@@ -30,6 +32,15 @@ public class SymbolCategory {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Column(name="icon")
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     @Column

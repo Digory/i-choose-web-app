@@ -10,13 +10,9 @@
     <div class="frequent-item">Item 3</div>
 </div>
 <div class="categories">
-    #foreach($category in $categories)
-    <div>$category.getDescriptor()</div>
-    #end
-
-    <hr/>
-    <br>
-    <a href="/symbols">View all symbols</a><br>
-    <a href="/symbol-categories">View all categories</a><br>
-    <a href="/timetables">View all timetables</a><br>
+    <ul>
+        #foreach($category in $categories)
+        <li><a href="/symbols/category?category=$category.getDescriptor()"><i class="category-icon $category.getIcon()"></i>$category.getDescriptor()</a></li>
+        #end
+    </ul>
 </div>
