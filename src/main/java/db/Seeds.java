@@ -2,7 +2,7 @@ package db;
 
 import models.Symbol;
 import models.SymbolCategory;
-import models.SymbolRank;
+//import models.SymbolRank;
 import models.Timetable;
 
 import java.util.List;
@@ -10,11 +10,12 @@ import java.util.List;
 public class Seeds {
 
     public static void seedData(){
-        DBHelper.deleteAll(SymbolRank.class);
+    //    DBHelper.deleteAll(SymbolRank.class);
+
+        DBHelper.deleteAll(SymbolCategory.class);
         DBHelper.deleteAll(Symbol.class);
         DBHelper.deleteAll(Timetable.class);
 
-        DBHelper.deleteAll(SymbolCategory.class);
 
 
         Timetable timetable = new Timetable("Party Day");

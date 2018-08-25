@@ -2,7 +2,7 @@ package controllers;
 
 import db.DBHelper;
 import db.Seeds;
-import models.SymbolRank;
+//import models.SymbolRank;
 import models.Timetable;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
@@ -52,8 +52,8 @@ public class SymbolController {
             // This is for ensuring that the symbol ranking of the new symbol is always above the last symbol in the timetable.
             // TODO: Make this into a nicer looking method
             if(symbols.size() >= 2){
-                while(DBHelper.getRankOfSymbol(symbolCopy, timetable) <= DBHelper.getRankOfSymbol(currentFinalSymbol, timetable)){
-                    DBHelper.increaseRankingOfSymbolInTimetable(symbolCopy, timetable);
+                while(symbolCopy.getRankWithinTimetable() <= currentFinalSymbol.getRankWithinTimetable()){
+                    DBHelper.increaseRankingOfSymbolInTimetable(symbolCopy);
                 }
             }
             res.redirect("/timetables/"+timetableID+"/show_symbols");
@@ -66,8 +66,8 @@ public class SymbolController {
             int symbolID = Integer.parseInt(req.params("id"));
             Timetable timetable = DBHelper.find(timetableID, Timetable.class);
             Symbol symbol = DBHelper.find(symbolID, Symbol.class);
-            SymbolRank symbolRank = DBHelper.getSymbolRankForThisSymbolForThisTimetable(symbol, timetable);
-            DBHelper.delete(symbolRank);
+           // SymbolRank symbolRank = DBHelper.getSymbolRankForThisSymbolForThisTimetable(symbol, timetable);
+           // DBHelper.delete(symbolRank);
             DBHelper.delete(symbol);
             DBHelper.save(timetable);
             Map<String, Object> model = new HashMap<>();
