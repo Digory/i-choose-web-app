@@ -7,7 +7,7 @@
         <th>Category</th><td>$symbol.getCategory().getDescriptor()</td>
     </tr>
     <tr>
-        <th>Image URL</th><td><img src="$symbol.getImageUrl()"/></td>
+        <th>Image URL</th><td>$symbol.getImageUrl()</td>
     </tr>
     <tr>
         <th>Popularity Rating</th><td>$symbol.getPopularityRating()</td>
@@ -18,7 +18,7 @@
 
 
 
-        
+
         <td><a href="/admin/symbols/$symbol.getId()/edit">EDIT</a></td>
         <td>
             <form action="/admin/symbols/$symbol.getId()/delete" method="post">
