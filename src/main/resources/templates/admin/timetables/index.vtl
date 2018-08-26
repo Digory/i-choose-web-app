@@ -1,7 +1,5 @@
 <p class="pageHeader">All Timetables</p>
 
-
-<div class="container">
     <table>
         <tr>
             <th>Name</th>
@@ -9,21 +7,20 @@
             <th></th>
         </tr>
 
-
         #foreach($timetable in $timetables)
+
         <tr>
             <td>$timetable.getName()</td>
             <td>$timetable.getUser().getName()</td>
-            <td><a href="/timetables/$timetable.getId()">VIEW DETAILS</a></td>
-            <td><a href="/timetables/$timetable.getId()/show_symbols">SHOW SYMBOLS</a></td>
+            <td><a href="/admin/timetables/$timetable.getId()">VIEW DETAILS</a></td>
+            <td><a href="/admin/timetables/$timetable.getId()/show_symbols">SHOW SYMBOLS</a></td>
         </tr>
 
         #end
 
     </table>
-</div>
 
-<a href="/timetables/new">Add Timetable</a>
+<a href="/admin/timetables/new">Add Timetable</a>
 
 
 

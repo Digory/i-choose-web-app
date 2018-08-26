@@ -1,6 +1,6 @@
 <p class="pageHeader">Edit Timetable</p>
 
-<form action="/timetables/$timetable.getId()" method="post">
+<form action="/admin/timetables/$timetable.getId()" method="post">
     <label for="name">Name:</label>
     <input class="inputbox" type="text" name="name" id="name" required="true" value="$timetable.getName()">
 
@@ -16,4 +16,4 @@
     </select>
     <input type="submit" value="Save" class="button">
 </form>
-<a href="/timetables/$timetable.getId()" class="button center">Cancel</a>
+<a href="/admin/timetables/$timetable.getId()" class="button center">Cancel</a>
