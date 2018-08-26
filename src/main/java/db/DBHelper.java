@@ -168,6 +168,29 @@ public class DBHelper {
         return false;
     }
 
+    public static List<Timetable> getUniqueTimetablesForUser(User user){
+        session = HibernateUtil.getSessionFactory().openSession();
+        Criteria cr = session.createCriteria(Timetable.class);
+        cr.add(Restrictions.eq("user.id", user.getId()));
+        List<Timetable> timetables = getList(cr);
+        List<Timetable> filteredTimetables = new ArrayList<>();
+        for(Timetable timetable : timetables){
+            if(!doesThisListOfTimetablesContainOneWithThisName(timetable.getName(), filteredTimetables)){
+                filteredTimetables.add(timetable);
+            }
+        }
+        return filteredTimetables;
+    }
+
+    public static boolean doesThisListOfTimetablesContainOneWithThisName(String name, List<Timetable> timetables){
+        for(Timetable timetable : timetables){
+            if(timetable.getName().equals(name)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static List<Symbol> searchForSymbol(String keyword){
         List<Symbol> allSymbols = getAllUniqueSymbols();
         List<Symbol> results = new ArrayList<>();

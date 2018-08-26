@@ -7,7 +7,7 @@
     </tr>
     <tr>
         <td>$user.getName()</td>
-        #foreach($timetable in $user.getTimetables())
+        #foreach($timetable in $timetables)
     <tr>
         <td>$timetable.getName()</td>
         <td><a href="/timetables/$timetable.getId()">VIEW DETAILS</a></td>
@@ -23,5 +23,6 @@
         </td>
     <tr>
 </table>
+<a href="/timetables/new_for_user?user_id=$user.getId()">MAKE NEW TIMETABLE</a>
 
 

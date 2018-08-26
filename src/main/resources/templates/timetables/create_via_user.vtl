@@ -1,0 +1,7 @@
+<p class="pageHeader">New Timetable for $user.getName()</p>
+
+<form action="/timetables/create_for_user?user_id=$user.getId()" method="post">
+    <label for="name">Timetable Name:</label>
+    <input class="inputbox" type="text" name="name" required="true" id="name">
+    <input type="submit" value="Save" class="button">
+</form>
