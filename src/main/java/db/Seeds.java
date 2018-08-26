@@ -67,9 +67,13 @@ public class Seeds {
         DBHelper.save(timetable2);
 
         DBHelper.addSymbolToTimetable(timetable2, symbol1);
+        DBHelper.addSymbolToTimetable(timetable2, symbol1);
 
         DBHelper.addTimetableToUser(timetable, digory);
         DBHelper.addTimetableToUser(timetable2, vicky);
+
+
+
 
  //       DBHelper.getRankOfSymbol(symbol1, timetable);
 

@@ -7,7 +7,7 @@
     </tr>
     <tr>
         <td>$user.getName()</td>
-        #foreach($timetable in $user.getTimetables())
+        #foreach($timetable in $timetables)
     <tr>
         <td>$timetable.getName()</td>
         <td><a href="/timetables/$timetable.getId()">VIEW DETAILS</a></td>

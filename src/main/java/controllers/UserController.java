@@ -39,6 +39,8 @@ public class UserController {
         Map<String, Object> model = new HashMap<>();
         int id = Integer.parseInt(req.params(":id"));
         User user = DBHelper.find(id, User.class);
+        List<Timetable> timetables = DBHelper.getUniqueTimetablesForUser(user);
+        model.put("timetables", timetables);
         model.put("template", "templates/users/show.vtl");
         model.put("user", user);
         return new ModelAndView(model, "templates/layout.vtl");

@@ -126,9 +126,9 @@ public class DBHelper {
     }
 
     public static void addTimetableToUser(Timetable timetable, User user){
-        user.addTimetable(timetable);
+     //   user.addTimetable(timetable);
         timetable.setUser(user);
-        save(user);
+     //   save(user);
         save(timetable);
     }
 
@@ -162,6 +162,29 @@ public class DBHelper {
     public static boolean doesThisListOfSymbolsContainOneWithThisName(String name, List<Symbol> symbols){
         for(Symbol symbol : symbols){
             if(symbol.getName().equals(name)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static List<Timetable> getUniqueTimetablesForUser(User user){
+        session = HibernateUtil.getSessionFactory().openSession();
+        Criteria cr = session.createCriteria(Timetable.class);
+        cr.add(Restrictions.eq("user.id", user.getId()));
+        List<Timetable> timetables = getList(cr);
+        List<Timetable> filteredTimetables = new ArrayList<>();
+        for(Timetable timetable : timetables){
+            if(!doesThisListOfTimetablesContainOneWithThisName(timetable.getName(), filteredTimetables)){
+                filteredTimetables.add(timetable);
+            }
+        }
+        return filteredTimetables;
+    }
+
+    public static boolean doesThisListOfTimetablesContainOneWithThisName(String name, List<Timetable> timetables){
+        for(Timetable timetable : timetables){
+            if(timetable.getName().equals(name)){
                 return true;
             }
         }
