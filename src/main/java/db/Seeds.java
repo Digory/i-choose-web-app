@@ -66,6 +66,8 @@ public class Seeds {
         Timetable timetable2 = new Timetable("Relax day");
         DBHelper.save(timetable2);
 
+        DBHelper.addSymbolToTimetable(timetable2, symbol1);
+
         DBHelper.addTimetableToUser(timetable, digory);
         DBHelper.addTimetableToUser(timetable2, vicky);
 

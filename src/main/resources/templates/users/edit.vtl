@@ -1,0 +1,9 @@
+<p class="pageHeader">Edit User</p>
+
+<form action="/users/$user.getId()" method="post">
+    <label for="name">Name:</label>
+    <input class="inputbox" type="text" name="name" id="name" required="true" value="$user.getName()">
+
+    <input type="submit" value="Save" class="button">
+</form>
+<a href="/users/$user.getId()" class="button center">Cancel</a>

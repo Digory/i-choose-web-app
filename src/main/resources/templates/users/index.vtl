@@ -1,0 +1,26 @@
+<p class="pageHeader">All Users</p>
+
+
+<div class="container">
+    <table>
+        <tr>
+            <th>User</th>
+            <th></th>
+        </tr>
+
+
+        #foreach($user in $users)
+        <tr>
+            <td>$user.getName()</td>
+            <td><a href="/users/$user.getId()">VIEW DETAILS</a></td>
+        </tr>
+
+        #end
+
+    </table>
+</div>
+
+<a href="/users/new">Add User</a>
+
+
+

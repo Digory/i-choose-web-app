@@ -1,15 +1,12 @@
 package controllers;
 
 import db.DBHelper;
-import db.Seeds;
 import models.Symbol;
-import models.SymbolCategory;
 import models.Timetable;
 import models.User;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
-import java.sql.Time;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

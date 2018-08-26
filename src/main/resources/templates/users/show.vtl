@@ -1,0 +1,27 @@
+<p class="pageHeader">User: $user.getName()</p>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Timetables</th>
+        <th></th>
+    </tr>
+    <tr>
+        <td>$user.getName()</td>
+        #foreach($timetable in $user.getTimetables())
+    <tr>
+        <td>$timetable.getName()</td>
+        <td><a href="/timetables/$timetable.getId()">VIEW DETAILS</a></td>
+        <td><a href="/timetables/$timetable.getId()/show_symbols">SHOW SYMBOLS</a></td>
+    </tr>
+
+    #end
+        <td><a href="/users/$user.getId()/edit">EDIT USER</a></td>
+        <td>
+            <form action="/users/$user.getId()/delete" method="post">
+                <input type="submit" value="Delete" class="button center">
+            </form>
+        </td>
+    <tr>
+</table>
+
+

@@ -24,6 +24,7 @@ public class MainController {
         SymbolController symbolController = new SymbolController();
         TimetableController timetableController = new TimetableController();
         SymbolCategoryController symbolCategoryController = new SymbolCategoryController();
+        UserController userController = new UserController();
 
         get("/", (req, res) -> {
 
