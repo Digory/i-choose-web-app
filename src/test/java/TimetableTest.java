@@ -1,6 +1,7 @@
 import models.Symbol;
 import models.SymbolCategory;
 import models.Timetable;
+import models.User;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,9 +13,11 @@ public class TimetableTest {
     private Symbol symbol;
     private SymbolCategory category;
     private Timetable timetable;
+   // private User user;
 
     @Before
     public void before() {
+      //  user = new User("Jennifer");
         category = new SymbolCategory("<i class=\"fas fa-utensils\"></i>", "Food");
         symbol = new Symbol("Banana", category, "www.nicepictures.com");
         timetable = new Timetable("Sports Day");

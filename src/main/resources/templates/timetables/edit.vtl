@@ -1,0 +1,19 @@
+<p class="pageHeader">Edit Timetable</p>
+
+<form action="/timetables/$timetable.getId()" method="post">
+    <label for="name">Name:</label>
+    <input class="inputbox" type="text" name="name" id="name" required="true" value="$timetable.getName()">
+
+    <label for="user">User::</label>
+    <select id="user" name="user">
+        #foreach( $user in $users )
+        <option value="$user.getId()"
+                #if ($user.getId() == $timetable.getUser().getId())
+                selected="selected"
+                #end>
+            $user.getName()</option>
+        #end
+    </select>
+    <input type="submit" value="Save" class="button">
+</form>
+<a href="/timetables/$timetable.getId()" class="button center">Cancel</a>

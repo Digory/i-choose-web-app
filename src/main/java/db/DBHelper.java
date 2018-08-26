@@ -2,6 +2,7 @@ package db;
 import models.Symbol;
 import models.SymbolCategory;
 import models.Timetable;
+import models.User;
 import org.hibernate.*;
 import org.hibernate.criterion.Restrictions;
 
@@ -122,6 +123,13 @@ public class DBHelper {
 
 //        SymbolRank symbolRank = new SymbolRank(symbol, timetable);
 //        save(symbolRank);
+    }
+
+    public static void addTimetableToUser(Timetable timetable, User user){
+        user.addTimetable(timetable);
+        timetable.setUser(user);
+        save(user);
+        save(timetable);
     }
 
     public static List<Symbol> getAllSymbolsForTimetable(Timetable timetable){

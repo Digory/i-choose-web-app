@@ -4,6 +4,7 @@ import models.Symbol;
 import models.SymbolCategory;
 //import models.SymbolRank;
 import models.Timetable;
+import models.User;
 
 import java.util.List;
 
@@ -11,8 +12,15 @@ public class Seeds {
 
     public static void seedData(){
         DBHelper.deleteAll(Timetable.class);
+        DBHelper.deleteAll(User.class);
         DBHelper.deleteAll(Symbol.class);
         DBHelper.deleteAll(SymbolCategory.class);
+
+        User digory = new User("Digory");
+        DBHelper.save(digory);
+
+        User vicky = new User("Vicky");
+        DBHelper.save(vicky);
 
         Timetable timetable = new Timetable("Party Day");
         DBHelper.save(timetable);
@@ -57,6 +65,9 @@ public class Seeds {
 
         Timetable timetable2 = new Timetable("Relax day");
         DBHelper.save(timetable2);
+
+        DBHelper.addTimetableToUser(timetable, digory);
+        DBHelper.addTimetableToUser(timetable2, vicky);
 
  //       DBHelper.getRankOfSymbol(symbol1, timetable);
 

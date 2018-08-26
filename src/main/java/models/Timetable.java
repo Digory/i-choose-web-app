@@ -14,6 +14,7 @@ public class Timetable {
     private int id;
     private String name;
     private List<Symbol> symbols;
+    private User user;
 
     public Timetable(){
     }
@@ -21,6 +22,7 @@ public class Timetable {
     public Timetable(String name){
         this.name = name;
         this.symbols = new ArrayList<>();
+      //  this.user = user;
     }
 
     @Id
@@ -42,7 +44,6 @@ public class Timetable {
     public void setName(String name) {
         this.name = name;
     }
-
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -76,7 +77,6 @@ public class Timetable {
         Collections.swap(symbols, position, position-1);
     }
 
-
     public void moveSymbolAtThisPositionDownByOne(int position){
         if(position == symbols.size()-1){
             return;
@@ -85,4 +85,13 @@ public class Timetable {
         Collections.swap(symbols, position, position+1);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = true)
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

@@ -1,0 +1,18 @@
+<p class="pageHeader">New Timetable</p>
+
+<form action="/timetables" method="post">
+    <label for="name">Timetable Name:</label>
+    <input class="inputbox" type="text" name="name" required="true" id="name">
+
+    <label for="user">User:</label>
+    <select id="user" name="user">
+        #foreach( $user in $users )
+        <option value="$user.getId()">$user.getName()</option>
+        #end
+    </select>
+
+    <label for="imgUrl">Image URL:</label>
+    <input class="inputbox" type="text" name="imgUrl" required="true" id="imgUrl">
+
+    <input type="submit" value="Save" class="button">
+</form>

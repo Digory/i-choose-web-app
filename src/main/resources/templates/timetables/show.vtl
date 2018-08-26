@@ -1,0 +1,20 @@
+<p class="pageHeader">Timetable: $timetable.getName()</p>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>User</th>
+        <th></th>
+    </tr>
+    <tr>
+        <td>$timetable.getName()</td>
+        <td>$timetable.getUser().getName()</td>
+        <td><a href="/timetables/$timetable.getId()/edit">EDIT</a></td>
+        <td>
+            <form action="/timetables/$timetable.getId()/delete" method="post">
+                <input type="submit" value="Delete" class="button center">
+            </form>
+        </td>
+    <tr>
+</table>
+
+
