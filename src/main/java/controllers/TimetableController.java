@@ -59,6 +59,28 @@ public class TimetableController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        //  NEW FOR USER
+        get("/timetables/new_for_user", (req, res) -> {
+            int id = Integer.parseInt(req.queryParams("user_id"));
+            User user = DBHelper.find(id, User.class);
+            Map<String, Object> model = new HashMap<>();
+            model.put("template", "templates/timetables/create_via_user.vtl");
+            model.put("user", user);
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        //  CREATE FOR USER
+        post("/timetables/create_for_user", (req, res) -> {
+            int id = Integer.parseInt(req.queryParams("user_id"));
+            String timetableName = req.queryParams("name");
+            User user = DBHelper.find(id, User.class);
+            Timetable timetable = new Timetable(timetableName);
+            DBHelper.save(timetable);
+            DBHelper.addTimetableToUser(timetable, user);
+            res.redirect("/users/" + id);
+            return null;
+        });
+
         //  SHOW
         get("/timetables/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
