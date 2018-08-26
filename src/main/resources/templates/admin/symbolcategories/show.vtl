@@ -7,13 +7,18 @@
         <th></th>
     </tr>
     <tr>
-        <td>$symbolCategory.getIcon()</td>
+        <td><i class="$symbolCategory.getIcon()"></i></td>
         <td>$symbolCategory.getDescriptor()</td>
-        <td><a href="/admin/symbol-categories/$symbolCategory.getId()/edit">EDIT</a></td>
         <td>
             <form action="/admin/symbol-categories/$symbolCategory.getId()/delete" method="post">
                 <input type="submit" value="Delete" class="button center">
             </form>
         </td>
+
+        #foreach($symbol in $symbols)
+    <tr>
+        <td><img src="$symbol.getImageUrl()"/></td>
+    <tr>
+        #end
     <tr>
 </table>

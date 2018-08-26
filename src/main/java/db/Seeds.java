@@ -56,6 +56,9 @@ public class Seeds {
         symbol3.increasePopularity();
         DBHelper.save(symbol3);
 
+        Symbol symbol4 = new Symbol("Bike", category7, "https://s3-eu-west-1.amazonaws.com/ichoose-resources/bike.png");
+        DBHelper.save(symbol4);
+
 
         DBHelper.addSymbolToTimetable(timetable, symbol1);
 

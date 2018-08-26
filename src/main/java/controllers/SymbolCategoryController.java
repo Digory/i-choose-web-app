@@ -35,12 +35,14 @@ public class SymbolCategoryController {
         }, new VelocityTemplateEngine());
 
         //  SHOW
-        get("/admin/symbol-categories/:id", (req, res) -> {
+        get("/admin/symbol-categories/:id/symbols", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int id = Integer.parseInt(req.params(":id"));
             SymbolCategory symbolCategory = DBHelper.find(id, SymbolCategory.class);
+            List<Symbol> symbols = symbolCategory.getSymbols();
             model.put("template", "templates/admin/symbolcategories/show.vtl");
             model.put("symbolCategory", symbolCategory);
+            model.put("symbols", symbols);
             return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 

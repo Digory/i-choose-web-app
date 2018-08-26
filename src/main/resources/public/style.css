@@ -57,15 +57,15 @@ body {
 
 .footer {
     z-index: 1;
-    background-color: Gainsboro;
-    grid-area: footer;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    height: 3.2rem;
-    position: -webkit-sticky;
-    position: sticky;
-    bottom: 0;
+        background-color: Gainsboro;
+        grid-area: footer;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        height: 4rem;
+        position: -webkit-sticky;
+        position: sticky;
+        bottom: 0;
 }
 
 /* elements inside the header area */
@@ -181,7 +181,7 @@ button:hover {
   display: inline-block;
   text-decoration: none;
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: inherit;
   height: 100%;
 
@@ -197,7 +197,7 @@ button:hover {
 
 .footer ul li {
   display: inline-block;
-  padding-top: 0.5rem;
+  padding-top: 0.7rem;
   padding-right: 1.3rem;
   padding-left: 1.3rem;
   width: 2rem;
