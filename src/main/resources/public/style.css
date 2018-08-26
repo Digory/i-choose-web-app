@@ -120,8 +120,9 @@ body {
 button {
   height: 100%;
   width: 2.5rem;
+  border: none;
   font-size: 1rem;
-  background-color: white;
+  background-color: Gainsboro;
 }
 
 button:hover {
@@ -158,9 +159,9 @@ button:hover {
     text-decoration: none;
     color: inherit;
     display: block;
-    padding-top: 0.9rem;
+    padding-top: 1.1rem;
     width: 100%;
-    height: 2.1rem;
+    height: 2.3rem;
 }
 
 .categories a:hover {
