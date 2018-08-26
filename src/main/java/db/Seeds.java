@@ -59,12 +59,21 @@ public class Seeds {
         Symbol symbol4 = new Symbol("Bike", category7, "https://s3-eu-west-1.amazonaws.com/ichoose-resources/bike.png");
         DBHelper.save(symbol4);
 
+        Symbol symbol5 = new Symbol("Aeroplane", category7, "https://s3-eu-west-1.amazonaws.com/ichoose-resources/bike.png");
+        DBHelper.save(symbol5);
+
+
+        DBHelper.addSymbolToTimetable(timetable, symbol1);
 
         DBHelper.addSymbolToTimetable(timetable, symbol1);
 
         DBHelper.addSymbolToTimetable(timetable, symbol2);
 
-        DBHelper.addSymbolToTimetable(timetable, symbol1);
+        DBHelper.addSymbolToTimetable(timetable, symbol3);
+
+        DBHelper.addSymbolToTimetable(timetable, symbol4);
+
+        DBHelper.addSymbolToTimetable(timetable, symbol4);
 
         Timetable timetable2 = new Timetable("Relax day");
         DBHelper.save(timetable2);
@@ -75,6 +84,7 @@ public class Seeds {
         DBHelper.addTimetableToUser(timetable, digory);
         DBHelper.addTimetableToUser(timetable2, vicky);
 
+        List<Symbol> top3mostUsed = DBHelper.findTopThreeMostUsedSymbols(digory);
 
 
 
