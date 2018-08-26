@@ -59,7 +59,7 @@ public class Seeds {
         Symbol symbol4 = new Symbol("Bike", category7, "https://s3-eu-west-1.amazonaws.com/ichoose-resources/bike.png");
         DBHelper.save(symbol4);
 
-        Symbol symbol5 = new Symbol("Aeroplane", category7, "https://s3-eu-west-1.amazonaws.com/ichoose-resources/bike.png");
+        Symbol symbol5 = new Symbol("Plane", category7, "https://s3-eu-west-1.amazonaws.com/ichoose-resources/bike.png");
         DBHelper.save(symbol5);
 
 
