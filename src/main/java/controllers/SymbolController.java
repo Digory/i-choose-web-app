@@ -19,8 +19,8 @@ public class SymbolController {
         //  INDEX
         get("/admin/symbols", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            model.put("template", "templates/admin/symbols/index.vtl");
-            List<Symbol> symbols = DBHelper.getAllUniqueSymbols();
+            model.put("template", "templates/symbols/index.vtl");
+            List<Symbol> symbols = DBHelper.getAll(Symbol.class);
             model.put("symbols", symbols);
             return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
@@ -49,7 +49,7 @@ public class SymbolController {
         get("/admin/symbols/add", (req, res) -> {
             int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
             Map<String, Object> model = new HashMap<>();
-            List<Symbol> symbols = DBHelper.getAllUniqueSymbols();
+            List<Symbol> symbols = DBHelper.getAll(Symbol.class);
             model.put("symbols", symbols);
             model.put("template", "templates/admin/symbols/add.vtl");
             model.put("timetableID", timetableID);

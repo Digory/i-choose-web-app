@@ -6,6 +6,7 @@ import models.User;
 import org.hibernate.*;
 import org.hibernate.criterion.Restrictions;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -118,81 +119,83 @@ public class DBHelper {
 
     public static void addSymbolToTimetable(Timetable timetable, Symbol symbol){
         timetable.addSymbol(symbol);
-        //symbol.setTimetable(timetable);
         save(timetable);
-
-//        SymbolRank symbolRank = new SymbolRank(symbol, timetable);
-//        save(symbolRank);
     }
 
     public static void addTimetableToUser(Timetable timetable, User user){
-     //   user.addTimetable(timetable);
         timetable.setUser(user);
-     //   save(user);
         save(timetable);
     }
 
-    public static List<Symbol> getAllSymbolsForTimetable(Timetable timetable){
-        session = HibernateUtil.getSessionFactory().openSession();
-        List<Symbol> results = null;
-        try {
-            Criteria cr = session.createCriteria(Symbol.class);
-            cr.add(Restrictions.eq("timetable.id", timetable.getId()));
-            results = cr.list();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-        return results;
-    }
+//    public static List<Symbol> getAllSymbolsForTimetable(Timetable timetable){
+//        session = HibernateUtil.getSessionFactory().openSession();
+//        List<Symbol> results = null;
+//        try {
+//            Criteria cr = session.createCriteria(Symbol.class);
+//            cr.add(Restrictions.eq("timetable.id", timetable.getId()));
+//            results = cr.list();
+//        } catch (HibernateException e) {
+//            e.printStackTrace();
+//        } finally {
+//            session.close();
+//        }
+//        return results;
+//    }
 
 
-    public static List<Symbol> getAllUniqueSymbols(){
-        List<Symbol> allSymbols = getAll(Symbol.class);
-        List<Symbol> filteredSymbols = new ArrayList<>();
-        for(Symbol symbol : allSymbols){
-            if(!doesThisListOfSymbolsContainOneWithThisName(symbol.getName(), filteredSymbols)){
-                filteredSymbols.add(symbol);
-            }
-        }
-        return filteredSymbols;
-    }
-
-    public static boolean doesThisListOfSymbolsContainOneWithThisName(String name, List<Symbol> symbols){
-        for(Symbol symbol : symbols){
-            if(symbol.getName().equals(name)){
-                return true;
-            }
-        }
-        return false;
-    }
+//    public static List<Symbol> getAllUniqueSymbols(){
+//        List<Symbol> allSymbols = getAll(Symbol.class);
+//        List<Symbol> filteredSymbols = new ArrayList<>();
+//        for(Symbol symbol : allSymbols){
+//            if(!doesThisListOfSymbolsContainOneWithThisName(symbol.getName(), filteredSymbols)){
+//                filteredSymbols.add(symbol);
+//            }
+//        }
+//        return filteredSymbols;
+//    }
+//
+//    public static boolean doesThisListOfSymbolsContainOneWithThisName(String name, List<Symbol> symbols){
+//        for(Symbol symbol : symbols){
+//            if(symbol.getName().equals(name)){
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     public static List<Timetable> getUniqueTimetablesForUser(User user){
         session = HibernateUtil.getSessionFactory().openSession();
         Criteria cr = session.createCriteria(Timetable.class);
         cr.add(Restrictions.eq("user.id", user.getId()));
-        List<Timetable> timetables = getList(cr);
-        List<Timetable> filteredTimetables = new ArrayList<>();
-        for(Timetable timetable : timetables){
-            if(!doesThisListOfTimetablesContainOneWithThisName(timetable.getName(), filteredTimetables)){
-                filteredTimetables.add(timetable);
-            }
-        }
-        return filteredTimetables;
+        cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        return getList(cr);
     }
-
-    public static boolean doesThisListOfTimetablesContainOneWithThisName(String name, List<Timetable> timetables){
-        for(Timetable timetable : timetables){
-            if(timetable.getName().equals(name)){
-                return true;
-            }
-        }
-        return false;
-    }
+//
+//    public static List<Timetable> getUniqueTimetablesForUser(User user){
+//        session = HibernateUtil.getSessionFactory().openSession();
+//        Criteria cr = session.createCriteria(Timetable.class);
+//        cr.add(Restrictions.eq("user.id", user.getId()));
+//        List<Timetable> timetables = getList(cr);
+//        List<Timetable> filteredTimetables = new ArrayList<>();
+//        for(Timetable timetable : timetables){
+//            if(!doesThisListOfTimetablesContainOneWithThisName(timetable.getName(), filteredTimetables)){
+//                filteredTimetables.add(timetable);
+//            }
+//        }
+//        return filteredTimetables;
+//    }
+//
+//    public static boolean doesThisListOfTimetablesContainOneWithThisName(String name, List<Timetable> timetables){
+//        for(Timetable timetable : timetables){
+//            if(timetable.getName().equals(name)){
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     public static List<Symbol> searchForSymbol(String keyword){
-        List<Symbol> allSymbols = getAllUniqueSymbols();
+        List<Symbol> allSymbols = getAll(Symbol.class);
         List<Symbol> results = new ArrayList<>();
         for(Symbol symbol : allSymbols){
             if(symbol.getName().toLowerCase().equals(keyword.toLowerCase()) ||
