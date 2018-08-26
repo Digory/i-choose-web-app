@@ -8,7 +8,11 @@
             <td class="td-image"><img src="$symbol.getImageUrl()"/></td>
             <td>$symbol.getCategory().getDescriptor():<br> <strong>$symbol.getName()</strong></td>
             <td><a href="/admin/symbols/$symbol.getId()/edit"><i class="edit fas fa-edit"></i></a></td>
-            <td><i class="delete fas fa-trash-alt"></i></td>
+            <td>
+                <form action="/admin/symbols/$symbol.getId()/delete" method="post">
+                    <button><i class="delete fas fa-trash-alt"></i></button>
+                </form>
+            </td>
         <tr>
             #end
     </table>
