@@ -12,9 +12,9 @@
         <td>$symbol.getCategory().getDescriptor()</td>
         <td><img src="https://s3-eu-west-1.amazonaws.com/ichoose-resources/planet.jpg"/>Planet</td>
         <td>$symbol.getPopularityRating()</td>
-        <td><a href="/symbols/$symbol.getId()/edit">EDIT</a></td>
+        <td><a href="/admin/symbols/$symbol.getId()/edit">EDIT</a></td>
         <td>
-            <form action="/symbols/$symbol.getId()/delete" method="post">
+            <form action="/admin/symbols/$symbol.getId()/delete" method="post">
                 <input type="submit" value="Delete" class="button center">
             </form>
         </td>

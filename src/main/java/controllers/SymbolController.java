@@ -1,7 +1,6 @@
 package controllers;
 
 import db.DBHelper;
-import db.Seeds;
 //import models.SymbolRank;
 import models.Timetable;
 import spark.ModelAndView;
@@ -18,12 +17,12 @@ public class SymbolController {
     public SymbolController() {
 
         //  INDEX
-        get("/symbols", (req, res) -> {
+        get("/admin/symbols", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            model.put("template", "templates/symbols/index.vtl");
+            model.put("template", "templates/admin/symbols/index.vtl");
             List<Symbol> symbols = DBHelper.getAllUniqueSymbols();
             model.put("symbols", symbols);
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
         //  SEARCH BY KEYWORD
@@ -32,7 +31,7 @@ public class SymbolController {
             List<Symbol> searchResults = DBHelper.searchForSymbol(searchQuery);
             Map<String, Object> model = new HashMap<>();
             model.put("results", searchResults);
-            model.put("template", "templates/symbols/search_results.vtl");
+            model.put("template", "templates/search_results.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
@@ -42,19 +41,19 @@ public class SymbolController {
             List<Symbol> searchResults = DBHelper.searchForSymbol(categoryName);
             Map<String, Object> model = new HashMap<>();
             model.put("results", searchResults);
-            model.put("template", "templates/symbols/search_results.vtl");
+            model.put("template", "templates/search_results.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
         //  SHOW BEFORE ADDING TO TIMETABLE
-        get("/symbols/add", (req, res) -> {
+        get("/admin/symbols/add", (req, res) -> {
             int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
             Map<String, Object> model = new HashMap<>();
             List<Symbol> symbols = DBHelper.getAllUniqueSymbols();
             model.put("symbols", symbols);
-            model.put("template", "templates/symbols/add.vtl");
+            model.put("template", "templates/admin/symbols/add.vtl");
             model.put("timetableID", timetableID);
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
         //  ADD TO TIMETABLE
@@ -84,12 +83,12 @@ public class SymbolController {
         });
 
         //  NEW
-        get("/symbols/new", (req, res) -> {
+        get("/admin/symbols/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            model.put("template", "templates/symbols/create.vtl");
+            model.put("template", "templates/admin/symbols/create.vtl");
             List<SymbolCategory> symbolCategories = DBHelper.getAll(SymbolCategory.class);
             model.put("symbolCategories", symbolCategories);
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
         //  MOVE SYMBOL UP TIMETABLE
@@ -117,43 +116,43 @@ public class SymbolController {
         });
 
         //  CREATE
-        post("/symbols", (req, res) -> {
+        post("/admin/symbols", (req, res) -> {
             String name = req.queryParams("name");
             String imageURL = req.queryParams("imgUrl");
             int categoryID = Integer.parseInt(req.queryParams("category"));
             SymbolCategory category = DBHelper.find(categoryID, SymbolCategory.class);
             Symbol symbol = new Symbol(name, category, imageURL);
             DBHelper.save(symbol);
-            res.redirect("/symbols");
+            res.redirect("/admin/symbols");
             return null;
         });
 
         //  SHOW
-        get("/symbols/:id", (req, res) -> {
+        get("/admin/symbols/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            model.put("template", "templates/symbols/show.vtl");
+            model.put("template", "templates/admin/symbols/show.vtl");
             int id = Integer.parseInt(req.params("id"));
             Symbol symbol = DBHelper.find(id, Symbol.class);
             model.put("symbol", symbol);
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
         //  EDIT
-        get("/symbols/:id/edit", (req, res) -> {
+        get("/admin/symbols/:id/edit", (req, res) -> {
             int id = Integer.parseInt(req.params(":id"));
             Symbol symbol = DBHelper.find(id, Symbol.class);
             List<SymbolCategory> categories = DBHelper.getAll(SymbolCategory.class);
 
             Map<String, Object> model = new HashMap<>();
             model.put("categories", categories);
-            model.put("template", "templates/symbols/edit.vtl");
+            model.put("template", "templates/admin/symbols/edit.vtl");
             model.put("symbol", symbol);
 
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
         //  UPDATE
-        post("/symbols/:id", (req, res) -> {
+        post("/admin/symbols/:id", (req, res) -> {
             int id = Integer.parseInt(req.params(":id"));
             Symbol symbol = DBHelper.find(id, Symbol.class);
             int categoryId = Integer.parseInt(req.queryParams("category"));
@@ -165,16 +164,16 @@ public class SymbolController {
             symbol.setImageUrl(imgUrl);
             symbol.setCategory(category);
             DBHelper.save(symbol);
-            res.redirect("/symbols");
+            res.redirect("/admin/symbols");
             return null;
         });
 
         //  DESTROY
-        post("/symbols/:id/delete", (req, res) -> {
+        post("/admin/symbols/:id/delete", (req, res) -> {
             int id = Integer.parseInt(req.params(":id"));
             Symbol symbol = DBHelper.find(id, Symbol.class);
             DBHelper.delete(symbol);
-            res.redirect("/symbols");
+            res.redirect("/admin/symbols");
             return null;
         });
     }
