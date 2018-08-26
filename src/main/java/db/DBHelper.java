@@ -7,8 +7,7 @@ import org.hibernate.*;
 import org.hibernate.criterion.Restrictions;
 
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class DBHelper {
 
@@ -107,7 +106,6 @@ public class DBHelper {
         Criteria cr = session.createCriteria(classType);
         cr.add(Restrictions.eq("id", id));
         return getUnique(cr);
-
     }
 
     public static List<Symbol> findSymbolsInThisCategory(SymbolCategory category){
@@ -125,6 +123,43 @@ public class DBHelper {
     public static void addTimetableToUser(Timetable timetable, User user){
         timetable.setUser(user);
         save(timetable);
+    }
+
+    // TODO: split this into smaller methods or just do the whole method in a shorter way somehow
+
+    public static List<Symbol> findTopThreeMostUsedSymbols(User user){
+        List<Symbol> allSymbolsAttachedToUser = new ArrayList<>();
+
+        List<Timetable> allUniqueTimetables = getUniqueTimetablesForUser(user);
+        for(Timetable timetable : allUniqueTimetables){
+            for(Symbol symbol : timetable.getSymbols()){
+                allSymbolsAttachedToUser.add(symbol);
+            }
+        }
+
+        Set<Symbol> allUniqueSymbolsSet = new HashSet<Symbol>();
+        for (Symbol symbol : allSymbolsAttachedToUser) {
+            allUniqueSymbolsSet.add(symbol);
+        }
+
+        List<Symbol> allUniqueSymbols = new ArrayList<>();
+
+        for(Symbol symbol : allUniqueSymbolsSet){
+            allUniqueSymbols.add(symbol);
+        }
+
+        Collections.sort(allUniqueSymbols, new Comparator<Symbol>() {
+            @Override
+            public int compare(Symbol symbol1, Symbol symbol2) {
+                return Collections.frequency(allSymbolsAttachedToUser, symbol2) - Collections.frequency(allSymbolsAttachedToUser, symbol1);
+            }
+        });
+
+        List<Symbol> top3Symbols = new ArrayList<>();
+        for(int i = 0; i < 3; i++){
+            top3Symbols.add(allUniqueSymbols.get(i));
+        }
+        return top3Symbols;
     }
 
 //    public static List<Symbol> getAllSymbolsForTimetable(Timetable timetable){
@@ -170,6 +205,7 @@ public class DBHelper {
         cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         return getList(cr);
     }
+
 //
 //    public static List<Timetable> getUniqueTimetablesForUser(User user){
 //        session = HibernateUtil.getSessionFactory().openSession();
