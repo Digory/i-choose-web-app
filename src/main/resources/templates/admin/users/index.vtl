@@ -10,14 +10,14 @@
         #foreach($user in $users)
         <tr>
             <td>$user.getName()</td>
-            <td><a href="/users/$user.getId()">VIEW DETAILS</a></td>
+            <td><a href="/admin/users/$user.getId()">VIEW DETAILS</a></td>
         </tr>
 
         #end
 
     </table>
 
-<a href="/users/new">Add User</a>
+<a href="/admin/users/new">Add User</a>
 
 
 

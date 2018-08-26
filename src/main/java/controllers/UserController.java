@@ -1,7 +1,6 @@
 package controllers;
 
 import db.DBHelper;
-import models.Symbol;
 import models.Timetable;
 import models.User;
 import spark.ModelAndView;
@@ -19,68 +18,68 @@ public class UserController {
     public UserController() {
 
         //  INDEX
-        get("/users", (req, res) -> {
+        get("/admin/users", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            model.put("template", "templates/users/index.vtl");
+            model.put("template", "templates/admin/users/index.vtl");
             List<User> users = DBHelper.getAll(User.class);
             model.put("users", users);
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
         //  NEW
-    get("/users/new", (req, res) -> {
+    get("/admin/users/new", (req, res) -> {
         Map<String, Object> model = new HashMap<>();
-        model.put("template", "templates/users/create.vtl");
-        return new ModelAndView(model, "templates/layout.vtl");
+        model.put("template", "templates/admin/users/create.vtl");
+        return new ModelAndView(model, "/templates/admin/layout.vtl");
     }, new VelocityTemplateEngine());
 
     //  SHOW
-    get("/users/:id", (req, res) -> {
+    get("/admin/users/:id", (req, res) -> {
         Map<String, Object> model = new HashMap<>();
         int id = Integer.parseInt(req.params(":id"));
         User user = DBHelper.find(id, User.class);
         List<Timetable> timetables = DBHelper.getUniqueTimetablesForUser(user);
         model.put("timetables", timetables);
-        model.put("template", "templates/users/show.vtl");
+        model.put("template", "templates/admin/users/show.vtl");
         model.put("user", user);
-        return new ModelAndView(model, "templates/layout.vtl");
+        return new ModelAndView(model, "templates/admin/layout.vtl");
     }, new VelocityTemplateEngine());
 
     //  CREATE
-    post("/users", (req, res) -> {
+    post("/admin/users", (req, res) -> {
         String name = req.queryParams("name");
         User user = new User(name);
         DBHelper.save(user);
-        res.redirect("/users");
+        res.redirect("/admin/users");
         return null;
     });
 
     //  EDIT
-    get("/users/:id/edit", (req, res) -> {
+    get("/admin/users/:id/edit", (req, res) -> {
         int id = Integer.parseInt(req.params(":id"));
         User user = DBHelper.find(id, User.class);
         Map<String, Object> model = new HashMap<>();
-        model.put("template", "templates/users/edit.vtl");
+        model.put("template", "templates/admin/users/edit.vtl");
         model.put("user", user);
-        return new ModelAndView(model, "templates/layout.vtl");
+        return new ModelAndView(model, "templates/admin/layout.vtl");
     }, new VelocityTemplateEngine());
 
     //  UPDATE
-    post("/users/:id", (req, res) -> {
+    post("/admin/users/:id", (req, res) -> {
         int id = Integer.parseInt(req.params(":id"));
         User user = DBHelper.find(id, User.class);
         String name = req.queryParams("name");
         user.setName(name);
         DBHelper.save(user);
-        res.redirect("/users");
+        res.redirect("/admin/users");
         return null;
     }, new VelocityTemplateEngine());
 
-    post("/users/:id/delete", (req, res) -> {
+    post("/admin/users/:id/delete", (req, res) -> {
         int id = Integer.parseInt(req.params(":id"));
         User user = DBHelper.find(id, User.class);
         DBHelper.delete(user);
-        res.redirect("/users");
+        res.redirect("/admin/users");
         return null;
     });
     }

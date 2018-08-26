@@ -10,19 +10,19 @@
         #foreach($timetable in $timetables)
     <tr>
         <td>$timetable.getName()</td>
-        <td><a href="/timetables/$timetable.getId()">VIEW DETAILS</a></td>
-        <td><a href="/timetables/$timetable.getId()/show_symbols">SHOW SYMBOLS</a></td>
+        <td><a href="/admin/timetables/$timetable.getId()">VIEW DETAILS</a></td>
+        <td><a href="/admin/timetables/$timetable.getId()/show_symbols">SHOW SYMBOLS</a></td>
     </tr>
 
     #end
-        <td><a href="/users/$user.getId()/edit">EDIT USER</a></td>
+        <td><a href="/admin/users/$user.getId()/edit">EDIT USER</a></td>
         <td>
-            <form action="/users/$user.getId()/delete" method="post">
+            <form action="/admin/users/$user.getId()/delete" method="post">
                 <input type="submit" value="Delete" class="button center">
             </form>
         </td>
     <tr>
 </table>
-<a href="/timetables/new_for_user?user_id=$user.getId()">MAKE NEW TIMETABLE</a>
+<a href="/admin/timetables/new_for_user?user_id=$user.getId()">MAKE NEW TIMETABLE</a>
 
 
