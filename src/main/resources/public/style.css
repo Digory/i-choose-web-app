@@ -29,7 +29,7 @@ body {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    background-color: #f3d250;
+    background-color: #80ccf4;
     justify-content: center;
 }
 
@@ -139,7 +139,7 @@ button {
 }
 
 .categories a:hover {
-    background-color: #80ccf4;
+    background-color: #f3d250;
 }
 
 .categories span {

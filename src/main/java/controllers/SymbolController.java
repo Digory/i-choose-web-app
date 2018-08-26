@@ -19,7 +19,7 @@ public class SymbolController {
         //  INDEX
         get("/admin/symbols", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            model.put("template", "templates/symbols/index.vtl");
+            model.put("template", "templates/admin/symbols/index.vtl");
             List<Symbol> symbols = DBHelper.getAll(Symbol.class);
             model.put("symbols", symbols);
             return new ModelAndView(model, "templates/admin/layout.vtl");
