@@ -81,8 +81,12 @@ button {
 }
 
 .content .delete-form {
-    display: inline;
-}
+     display: inline;
+ }
+
+ .content .delete-form button {
+     background-color: white;
+ }
 
 .content .td-actions {
     text-align: right
