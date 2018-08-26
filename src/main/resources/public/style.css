@@ -120,8 +120,7 @@ button {
 }
 
 .category-icon {
-    margin-left: 1.5rem;
-    margin-right: 1rem;
+
 }
 
 .categories ul {
@@ -142,15 +141,23 @@ button {
     background-color: #80ccf4;
 }
 
+.categories span {
+    display: inline-block;
+    width: 3.6rem;
+    text-align: center;
+}
+
 
 /* elements inside the footer area */
 
 .footer a {
+  display: inline-block;
   text-decoration: none;
+  text-align: center;
   font-size: 2rem;
   color: inherit;
-  width: 100%;
   height: 100%;
+
 }
 
 .footer a:hover {
@@ -162,5 +169,10 @@ button {
 }
 
 .footer ul li {
-  display: inline;
+  display: inline-block;
+  padding-top: 0.7rem;
+  padding-right: 1.3rem;
+  padding-left: 1.3rem;
+  width: 2rem;
+  height: 2rem;
 }
