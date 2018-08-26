@@ -34,7 +34,6 @@ body {
 }
 
 .content {
-    display: flex;
     background-color: white;
     grid-area: content;
     height: 600px;
