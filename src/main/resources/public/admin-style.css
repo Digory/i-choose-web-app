@@ -80,6 +80,14 @@ button {
   border: none;
 }
 
+.content .delete-form {
+    display: inline;
+}
+
+.content .td-actions {
+    text-align: right
+}
+
 .content .edit {
   text-decoration: none;
   color: black;
