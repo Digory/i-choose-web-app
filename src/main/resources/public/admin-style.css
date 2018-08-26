@@ -40,6 +40,7 @@ button {
 .content {
     background-color: white;
     grid-area: content;
+    margin-bottom: 4rem;
 }
 
 .footer {
@@ -50,9 +51,10 @@ button {
     flex-direction: row;
     justify-content: space-evenly;
     height: 4rem;
-    position: -webkit-sticky;
-    position: sticky;
+    width: 100%;
+    position: fixed;
     bottom: 0;
+
 }
 
 /* elements inside the header area */

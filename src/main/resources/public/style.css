@@ -21,6 +21,10 @@ body {
 
 /* grid areas */
 
+.content {
+    margin-bottom: 4rem;
+}
+
 .header {
     grid-area: header;
     height: 3rem;
@@ -63,8 +67,8 @@ body {
         flex-direction: row;
         justify-content: space-evenly;
         height: 4rem;
-        position: -webkit-sticky;
-        position: sticky;
+        width: 100%;
+        position: fixed;
         bottom: 0;
 }
 
