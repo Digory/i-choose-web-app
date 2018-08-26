@@ -119,34 +119,28 @@ public class DBHelper {
 
     public static void addSymbolToTimetable(Timetable timetable, Symbol symbol){
         timetable.addSymbol(symbol);
-        //symbol.setTimetable(timetable);
         save(timetable);
-
-//        SymbolRank symbolRank = new SymbolRank(symbol, timetable);
-//        save(symbolRank);
     }
 
     public static void addTimetableToUser(Timetable timetable, User user){
-     //   user.addTimetable(timetable);
         timetable.setUser(user);
-     //   save(user);
         save(timetable);
     }
 
-    public static List<Symbol> getAllSymbolsForTimetable(Timetable timetable){
-        session = HibernateUtil.getSessionFactory().openSession();
-        List<Symbol> results = null;
-        try {
-            Criteria cr = session.createCriteria(Symbol.class);
-            cr.add(Restrictions.eq("timetable.id", timetable.getId()));
-            results = cr.list();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-        return results;
-    }
+//    public static List<Symbol> getAllSymbolsForTimetable(Timetable timetable){
+//        session = HibernateUtil.getSessionFactory().openSession();
+//        List<Symbol> results = null;
+//        try {
+//            Criteria cr = session.createCriteria(Symbol.class);
+//            cr.add(Restrictions.eq("timetable.id", timetable.getId()));
+//            results = cr.list();
+//        } catch (HibernateException e) {
+//            e.printStackTrace();
+//        } finally {
+//            session.close();
+//        }
+//        return results;
+//    }
 
 
 //    public static List<Symbol> getAllUniqueSymbols(){

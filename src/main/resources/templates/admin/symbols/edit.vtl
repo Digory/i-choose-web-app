@@ -1,6 +1,6 @@
 <p class="pageHeader">Edit Symbol</p>
 
-<form action="/symbols/$symbol.getId()" method="post">
+<form action="/admin/symbols/$symbol.getId()" method="post">
     <label for="name">Name:</label>
     <input class="inputbox" type="text" name="name" id="name" required="true" value="$symbol.getName()">
 
@@ -21,4 +21,4 @@
 
     <input type="submit" value="Save" class="button">
 </form>
-<a href="/symbols/$symbol.getId()" class="button center">Cancel</a>
+<a href="/admin/symbols/$symbol.getId()" class="button center">Cancel</a>
