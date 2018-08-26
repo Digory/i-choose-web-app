@@ -63,7 +63,7 @@ body {
 
 /* elements inside the content area */
 
-.content a {
+.content menu a {
     text-decoration: none;
     color: inherit;
     display: block;
@@ -72,7 +72,7 @@ body {
     height: 2.5rem;
 }
 
-.content a:hover {
+.content menu a:hover {
     background-color: #f3d250;
 }
 
