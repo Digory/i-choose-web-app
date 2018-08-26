@@ -1,16 +1,12 @@
+<a class="new" href="/admin/symbols/new">Add new symbol</a>
+<h1 class="pageHeader">All Symbols</h1>
+<table class="table">
 
-    <table>
-        <tr>
-            <td><a class="new" href="/admin/symbols/new">Add new symbol</a></td>
-        </tr>
-        <tr>
-            <td><h1 class="pageHeader">All Symbols</h1></td>
-        </tr>
 
         #foreach($symbol in $symbols)
         <tr>
-            <td><img src="$symbol.getImageUrl()"/></td>
-            <td>$symbol.getCategory().getDescriptor(): $symbol.getName()</td>
+            <td class="td-image"><img src="$symbol.getImageUrl()"/></td>
+            <td>$symbol.getCategory().getDescriptor():<br> <strong>$symbol.getName()</strong></td>
             <td><a href="/admin/symbols/$symbol.getId()/edit"><i class="edit fas fa-edit"></i></a></td>
             <td><i class="delete fas fa-trash-alt"></i></td>
         <tr>
