@@ -84,6 +84,15 @@ body {
     display: block;
 }
 
+.content img {
+  width: 100px;
+  height: 100px;
+  background-color: #f5f5f5;
+  object-fit: cover;
+  object-position: center;
+  margin-right: 2rem;
+}
+
 /* elements inside the footer area */
 
 .footer a {

@@ -8,7 +8,7 @@
         #foreach($symbol in $symbols)
         <tr>
             <td>$symbol.getName()</td>
-            <td>$symbol.getImageUrl()</td>
+            <td><img src="$symbol.getImageUrl()"/></td>
             <td><a href="/admin/symbols/$symbol.getId()">VIEW DETAILS</a></td>
         <tr>
             #end
