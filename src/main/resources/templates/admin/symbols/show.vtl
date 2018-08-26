@@ -1,17 +1,24 @@
 <p class="pageHeader">Symbol: $symbol.getName()</p>
 <table>
     <tr>
-        <th>Name</th>
-        <th>Category</th>
-        <th>Image URL</th>
-        <th>Popularity Rating</th>
-        <th></th>
+        <th>Name</th><td>$symbol.getName()</td>
     </tr>
     <tr>
-        <td>$symbol.getName()</td>
-        <td>$symbol.getCategory().getDescriptor()</td>
-        <td><img src="$symbol.getImageUrl()"/></td>
-        <td>$symbol.getPopularityRating()</td>
+        <th>Category</th><td>$symbol.getCategory().getDescriptor()</td>
+    </tr>
+    <tr>
+        <th>Image URL</th><td><img src="$symbol.getImageUrl()"/></td>
+    </tr>
+    <tr>
+        <th>Popularity Rating</th><td>$symbol.getPopularityRating()</td>
+    </tr>
+        <th></th>
+
+    <tr>
+
+
+
+        
         <td><a href="/admin/symbols/$symbol.getId()/edit">EDIT</a></td>
         <td>
             <form action="/admin/symbols/$symbol.getId()/delete" method="post">

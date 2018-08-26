@@ -62,6 +62,13 @@ body {
 
 /* elements inside the content area */
 
+.content h1 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    font-size: 24px;
+}
+
 .content menu a {
     text-decoration: none;
     color: inherit;
@@ -91,6 +98,7 @@ body {
   object-fit: cover;
   object-position: center;
   margin-right: 2rem;
+  margin-left: 1rem;
 }
 
 /* elements inside the footer area */

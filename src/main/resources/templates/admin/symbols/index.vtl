@@ -1,15 +1,9 @@
-<p class="pageHeader">All Symbols</p>
+<h1 class="pageHeader">All Symbols</h1>
     <table>
-        <tr>
-            <th>Name</th>
-            <th>Image</th>
-            <th></th>
-        </tr>
         #foreach($symbol in $symbols)
         <tr>
-            <td>$symbol.getName()</td>
             <td><img src="$symbol.getImageUrl()"/></td>
-            <td><a href="/admin/symbols/$symbol.getId()">VIEW DETAILS</a></td>
+            <td><a href="/admin/symbols/$symbol.getId()">$symbol.getName()</a></td>
         <tr>
             #end
     </table>
