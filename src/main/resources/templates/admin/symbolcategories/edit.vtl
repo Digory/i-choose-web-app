@@ -1,6 +1,6 @@
 <p class="pageHeader">Edit Category</p>
 
-<form action="/symbol-categories/$symbolCategory.getId()" method="post">
+<form action="/admin/symbol-categories/$symbolCategory.getId()" method="post">
 
     <label for="icon">Category Icon:</label>
     <input class="inputbox" type="text" name="icon" required = true id="icon" value="$symbolCategory.getIcon()">
@@ -10,4 +10,4 @@
 
     <input type="submit" value="Save" class="button">
 </form>
-<a href="/symbol-categories/$symbolCategory.getId()" class="button center">Cancel</a>
+<a href="/admin/symbol-categories/$symbolCategory.getId()" class="button center">Cancel</a>

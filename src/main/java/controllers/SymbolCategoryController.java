@@ -19,63 +19,63 @@ public class SymbolCategoryController {
     public SymbolCategoryController(){
 
         //  INDEX
-        get("/symbol-categories", (req, res) -> {
+        get("/admin/symbol-categories", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            model.put("template", "templates/symbolcategories/index.vtl");
+            model.put("template", "templates/admin/symbolcategories/index.vtl");
             List<Symbol> symbolCategories = DBHelper.getAll(SymbolCategory.class);
             model.put("symbolCategories", symbolCategories);
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
         //  NEW
-        get("/symbol-categories/new", (req, res) -> {
+        get("/admin/symbol-categories/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            model.put("template", "templates/symbolcategories/create.vtl");
-            return new ModelAndView(model, "templates/layout.vtl");
+            model.put("template", "templates/admin/symbolcategories/create.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
         //  SHOW
-        get("/symbol-categories/:id", (req, res) -> {
+        get("/admin/symbol-categories/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int id = Integer.parseInt(req.params(":id"));
             SymbolCategory symbolCategory = DBHelper.find(id, SymbolCategory.class);
-            model.put("template", "templates/symbolcategories/show.vtl");
+            model.put("template", "templates/admin/symbolcategories/show.vtl");
             model.put("symbolCategory", symbolCategory);
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
         //  CREATE
-        post("/symbol-categories", (req, res) -> {
+        post("/admin/symbol-categories", (req, res) -> {
             String icon = req.queryParams("icon");
             String descriptor = req.queryParams("descriptor");
             SymbolCategory symbolCategory = new SymbolCategory(icon, descriptor);
             DBHelper.save(symbolCategory);
-            res.redirect("/symbol-categories");
+            res.redirect("/admin/symbol-categories");
             return null;
         });
 
         //  EDIT
-        get("/symbol-categories/:id/edit", (req, res) -> {
+        get("/admin/symbol-categories/:id/edit", (req, res) -> {
             int id = Integer.parseInt(req.params(":id"));
             SymbolCategory symbolCategory = DBHelper.find(id, SymbolCategory.class);
             Map<String, Object> model = new HashMap<>();
-            model.put("template", "templates/symbolcategories/edit.vtl");
+            model.put("template", "templates/admin/symbolcategories/edit.vtl");
             model.put("symbolCategory", symbolCategory);
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
         //  UPDATE
-        post("/symbol-categories/:id", (req, res) -> {
+        post("/admin/symbol-categories/:id", (req, res) -> {
             int id = Integer.parseInt(req.params(":id"));
             SymbolCategory symbolCategory = DBHelper.find(id, SymbolCategory.class);
             String descriptor = req.queryParams("descriptor");
             symbolCategory.setDescriptor(descriptor);
             DBHelper.save(symbolCategory);
-            res.redirect("/symbol-categories");
+            res.redirect("/admin/symbol-categories");
             return null;
         }, new VelocityTemplateEngine());
 
-        post("/symbol-categories/:id/delete", (req, res) -> {
+        post("/admin/symbol-categories/:id/delete", (req, res) -> {
             int id = Integer.parseInt(req.params(":id"));
             SymbolCategory symbolCategory = DBHelper.find(id, SymbolCategory.class);
             for (Symbol symbol : symbolCategory.getSymbols()){
@@ -83,7 +83,7 @@ public class SymbolCategoryController {
                 DBHelper.save(symbol);
             }
             DBHelper.delete(symbolCategory);
-            res.redirect("/symbol-categories");
+            res.redirect("/admin/symbol-categories");
             return null;
         });
     }
