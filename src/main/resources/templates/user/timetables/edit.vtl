@@ -1,0 +1,9 @@
+<p class="pageHeader">Edit Timetable</p>
+
+<form action="/timetables/$timetable.getId()?user_id=$user.getId()" method="post">
+    <label for="name">Name:</label>
+    <input class="inputbox" type="text" name="name" id="name" required="true" value="$timetable.getName()">
+
+
+    <input type="submit" value="Save" class="button">
+</form>

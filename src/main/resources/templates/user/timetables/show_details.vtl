@@ -1,4 +1,4 @@
-
+<h1>$timetable.getName()</h1>
 <table>
     <th>Name</th>
     <th>Category</th>
@@ -13,11 +13,11 @@
         <td>$symbol.getCategory().getDescriptor()</td>
         <td>$symbol.getImageUrl()</td>
         <td>$symbol.getPopularityRating()</td>
-        <td> <form action="/symbols/remove_from_timetable/$symbol.getId()?timetable_id=$timetable.getId()&symbol_position=$velocityCount" method="post">
+        <td> <form action="/symbols/remove_from_timetable/$symbol.getId()?timetable_id=$timetable.getId()&user_id=$user.getId()&symbol_position=$velocityCount" method="post">
             <input type="submit" value="REMOVE FROM TIMETABLE" class="button center">
         </form> </td>
-        <td><a href="/symbols/move_up?timetable_id=$timetable.getId()&symbol_position=$velocityCount">MOVE UP</a></td>
-        <td><a href="/symbols/move_down?timetable_id=$timetable.getId()&symbol_position=$velocityCount">MOVE DOWN</a></td>
+        <td><a href="/symbols/move_up?timetable_id=$timetable.getId()&user_id=$user.getId()&symbol_position=$velocityCount">MOVE UP</a></td>
+        <td><a href="/symbols/move_down?timetable_id=$timetable.getId()&user_id=$user.getId()&symbol_position=$velocityCount">MOVE DOWN</a></td>
     <tr>
         #end
 
@@ -27,3 +27,5 @@
 <form action="/timetables/$timetable.getId()/delete?user_id=$user.getId()" method="post">
     <input type="submit" value="DELETE TIMETABLE" class="button center">
 </form>
+
+<a href="/timetables/$timetable.getId()/edit?user_id=$user.getId()">EDIT TIMETABLE</a>

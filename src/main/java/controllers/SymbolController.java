@@ -78,7 +78,7 @@ public class SymbolController {
             Symbol symbol = DBHelper.find(symbolID, Symbol.class);
             Timetable timetable = DBHelper.find(timetableID, Timetable.class);
             DBHelper.addSymbolToTimetable(timetable, symbol);
-            res.redirect("/timetables/"+timetableID+"/show_symbols");
+            res.redirect("/timetables/"+timetableID+"/show_symbols?user_id="+userID);
             return null;
         });
 
@@ -86,6 +86,7 @@ public class SymbolController {
         post("/symbols/remove_from_timetable/:id", (req, res) -> {
             int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
             int symbolID = Integer.parseInt(req.params("id"));
+            int userID = Integer.parseInt(req.queryParams("user_id"));
             Timetable timetable = DBHelper.find(timetableID, Timetable.class);
             Symbol symbol = DBHelper.find(symbolID, Symbol.class);
             int position = Integer.parseInt(req.queryParams("symbol_position"));
@@ -93,7 +94,7 @@ public class SymbolController {
             timetable.removeSymbolAtPosition(position);
             DBHelper.save(timetable);
             Map<String, Object> model = new HashMap<>();
-            res.redirect("/timetables/"+timetableID+"/show_symbols");
+            res.redirect("/timetables/"+timetableID+"/show_symbols?user_id="+userID);
             return null;
         });
 
@@ -110,11 +111,12 @@ public class SymbolController {
         get("/symbols/move_up", (req, res) -> {
             int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
             int position = Integer.parseInt(req.queryParams("symbol_position"));
+            int userID = Integer.parseInt(req.queryParams("user_id"));
             position -= 1;
             Timetable timetable = DBHelper.find(timetableID, Timetable.class);
             timetable.moveSymbolAtThisPositionUpByOne(position);
             DBHelper.save(timetable);
-            res.redirect("/timetables/"+timetableID+"/show_symbols");
+            res.redirect("/timetables/"+timetableID+"/show_symbols?user_id="+userID);
             return null;
         });
 
@@ -122,11 +124,12 @@ public class SymbolController {
         get("/symbols/move_down", (req, res) -> {
             int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
             int position = Integer.parseInt(req.queryParams("symbol_position"));
+            int userID = Integer.parseInt(req.queryParams("user_id"));
             position -= 1;
             Timetable timetable = DBHelper.find(timetableID, Timetable.class);
             timetable.moveSymbolAtThisPositionDownByOne(position);
             DBHelper.save(timetable);
-            res.redirect("/timetables/"+timetableID+"/show_symbols");
+            res.redirect("/timetables/"+timetableID+"/show_symbols?user_id="+userID);
             return null;
         });
 
