@@ -148,6 +148,54 @@ button {
     padding-right: 3rem;
 }
 
+.content .form {
+    margin-left: 1rem;
+}
+
+.form-item {
+    margin-bottom: 1rem;
+}
+
+form input {
+  background-color: white;
+  display: inline-block;
+  height: 1.5rem;
+  width: 50%;
+  font-family: 'Hind Madurai', sans-serif;
+  font-size: 18px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-width: 1px;
+}
+
+form label {
+  margin-right: 0.5rem;
+}
+
+form .submit {
+  background-color: white;
+  border-radius: 0%;
+  height: 2rem;
+  width: auto;
+  font-family: 'Hind Madurai', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: lowercase;
+  margin-top: 1rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-width: 1px;
+  border-style: ridge;
+  border-color: #989898;
+  display: inline-block;
+}
+
+form .submit:hover {
+    background-color: grey;
+}
+
 /* elements inside the footer area */
 
 .footer a {
