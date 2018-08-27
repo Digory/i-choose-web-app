@@ -63,7 +63,7 @@ public class SymbolController {
             Timetable timetable = DBHelper.find(timetableID, Timetable.class);
             Symbol symbol = DBHelper.find(symbolID, Symbol.class);
             DBHelper.addSymbolToTimetable(timetable, symbol);
-            res.redirect("/timetables/"+timetableID+"/show_symbols");
+            res.redirect("/admin/timetables/"+timetableID+"/show_symbols");
             return null;
         });
 
