@@ -59,9 +59,31 @@ button {
 
 /* elements inside the header area */
 
-.logo {
+.header a {
+    display: inline-block;
+
+    position: absolute;
+    height: 100%;
+    right: 0.6rem;
+    text-decoration: none;
+    color: inherit;
+    font-size: 1.5rem;
+}
+
+.header a:hover {
+    background-color: grey;
+}
+
+.header a i {
     padding-top: 0.7rem;
-    font-weight: 500;
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+
+.logo {
+    padding-top: 0.5rem;
+    font-weight: 600;
     font-size: 24px;
 }
 
