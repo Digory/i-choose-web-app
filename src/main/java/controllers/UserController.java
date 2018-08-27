@@ -38,7 +38,7 @@ public class UserController {
         get("/users/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/user/create.vtl");
-            return new ModelAndView(model, "/templates/admin/layout.vtl");
+            return new ModelAndView(model, "/templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
 
         //  INDEX FOR USER
@@ -52,7 +52,7 @@ public class UserController {
             model.put("categories", categories);
             model.put("template", "templates/user/index.vtl");
             model.put("user", user);
-            return new ModelAndView(model, "templates/admin/layout.vtl");
+            return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
 
         //  CREATE FOR ADMIN
@@ -73,7 +73,7 @@ public class UserController {
             return null;
         });
 
-        //  EDIT
+        //  EDIT FOR ADMIN
         get("/admin/users/:id/edit", (req, res) -> {
             int id = Integer.parseInt(req.params(":id"));
             User user = DBHelper.find(id, User.class);
@@ -83,7 +83,17 @@ public class UserController {
             return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        //  UPDATE
+        //  EDIT FOR USER
+        get("/users/:id/edit", (req, res) -> {
+            int id = Integer.parseInt(req.params(":id"));
+            User user = DBHelper.find(id, User.class);
+            Map<String, Object> model = new HashMap<>();
+            model.put("template", "templates/user/edit.vtl");
+            model.put("user", user);
+            return new ModelAndView(model, "templates/user/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        //  UPDATE FOR ADMIN
         post("/admin/users/:id", (req, res) -> {
             int id = Integer.parseInt(req.params(":id"));
             User user = DBHelper.find(id, User.class);
@@ -94,11 +104,32 @@ public class UserController {
             return null;
         }, new VelocityTemplateEngine());
 
+        //  UPDATE FOR USER
+        post("/users/:id", (req, res) -> {
+            int id = Integer.parseInt(req.params(":id"));
+            User user = DBHelper.find(id, User.class);
+            String name = req.queryParams("name");
+            user.setName(name);
+            DBHelper.save(user);
+            res.redirect("/users/"+user.getId());
+            return null;
+        }, new VelocityTemplateEngine());
+
+        //  DELETE FOR ADMIN
         post("/admin/users/:id/delete", (req, res) -> {
             int id = Integer.parseInt(req.params(":id"));
             User user = DBHelper.find(id, User.class);
             DBHelper.deleteUser(user);
             res.redirect("/admin/users");
+            return null;
+        });
+
+        //  DELETE FOR USER
+        post("/users/:id/delete", (req, res) -> {
+            int id = Integer.parseInt(req.params(":id"));
+            User user = DBHelper.find(id, User.class);
+            DBHelper.deleteUser(user);
+            res.redirect("/");
             return null;
         });
     }

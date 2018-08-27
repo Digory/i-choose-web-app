@@ -43,7 +43,7 @@ public class TimetableController {
             return null;
         });
 
-        //  INDEX
+        //  INDEX FOR ADMIN
         get("/admin/timetables", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/admin/timetables/index.vtl");
@@ -67,7 +67,7 @@ public class TimetableController {
             return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        //  CREATE
+        //  CREATE FOR ADMIN
         post("/admin/timetables", (req, res) -> {
             String name = req.queryParams("name");
             int userID = Integer.parseInt(req.queryParams("user"));
@@ -78,7 +78,7 @@ public class TimetableController {
             return null;
         });
 
-        //  NEW
+        //  NEW FOR ADMIN
         get("/admin/timetables/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/admin/timetables/create.vtl");
@@ -87,7 +87,7 @@ public class TimetableController {
             return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        //  SHOW
+        //  SHOW FOR ADMIN
         get("/admin/timetables/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/admin/timetables/show.vtl");
@@ -97,7 +97,7 @@ public class TimetableController {
             return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        //  EDIT
+        //  EDIT FOR ADMIN
         get("/admin/timetables/:id/edit", (req, res) -> {
             int id = Integer.parseInt(req.params(":id"));
             Timetable timetable = DBHelper.find(id, Timetable.class);
@@ -110,7 +110,7 @@ public class TimetableController {
             return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        //  UPDATE
+        //  UPDATE FOR ADMIN
         post("/admin/timetables/:id", (req, res) -> {
             int id = Integer.parseInt(req.params(":id"));
             Timetable timetable = DBHelper.find(id, Timetable.class);
@@ -124,7 +124,7 @@ public class TimetableController {
             return null;
         });
 
-        //  DESTROY
+        //  DESTROY FOR ADMIN
         post("/admin/timetables/:id/delete", (req, res) -> {
             int id = Integer.parseInt(req.params(":id"));
             Timetable timetable = DBHelper.find(id, Timetable.class);
