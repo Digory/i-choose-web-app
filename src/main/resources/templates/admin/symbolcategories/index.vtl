@@ -3,16 +3,16 @@
 
     <table class="table">
         #foreach($symbolCategory in $symbolCategories)
-        <tr class="padding-left">
-            <td class="padding-left"><i class="$symbolCategory.getIcon()"></i></td>
-            <td class="padding-left">$symbolCategory.getDescriptor()</td>
-            <td class="td-actions">
+        <tr>
+            <td><i class="padding-left $symbolCategory.getIcon()"></i></td>
+            <td>$symbolCategory.getDescriptor()</td>
+            <td>
                 <a href="/admin/symbol-categories/$symbolCategory.getId()/edit"><i class="edit fas fa-edit"></i></a>
                 <form class="delete-form" action="/admin/symbol-categories/$symbolCategory.getId()/delete" method="post">
                     <button><i class="delete fas fa-trash-alt"></i></button>
                 </form>
             </td>
         <tr>
-            #end
+        #end
     </table>
 
