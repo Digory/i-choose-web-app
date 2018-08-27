@@ -26,10 +26,17 @@ public class UserController {
             return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        //  NEW
+        //  NEW FOR ADMIN
         get("/admin/users/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/admin/users/create.vtl");
+            return new ModelAndView(model, "/templates/admin/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        //  NEW FOR USER
+        get("/users/new", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("template", "templates/user/create.vtl");
             return new ModelAndView(model, "/templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
@@ -45,12 +52,21 @@ public class UserController {
             return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        //  CREATE
+        //  CREATE FOR ADMIN
         post("/admin/users", (req, res) -> {
             String name = req.queryParams("name");
             User user = new User(name);
             DBHelper.save(user);
             res.redirect("/admin/users");
+            return null;
+        });
+
+        //  CREATE FOR USER
+        post("/users", (req, res) -> {
+            String name = req.queryParams("name");
+            User user = new User(name);
+            DBHelper.save(user);
+            res.redirect("/");
             return null;
         });
 
