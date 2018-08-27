@@ -29,8 +29,7 @@
         #foreach($timetable in $timetables)
     <tr>
         <td>$timetable.getName()</td>
-        <td><a href="/timetables/$timetable.getId()">VIEW DETAILS</a></td>
-        <td><a href="/timetables/$timetable.getId()/show_symbols?user_id=$user.getId()">SHOW SYMBOLS</a></td>
+        <td><a href="/timetables/$timetable.getId()/show_symbols?user_id=$user.getId()">SHOW DETAILS</a></td>
     </tr>
 
     #end

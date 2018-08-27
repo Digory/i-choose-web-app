@@ -48,7 +48,7 @@ public class TimetableController {
             User user = DBHelper.find(userId, User.class);
             List<Symbol> symbols = timetable.getSymbols();
             Map<String, Object> model = new HashMap<>();
-            model.put("template", "templates/user/timetables/show_symbols.vtl");
+            model.put("template", "templates/user/timetables/show_details.vtl");
             model.put("symbols", symbols);
             model.put("timetable", timetable);
             model.put("user", user);
@@ -119,6 +119,20 @@ public class TimetableController {
             return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        //  EDIT FOR USER
+        get("/timetables/:id/edit", (req, res) -> {
+            int id = Integer.parseInt(req.params(":id"));
+            int userId = Integer.parseInt(req.queryParams("user_id"));
+            Timetable timetable = DBHelper.find(id, Timetable.class);
+            User user = DBHelper.find(userId, User.class);
+            Map<String, Object> model = new HashMap<>();
+            model.put("user", user);
+            model.put("template", "templates/user/timetables/edit.vtl");
+            model.put("timetable", timetable);
+
+            return new ModelAndView(model, "templates/user/layout.vtl");
+        }, new VelocityTemplateEngine());
+
         //  UPDATE FOR ADMIN
         post("/admin/timetables/:id", (req, res) -> {
             int id = Integer.parseInt(req.params(":id"));
@@ -130,6 +144,19 @@ public class TimetableController {
             timetable.setUser(user);
             DBHelper.save(timetable);
             res.redirect("/admin/timetables");
+            return null;
+        });
+
+        //  UPDATE FOR USER
+        post("/timetables/:id", (req, res) -> {
+            int id = Integer.parseInt(req.params(":id"));
+            Timetable timetable = DBHelper.find(id, Timetable.class);
+            int userId = Integer.parseInt(req.queryParams("user_id"));
+            User user = DBHelper.find(userId, User.class);
+            String name = req.queryParams("name");
+            timetable.setName(name);
+            DBHelper.save(timetable);
+            res.redirect("/users/"+user.getId());
             return null;
         });
 
