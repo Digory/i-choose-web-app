@@ -224,6 +224,19 @@ public class DBHelper {
         }
     }
 
+
+    public static void deleteUser(User user){
+        session = HibernateUtil.getSessionFactory().openSession();
+        Criteria cr = session.createCriteria(Timetable.class);
+        cr.add(Restrictions.eq("user.id", user.getId()));
+        List<Timetable> timetablesAttachedToUser = getList(cr);
+        for(Timetable timetable : timetablesAttachedToUser){
+            timetable.setSymbols(null);
+            save(timetable);
+            save(user);
+        }
+        delete(user);
+    }
 //
 //    public static List<Timetable> getUniqueTimetablesForUser(User user){
 //        session = HibernateUtil.getSessionFactory().openSession();

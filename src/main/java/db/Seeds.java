@@ -88,6 +88,8 @@ public class Seeds {
 
         DBHelper.setBlankAllOccurrencesOfThisSymbol(symbol1);
 
+        DBHelper.deleteUser(digory);
+
  //       DBHelper.getRankOfSymbol(symbol1, timetable);
 
 //        List<Symbol> symbolsOfTimetable = DBHelper.getAllSymbolsForTimetable(timetable);
