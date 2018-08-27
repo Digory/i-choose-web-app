@@ -31,7 +31,7 @@ public class SymbolController {
             List<Symbol> searchResults = DBHelper.searchForSymbol(searchQuery);
             Map<String, Object> model = new HashMap<>();
             model.put("results", searchResults);
-            model.put("template", "templates/user/search_results.vtl");
+            model.put("template", "templates/user/symbols/search_results.vtl");
             return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
 
@@ -41,7 +41,7 @@ public class SymbolController {
             List<Symbol> searchResults = DBHelper.searchForSymbol(categoryName);
             Map<String, Object> model = new HashMap<>();
             model.put("results", searchResults);
-            model.put("template", "templates/user/search_results.vtl");
+            model.put("template", "templates/user/symbols/search_results.vtl");
             return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
 

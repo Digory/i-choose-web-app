@@ -28,7 +28,7 @@ public class TimetableController {
             int id = Integer.parseInt(req.queryParams("user_id"));
             User user = DBHelper.find(id, User.class);
             Map<String, Object> model = new HashMap<>();
-            model.put("template", "templates/user/create_via_user.vtl");
+            model.put("template", "templates/user/timetables/create_via_user.vtl");
             model.put("user", user);
             return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
@@ -60,7 +60,7 @@ public class TimetableController {
             Timetable timetable = DBHelper.find(id, Timetable.class);
             List<Symbol> symbols = timetable.getSymbols();
             Map<String, Object> model = new HashMap<>();
-            model.put("template", "templates/user/show_symbols.vtl");
+            model.put("template", "templates/user/timetables/show_symbols.vtl");
             model.put("symbols", symbols);
             model.put("timetable", timetable);
             return new ModelAndView(model, "templates/admin/layout.vtl");

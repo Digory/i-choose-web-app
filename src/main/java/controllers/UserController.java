@@ -33,8 +33,8 @@ public class UserController {
             return new ModelAndView(model, "/templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        //  SHOW
-        get("/admin/users/:id", (req, res) -> {
+        //  SHOW TO USER
+        get("/users/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int id = Integer.parseInt(req.params(":id"));
             User user = DBHelper.find(id, User.class);

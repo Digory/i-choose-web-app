@@ -3,6 +3,7 @@ package controllers;
 import db.DBHelper;
 import db.Seeds;
 import models.SymbolCategory;
+import models.User;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
@@ -30,8 +31,9 @@ public class MainController {
 
             List categories = DBHelper.getAll(SymbolCategory.class);
             Map<String, Object> model = new HashMap<>();
-
-            model.put("template", "templates/user/index.vtl");
+            List<User> users = DBHelper.getAll(User.class);
+            model.put("users", users);
+            model.put("template", "templates/login.vtl");
             model.put("categories", categories);
             return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
