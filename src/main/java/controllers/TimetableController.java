@@ -52,16 +52,19 @@ public class TimetableController {
             return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        // SHOW SYMBOLS IN TIMETABLE
+        // SHOW SYMBOLS IN TIMETABLE TO USER
         get("/timetables/:id/show_symbols", (req, res) ->{
-            int id = Integer.parseInt(req.params("id"));
-            Timetable timetable = DBHelper.find(id, Timetable.class);
+            int timetableId = Integer.parseInt(req.params("id"));
+            int userId = Integer.parseInt(req.queryParams("user_id"));
+            Timetable timetable = DBHelper.find(timetableId, Timetable.class);
+            User user = DBHelper.find(userId, User.class);
             List<Symbol> symbols = timetable.getSymbols();
             Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/user/timetables/show_symbols.vtl");
             model.put("symbols", symbols);
             model.put("timetable", timetable);
-            return new ModelAndView(model, "templates/admin/layout.vtl");
+            model.put("user", user);
+            return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
 
         //  CREATE
