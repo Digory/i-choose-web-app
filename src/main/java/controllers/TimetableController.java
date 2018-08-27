@@ -142,6 +142,17 @@ public class TimetableController {
             return null;
         });
 
+        //  DESTROY FOR USER
+        post("/timetables/:id/delete", (req, res) -> {
+            int id = Integer.parseInt(req.params(":id"));
+            Timetable timetable = DBHelper.find(id, Timetable.class);
+            int userId = Integer.parseInt(req.queryParams("user_id"));
+            User user = DBHelper.find(userId, User.class);
+            DBHelper.delete(timetable);
+            res.redirect("/users/"+user.getId());
+            return null;
+        });
+
 
 
     }

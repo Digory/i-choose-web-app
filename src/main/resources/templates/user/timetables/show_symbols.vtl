@@ -23,3 +23,7 @@
 
 </table>
 <a href="/users/$user.getId()">Add another symbol to the timetable</a>
+
+<form action="/timetables/$timetable.getId()/delete?user_id=$user.getId()" method="post">
+    <input type="submit" value="DELETE TIMETABLE" class="button center">
+</form>
