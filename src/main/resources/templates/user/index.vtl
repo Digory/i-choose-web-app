@@ -1,5 +1,5 @@
 <div class="search">
-    <form action="/symbols/search_results" class="form-search-box" method="post">
+    <form action="/symbols/search_results?user_id=$user.getId()" class="form-search-box" method="post">
         <input class="input-search" type="text" name="search" id="input-search" placeholder="Find a symbol...">
         <button type="submit"><i class="fas fa-search"></i></button>
     </form>

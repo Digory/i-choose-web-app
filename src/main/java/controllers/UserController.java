@@ -47,7 +47,7 @@ public class UserController {
             User user = DBHelper.find(id, User.class);
             List<Timetable> timetables = DBHelper.getUniqueTimetablesForUser(user);
             model.put("timetables", timetables);
-            model.put("template", "templates/admin/users/show.vtl");
+            model.put("template", "templates/user/index.vtl");
             model.put("user", user);
             return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());

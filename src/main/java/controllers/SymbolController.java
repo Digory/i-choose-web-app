@@ -3,6 +3,7 @@ package controllers;
 import db.DBHelper;
 //import models.SymbolRank;
 import models.Timetable;
+import models.User;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 import static spark.Spark.get;
@@ -28,8 +29,13 @@ public class SymbolController {
         //  SEARCH BY KEYWORD
         post("/symbols/search_results", (req, res) -> {
             String searchQuery = req.queryParams("search");
+            int userID = Integer.parseInt(req.queryParams("user_id"));
+            User user = DBHelper.find(userID, User.class);
+            List<Timetable> allUserTimetables = DBHelper.getUniqueTimetablesForUser(user);
             List<Symbol> searchResults = DBHelper.searchForSymbol(searchQuery);
             Map<String, Object> model = new HashMap<>();
+            model.put("user", user);
+            model.put("allUserTimetables", allUserTimetables);
             model.put("results", searchResults);
             model.put("template", "templates/user/symbols/search_results.vtl");
             return new ModelAndView(model, "templates/user/layout.vtl");
@@ -45,25 +51,29 @@ public class SymbolController {
             return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        //  SHOW BEFORE ADDING TO TIMETABLE
-        get("/admin/symbols/add", (req, res) -> {
-            int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
-            Map<String, Object> model = new HashMap<>();
-            List<Symbol> symbols = DBHelper.getAll(Symbol.class);
-            model.put("symbols", symbols);
-            model.put("template", "templates/admin/symbols/add.vtl");
-            model.put("timetableID", timetableID);
-            return new ModelAndView(model, "templates/admin/layout.vtl");
-        }, new VelocityTemplateEngine());
+//        //  SHOW BEFORE ADDING TO TIMETABLE
+//        get("/symbols/add", (req, res) -> {
+//            int userID = Integer.parseInt(req.queryParams("user_id"));
+//            User user = DBHelper.find(userID, User.class);
+//            List<Timetable> allUserTimetables = DBHelper.getUniqueTimetablesForUser(user);
+//            Map<String, Object> model = new HashMap<>();
+//            List<Symbol> symbols = DBHelper.getAll(Symbol.class);
+//            model.put("symbols", symbols);
+//            model.put("template", "templates/symbols/add.vtl");
+//
+//            return new ModelAndView(model, "templates/admin/layout.vtl");
+//        }, new VelocityTemplateEngine());
 
         //  ADD TO TIMETABLE
         post("/symbols/add/:id", (req, res) -> {
-            int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
+            int userID = Integer.parseInt(req.queryParams("user_id"));
             int symbolID = Integer.parseInt(req.params("id"));
-            Timetable timetable = DBHelper.find(timetableID, Timetable.class);
+            int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
+            User user = DBHelper.find(userID, User.class);
             Symbol symbol = DBHelper.find(symbolID, Symbol.class);
+            Timetable timetable = DBHelper.find(timetableID, Timetable.class);
             DBHelper.addSymbolToTimetable(timetable, symbol);
-            res.redirect("/admin/timetables/"+timetableID+"/show_symbols");
+            res.redirect("/timetables/"+timetableID+"/show_symbols");
             return null;
         });
 
