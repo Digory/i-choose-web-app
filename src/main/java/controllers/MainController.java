@@ -31,9 +31,9 @@ public class MainController {
             List categories = DBHelper.getAll(SymbolCategory.class);
             Map<String, Object> model = new HashMap<>();
 
-            model.put("template", "templates/index.vtl");
+            model.put("template", "templates/user/index.vtl");
             model.put("categories", categories);
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
 
         get("/admin", (req, res) -> {

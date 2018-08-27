@@ -32,7 +32,7 @@ public class SymbolController {
             Map<String, Object> model = new HashMap<>();
             model.put("results", searchResults);
             model.put("template", "templates/user/search_results.vtl");
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
 
         //  SHOW CATEGORY
@@ -42,7 +42,7 @@ public class SymbolController {
             Map<String, Object> model = new HashMap<>();
             model.put("results", searchResults);
             model.put("template", "templates/user/search_results.vtl");
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
 
         //  SHOW BEFORE ADDING TO TIMETABLE

@@ -30,7 +30,7 @@ public class TimetableController {
             Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/user/create_via_user.vtl");
             model.put("user", user);
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
 
         //  CREATE FOR USER
