@@ -86,7 +86,7 @@ public class Seeds {
 
         List<Symbol> top3mostUsed = DBHelper.findTopThreeMostUsedSymbols(digory);
 
-
+        DBHelper.setBlankAllOccurrencesOfThisSymbol(symbol1);
 
  //       DBHelper.getRankOfSymbol(symbol1, timetable);
 
