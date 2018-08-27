@@ -172,7 +172,7 @@ public class SymbolController {
         post("/admin/symbols/:id/delete", (req, res) -> {
             int id = Integer.parseInt(req.params(":id"));
             Symbol symbol = DBHelper.find(id, Symbol.class);
-            DBHelper.delete(symbol);
+            DBHelper.setBlankAllOccurrencesOfThisSymbol(symbol);
             res.redirect("/admin/symbols");
             return null;
         });
