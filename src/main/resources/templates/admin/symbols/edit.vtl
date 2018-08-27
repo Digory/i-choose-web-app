@@ -1,10 +1,14 @@
 <h1 class="pageHeader">Edit Symbol</h1>
 
-<form action="/admin/symbols/$symbol.getId()" method="post">
-    <label for="name">Name:</label>
-    <input class="inputbox" type="text" name="name" id="name" required="true" value="$symbol.getName()">
+<form class="form" action="/admin/symbols/$symbol.getId()" method="post">
 
-    <label for="category">Categoryt:</label>
+    <div class="form-item">
+        <label for="name">Name:</label>
+        <input class="inputbox" type="text" name="name" id="name" required="true" value="$symbol.getName()">
+    </div>
+
+    <div class="form-item">
+    <label for="category">Category:</label>
     <select id="category" name="category">
         #foreach( $category in $categories )
         <option value="$category.getId()"
@@ -14,11 +18,12 @@
             $category.getDescriptor()</option>
         #end
     </select>
+    </div>
 
-    <label for="imgUrl">Image URL:</label>
-    <input class="inputbox" type="text" name="imgUrl" id="imgUrl" required="true" value="$symbol.getImageUrl()">
+    <div class="form-item">
+        <label for="imgUrl">Image URL:</label>
+        <input class="inputbox" type="text" name="imgUrl" id="imgUrl" required="true" value="$symbol.getImageUrl()">
+    </div>
 
-
-    <input type="submit" value="Save" class="button">
+    <input class="submit" type="submit" value="Save" class="button"><a href="/admin/symbols" class="cancel button center">Cancel</a>
 </form>
-<a href="/admin/symbols" class="button center">Cancel</a>

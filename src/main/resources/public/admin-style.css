@@ -162,7 +162,7 @@ form input {
   height: 1.5rem;
   width: 50%;
   font-family: 'Hind Madurai', sans-serif;
-  font-size: 18px;
+  font-size: 14px;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   border-width: 1px;
@@ -170,6 +170,10 @@ form input {
 
 form label {
   margin-right: 0.5rem;
+}
+
+form .cancel {
+    margin-left: 1rem;
 }
 
 form .submit {
@@ -181,7 +185,7 @@ form .submit {
   font-size: 18px;
   font-weight: bold;
   text-transform: lowercase;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
   padding-left: 1rem;
