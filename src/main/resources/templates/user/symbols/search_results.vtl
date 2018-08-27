@@ -1,4 +1,4 @@
-<h1 class="pageHeader">Search results</h1>
+<h1 class="pageHeader">Search results:</h1>
 
     <table class="table">
 
@@ -7,17 +7,18 @@
             <td class="td-image"><img src="$symbol.getImageUrl()"/></td>
             <td>$symbol.getName()</td>
             <td>$symbol.getCategory().getDescriptor()</td>
-            <td>$symbol.getImageUrl()</td>
-            <td>$symbol.getPopularityRating()</td>
-            <td> <form action="/symbols/add/$symbol.getId()?user_id=$user.getId()" method="post">
+            <td>
+
+                <form action="/symbols/add/$symbol.getId()?timetable_id=$timetableID" method="post">
                 <input type="submit" value="ADD TO TIMETABLE" class="button center">
                 <label for="timetable_id">Timetable name:</label>
-                <select id="timetable_id" name="timetable_id">
+                <select id="timetable_id" name="timetable_id"/>
                     #foreach($timetable in $allUserTimetables)
                     <option value="$timetable.getId()">$timetable.getName()</option>
 
                     #end
-            </form> </td>
+                </form>
+            </td>
         <tr>
             #end
     </table>
