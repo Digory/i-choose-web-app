@@ -207,7 +207,7 @@ public class DBHelper {
     }
 
     public static void setBlankAllOccurrencesOfThisSymbol(Symbol symbol){
-        SymbolCategory category1 = new SymbolCategory( "fas fa-utensils", "No image available");
+        SymbolCategory category1 = new SymbolCategory( "fas fa-utensils", "Deleted by admin");
         DBHelper.save(category1);
         session = HibernateUtil.getSessionFactory().openSession();
         List<Timetable> allTimetables = getAll(Timetable.class);
@@ -216,8 +216,7 @@ public class DBHelper {
             if(timetable.getSymbols() != null){
             for(Symbol each_symbol : timetable.getSymbols()){
                 if(symbol.getName().equals(each_symbol.getName())){
-                    each_symbol.setName("No symbol");
-                    each_symbol.setCategory(null);
+                    each_symbol.setCategory(category1);
                     each_symbol.setImageUrl("https://s3-eu-west-1.amazonaws.com/ichoose-resources/default-placeholder.png");
                     save(each_symbol);
                 }
