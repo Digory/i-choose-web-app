@@ -156,6 +156,10 @@ button {
     margin-bottom: 1rem;
 }
 
+.padding-left {
+    margin-left: 1rem;
+}
+
 form input {
   background-color: white;
   display: inline-block;
