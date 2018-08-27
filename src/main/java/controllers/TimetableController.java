@@ -21,6 +21,30 @@ public class TimetableController {
 
         // ADMIN ROUTES
 
+        // USER ROUTES
+
+        //  NEW FOR USER
+        get("/admin/timetables/new_for_user", (req, res) -> {
+            int id = Integer.parseInt(req.queryParams("user_id"));
+            User user = DBHelper.find(id, User.class);
+            Map<String, Object> model = new HashMap<>();
+            model.put("template", "templates/user/create_via_user.vtl");
+            model.put("user", user);
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        //  CREATE FOR USER
+        post("/admin/timetables/create_for_user", (req, res) -> {
+            int id = Integer.parseInt(req.queryParams("user_id"));
+            String timetableName = req.queryParams("name");
+            User user = DBHelper.find(id, User.class);
+            Timetable timetable = new Timetable(timetableName);
+            DBHelper.save(timetable);
+            DBHelper.addTimetableToUser(timetable, user);
+            res.redirect("/admin/users/" + id);
+            return null;
+        });
+
         //  INDEX
         get("/admin/timetables", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
@@ -36,7 +60,7 @@ public class TimetableController {
             Timetable timetable = DBHelper.find(id, Timetable.class);
             List<Symbol> symbols = timetable.getSymbols();
             Map<String, Object> model = new HashMap<>();
-            model.put("template", "templates/admin/show_symbols.vtl");
+            model.put("template", "templates/user/show_symbols.vtl");
             model.put("symbols", symbols);
             model.put("timetable", timetable);
             return new ModelAndView(model, "templates/admin/layout.vtl");
@@ -108,29 +132,7 @@ public class TimetableController {
             return null;
         });
 
-        // USER ROUTES
 
-        //  NEW FOR USER
-        get("/timetables/new_for_user", (req, res) -> {
-            int id = Integer.parseInt(req.queryParams("user_id"));
-            User user = DBHelper.find(id, User.class);
-            Map<String, Object> model = new HashMap<>();
-            model.put("template", "templates/user/create_via_user.vtl");
-            model.put("user", user);
-            return new ModelAndView(model, "templates/layout.vtl");
-        }, new VelocityTemplateEngine());
-
-        //  CREATE FOR USER
-        post("/timetables/create_for_user", (req, res) -> {
-            int id = Integer.parseInt(req.queryParams("user_id"));
-            String timetableName = req.queryParams("name");
-            User user = DBHelper.find(id, User.class);
-            Timetable timetable = new Timetable(timetableName);
-            DBHelper.save(timetable);
-            DBHelper.addTimetableToUser(timetable, user);
-            res.redirect("/users/" + id);
-            return null;
-        });
 
     }
 }
