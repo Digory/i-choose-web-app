@@ -1,17 +1,18 @@
+<a class="new" href="/admin/symbol-categories/new">Add category</a>
 <h1 class="pageHeader">All Categories</h1>
 
-    <table>
-        <tr>
-            <th>Icon</th>
-            <th>Descriptor</th>
-        </tr>
+    <table class="table">
         #foreach($symbolCategory in $symbolCategories)
         <tr>
-            <td><i class="$symbolCategory.getIcon()"></i></td>
+            <td><i class="padding-left $symbolCategory.getIcon()"></i></td>
             <td>$symbolCategory.getDescriptor()</td>
-            <td><a href="/admin/symbol-categories/$symbolCategory.getId()/edit">EDIT</a></td>
-            <td><a href="/admin/symbol-categories/$symbolCategory.getId()/symbols">VIEW SYMBOLS</a></td>
+            <td class="td-actions">
+                <a href="/admin/symbol-categories/$symbolCategory.getId()/edit"><i class="edit fas fa-edit"></i></a>
+                <form class="delete-form" action="/admin/symbol-categories/$symbolCategory.getId()/delete" method="post">
+                    <button><i class="delete fas fa-trash-alt"></i></button>
+                </form>
+            </td>
         <tr>
-            #end
+        #end
     </table>
-    <a href="/admin/symbol-categories/new">Add category</a>
+

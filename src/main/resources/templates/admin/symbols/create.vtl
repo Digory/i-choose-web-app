@@ -1,18 +1,25 @@
 <h1 class="pageHeader">New Symbol</h1>
 
-<form action="/admin/symbols" method="post">
-    <label for="name">Symbol Name:</label>
-    <input class="inputbox" type="text" name="name" required="true" id="name">
+<form class="form" action="/admin/symbols" method="post">
 
+    <div class="form-item">
+        <label for="name">Symbol Name:</label>
+        <input class="inputbox" type="text" name="name" required="true" id="name">
+    </div>
+
+    <div class="form-item">
     <label for="category">Category:</label>
     <select id="category" name="category">
         #foreach( $category in $symbolCategories )
         <option value="$category.getId()">$category.getDescriptor()</option>
         #end
     </select>
+    </div>
 
-    <label for="imgUrl">Image URL:</label>
-    <input class="inputbox" type="text" name="imgUrl" required="true" id="imgUrl">
+    <div class="form-item">
+        <label for="imgUrl">Image URL:</label>
+        <input class="inputbox" type="text" name="imgUrl" required="true" id="imgUrl">
+    </div>
 
-    <input type="submit" value="Save" class="button">
+    <input class="submit" type="submit" value="Save" class="button"><a href="/admin/symbols" class="cancel button center">Cancel</a>
 </form>

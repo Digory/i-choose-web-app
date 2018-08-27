@@ -1,23 +1,22 @@
-<p class="pageHeader">All Users</p>
+<a class="new" href="/admin/users/new">Add User</a>
+<h1 class="pageHeader">All Users</h1>
 
-    <table>
-        <tr>
-            <th>User</th>
-            <th></th>
-        </tr>
-
+    <table class="table padding-left">
 
         #foreach($user in $users)
         <tr>
             <td>$user.getName()</td>
-            <td><a href="/admin/users/$user.getId()">VIEW DETAILS</a></td>
+            <td class="td-actions">
+                <a href="/admin/users/$user.getId()/edit"><i class="edit fas fa-edit"></i></a>
+                <form class="delete-form" action="/admin/users/$user.getId()/delete" method="post">
+                    <button><i class="delete fas fa-trash-alt"></i></button>
+                </form>
+            </td>
         </tr>
 
         #end
 
     </table>
-
-<a href="/admin/users/new">Add User</a>
 
 
 

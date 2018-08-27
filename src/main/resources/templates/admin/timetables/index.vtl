@@ -1,26 +1,18 @@
-<p class="pageHeader">All Timetables</p>
+<a class="new" href="/admin/timetables/new">Add Timetable</a>
+<h1 class="pageHeader">All Timetables</h1>
 
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>User</th>
-            <th></th>
-        </tr>
-
+    <table class="table">
         #foreach($timetable in $timetables)
 
         <tr>
-            <td>$timetable.getName()</td>
+            <td><a href="/admin/timetables/$timetable.getId()">$timetable.getName()</a></td>
             <td>$timetable.getUser().getName()</td>
-            <td><a href="/admin/timetables/$timetable.getId()">VIEW DETAILS</a></td>
             <td><a href="/admin/timetables/$timetable.getId()/show_symbols">SHOW SYMBOLS</a></td>
         </tr>
 
         #end
 
     </table>
-
-<a href="/admin/timetables/new">Add Timetable</a>
 
 
 

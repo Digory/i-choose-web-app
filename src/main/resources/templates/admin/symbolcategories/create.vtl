@@ -1,12 +1,16 @@
-<p class="pageHeader">New Category</p>
+<h1 class="pageHeader">New Category</h1>
 
-<form action="/admin/symbol-categories" method="post">
+<form class="form" action="/admin/symbol-categories" method="post">
 
-    <label for="icon">Category Icon:</label>
-    <input class="inputbox" type="text" name="icon" required = true id="icon">
+    <div class="form-item">
+        <label for="icon">Category Icon:</label>
+        <input class="inputbox" type="text" name="icon" required = true id="icon">
+    </div>
 
-    <label for="descriptor">Category Descriptor:</label>
-    <input class="inputbox" type="text" name="descriptor" required="true" id="descriptor">
+    <div class="form-item">
+        <label for="descriptor">Descriptor:</label>
+        <input class="inputbox" type="text" name="descriptor" required="true" id="descriptor">
+    </div>
 
-    <input type="submit" value="Save" class="button">
+    <input class="submit" type="submit" value="Save" class="button"><a href="/admin/symbol-categories" class="cancel button center">Cancel</a>
 </form>

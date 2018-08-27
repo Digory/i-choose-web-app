@@ -1,8 +1,11 @@
-<p class="pageHeader">New User</p>
+<h1 class="pageHeader">New User</h1>
 
-<form action="/admin/users" method="post">
-    <label for="name">User Name:</label>
-    <input class="inputbox" type="text" name="name" required="true" id="name">
+<form class="form" action="/admin/users" method="post">
 
-    <input type="submit" value="Save" class="button">
+    <div class="form-item">
+        <label for="name">Name:</label>
+        <input class="inputbox" type="text" name="name" required="true" id="name">
+    </div>
+
+    <input class="submit" type="submit" value="Save" class="button"><a href="/admin/users" class="cancel button center">Cancel</a>
 </form>
