@@ -1,0 +1,8 @@
+stages:
+- pre-build
+
+unit test:
+  image: maven:4-jdk-10
+  stage: pre-build
+  script:
+  - mvn $MAVEN_CLI_OPTS compile
