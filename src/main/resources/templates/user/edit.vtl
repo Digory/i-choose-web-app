@@ -1,0 +1,11 @@
+<h1 class="pageHeader">Edit User</h1>
+
+<form class="form" action="/users/$user.getId()" method="post">
+
+    <div class="form-item">
+        <label for="name">Name:</label>
+        <input class="inputbox" type="text" name="name" id="name" required="true" value="$user.getName()">
+    </div>
+
+    <input class="submit" type="submit" value="Save" class="button"><a href="/admin/users" class=" cancel button center">Cancel</a>
+</form>

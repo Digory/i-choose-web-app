@@ -19,18 +19,6 @@ public class TimetableController {
     public TimetableController() {
 
 
-
-
-        //  NEW FOR USER
-        get("/admin/timetables/new_for_user", (req, res) -> {
-            int id = Integer.parseInt(req.queryParams("user_id"));
-            User user = DBHelper.find(id, User.class);
-            Map<String, Object> model = new HashMap<>();
-            model.put("template", "templates/user/timetables/create_via_user.vtl");
-            model.put("user", user);
-            return new ModelAndView(model, "templates/user/layout.vtl");
-        }, new VelocityTemplateEngine());
-
         //  CREATE FOR USER
         post("/admin/timetables/create_for_user", (req, res) -> {
             int id = Integer.parseInt(req.queryParams("user_id"));
@@ -43,7 +31,7 @@ public class TimetableController {
             return null;
         });
 
-        //  INDEX
+        //  INDEX FOR ADMIN
         get("/admin/timetables", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/admin/timetables/index.vtl");
@@ -67,7 +55,7 @@ public class TimetableController {
             return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        //  CREATE
+        //  CREATE FOR ADMIN
         post("/admin/timetables", (req, res) -> {
             String name = req.queryParams("name");
             int userID = Integer.parseInt(req.queryParams("user"));
@@ -78,7 +66,7 @@ public class TimetableController {
             return null;
         });
 
-        //  NEW
+        //  NEW FOR ADMIN
         get("/admin/timetables/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/admin/timetables/create.vtl");
@@ -87,7 +75,28 @@ public class TimetableController {
             return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        //  SHOW
+        //  NEW FOR USER
+        get("/timetables/new_for_user", (req, res) -> {
+            int id = Integer.parseInt(req.queryParams("user_id"));
+            User user = DBHelper.find(id, User.class);
+            Map<String, Object> model = new HashMap<>();
+            model.put("template", "templates/user/timetables/create_via_user.vtl");
+            model.put("user", user);
+            return new ModelAndView(model, "templates/user/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        //  CREATE FOR USER
+        post("/timetables", (req, res) -> {
+            String name = req.queryParams("name");
+            int userID = Integer.parseInt(req.queryParams("user_id"));
+            User user = DBHelper.find(userID, User.class);
+            Timetable timetable = new Timetable(name);
+            DBHelper.addTimetableToUser(timetable, user);
+            res.redirect("/users/"+user.getId());
+            return null;
+        });
+
+        //  SHOW FOR ADMIN
         get("/admin/timetables/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/admin/timetables/show.vtl");
@@ -97,7 +106,7 @@ public class TimetableController {
             return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        //  EDIT
+        //  EDIT FOR ADMIN
         get("/admin/timetables/:id/edit", (req, res) -> {
             int id = Integer.parseInt(req.params(":id"));
             Timetable timetable = DBHelper.find(id, Timetable.class);
@@ -110,7 +119,7 @@ public class TimetableController {
             return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        //  UPDATE
+        //  UPDATE FOR ADMIN
         post("/admin/timetables/:id", (req, res) -> {
             int id = Integer.parseInt(req.params(":id"));
             Timetable timetable = DBHelper.find(id, Timetable.class);
@@ -124,12 +133,23 @@ public class TimetableController {
             return null;
         });
 
-        //  DESTROY
+        //  DESTROY FOR ADMIN
         post("/admin/timetables/:id/delete", (req, res) -> {
             int id = Integer.parseInt(req.params(":id"));
             Timetable timetable = DBHelper.find(id, Timetable.class);
             DBHelper.delete(timetable);
             res.redirect("/admin/timetables");
+            return null;
+        });
+
+        //  DESTROY FOR USER
+        post("/timetables/:id/delete", (req, res) -> {
+            int id = Integer.parseInt(req.params(":id"));
+            Timetable timetable = DBHelper.find(id, Timetable.class);
+            int userId = Integer.parseInt(req.queryParams("user_id"));
+            User user = DBHelper.find(userId, User.class);
+            DBHelper.delete(timetable);
+            res.redirect("/users/"+user.getId());
             return null;
         });
 
