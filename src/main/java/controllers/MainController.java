@@ -35,7 +35,7 @@ public class MainController {
             model.put("users", users);
             model.put("template", "templates/login.vtl");
             model.put("categories", categories);
-            return new ModelAndView(model, "templates/user/layout.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
         get("/admin", (req, res) -> {
