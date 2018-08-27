@@ -1,5 +1,5 @@
 <div class="search">
-    <form action="/symbols/search_results" class="form-search-box" method="post">
+    <form action="/symbols/search_results?user_id=$user.getId()" class="form-search-box" method="post">
         <input class="input-search" type="text" name="search" id="input-search" placeholder="Find a symbol...">
         <button type="submit"><i class="fas fa-search"></i></button>
     </form>
@@ -12,7 +12,34 @@
 <div class="categories">
     <ul>
         #foreach($category in $categories)
-        <li><a href="/symbols/category?category=$category.getDescriptor()"><span><i class="category-icon $category.getIcon()"></i></span>$category.getDescriptor()</a></li>
+        <li><a href="/symbols/category?category=$category.getDescriptor()&user_id=$user.getId()"><span><i class="category-icon $category.getIcon()"></i></span>$category.getDescriptor()</a></li>
         #end
     </ul>
 </div>
+
+<p class="pageHeader">User: $user.getName()</p>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Timetables</th>
+        <th></th>
+    </tr>
+    <tr>
+        <td>$user.getName()</td>
+        #foreach($timetable in $timetables)
+    <tr>
+        <td>$timetable.getName()</td>
+        <td><a href="/timetables/$timetable.getId()">VIEW DETAILS</a></td>
+        <td><a href="/timetables/$timetable.getId()/show_symbols">SHOW SYMBOLS</a></td>
+    </tr>
+
+    #end
+    <td><a href="/users/$user.getId()/edit">EDIT USER</a></td>
+    <td>
+        <form action="/users/$user.getId()/delete" method="post">
+            <input type="submit" value="Delete" class="button center">
+        </form>
+    </td>
+    <tr>
+</table>
+<a href="/timetables/new_for_user?user_id=$user.getId()">MAKE NEW TIMETABLE</a>

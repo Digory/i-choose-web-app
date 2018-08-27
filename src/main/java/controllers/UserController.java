@@ -1,6 +1,7 @@
 package controllers;
 
 import db.DBHelper;
+import models.SymbolCategory;
 import models.Timetable;
 import models.User;
 import spark.ModelAndView;
@@ -17,7 +18,7 @@ public class UserController {
 
     public UserController() {
 
-        //  INDEX
+        //  INDEX FOR ADMIN
         get("/admin/users", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/admin/users/index.vtl");
@@ -40,14 +41,16 @@ public class UserController {
             return new ModelAndView(model, "/templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        //  SHOW TO USER
+        //  INDEX FOR USER
         get("/users/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int id = Integer.parseInt(req.params(":id"));
             User user = DBHelper.find(id, User.class);
             List<Timetable> timetables = DBHelper.getUniqueTimetablesForUser(user);
+            List<SymbolCategory> categories = DBHelper.getAll(SymbolCategory.class);
             model.put("timetables", timetables);
-            model.put("template", "templates/admin/users/show.vtl");
+            model.put("categories", categories);
+            model.put("template", "templates/user/index.vtl");
             model.put("user", user);
             return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());

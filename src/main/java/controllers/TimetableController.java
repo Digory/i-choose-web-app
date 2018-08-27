@@ -19,9 +19,7 @@ public class TimetableController {
     public TimetableController() {
 
 
-        // ADMIN ROUTES
 
-        // USER ROUTES
 
         //  NEW FOR USER
         get("/admin/timetables/new_for_user", (req, res) -> {
@@ -55,7 +53,7 @@ public class TimetableController {
         }, new VelocityTemplateEngine());
 
         // SHOW SYMBOLS IN TIMETABLE
-        get("/admin/timetables/:id/show_symbols", (req, res) ->{
+        get("/timetables/:id/show_symbols", (req, res) ->{
             int id = Integer.parseInt(req.params("id"));
             Timetable timetable = DBHelper.find(id, Timetable.class);
             List<Symbol> symbols = timetable.getSymbols();
