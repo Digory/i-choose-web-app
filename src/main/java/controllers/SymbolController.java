@@ -42,10 +42,15 @@ public class SymbolController {
         }, new VelocityTemplateEngine());
 
         //  SHOW CATEGORY
-        get("symbols/category", (req, res) -> {
+        get("/symbols/category", (req, res) -> {
+            int userID = Integer.parseInt(req.queryParams("user_id"));
+            User user = DBHelper.find(userID, User.class);
             String categoryName = req.queryParams("category");
             List<Symbol> searchResults = DBHelper.searchForSymbol(categoryName);
+            List<Timetable> allUserTimetables = DBHelper.getUniqueTimetablesForUser(user);
             Map<String, Object> model = new HashMap<>();
+            model.put("user", user);
+            model.put("allUserTimetables", allUserTimetables);
             model.put("results", searchResults);
             model.put("template", "templates/user/symbols/search_results.vtl");
             return new ModelAndView(model, "templates/user/layout.vtl");
