@@ -222,6 +222,9 @@ public class DBHelper {
                 }
             }}
         }
+        symbol.setCategory(category1);
+        symbol.setImageUrl("https://s3-eu-west-1.amazonaws.com/ichoose-resources/default-placeholder.png");
+        save(symbol);
     }
 
 

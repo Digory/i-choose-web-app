@@ -78,7 +78,7 @@ public class UserController {
         post("/admin/users/:id/delete", (req, res) -> {
             int id = Integer.parseInt(req.params(":id"));
             User user = DBHelper.find(id, User.class);
-            DBHelper.delete(user);
+            DBHelper.deleteUser(user);
             res.redirect("/admin/users");
             return null;
         });
