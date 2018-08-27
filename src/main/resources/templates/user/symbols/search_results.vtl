@@ -1,20 +1,14 @@
-<p class="pageHeader">Search results</p>
+<h1 class="pageHeader">Search results</h1>
 
-<div class="container">
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Image URL</th>
-            <th></th>
-        </tr>
+    <table class="table">
+
         #foreach($symbol in $results)
         <tr>
+            <td class="td-image"><img src="$symbol.getImageUrl()"/></td>
             <td>$symbol.getName()</td>
-            <td>$symbol.getImageUrl()</td>
             <td> <form action="/symbols/add/$symbol.getId()?timetable_id=$timetableID" method="post">
                 <input type="submit" value="ADD TO TIMETABLE" class="button center">
             </form> </td>
         <tr>
             #end
     </table>
-</div>

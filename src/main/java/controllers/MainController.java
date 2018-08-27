@@ -33,7 +33,7 @@ public class MainController {
             Map<String, Object> model = new HashMap<>();
             List<User> users = DBHelper.getAll(User.class);
             model.put("users", users);
-            model.put("template", "templates/login.vtl");
+            model.put("template", "templates/user/index.vtl");
             model.put("categories", categories);
             return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());

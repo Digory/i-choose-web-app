@@ -41,7 +41,8 @@ public class SymbolController {
             List<Symbol> searchResults = DBHelper.searchForSymbol(categoryName);
             Map<String, Object> model = new HashMap<>();
             model.put("results", searchResults);
-            model.put("template", "templates/user/symbols/search_results.vtl");
+            model.put("categoryName", categoryName);
+            model.put("template", "templates/user/symbols/category_search_results.vtl");
             return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
 
