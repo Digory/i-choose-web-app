@@ -48,7 +48,7 @@ public class Seeds {
         SymbolCategory category7 = new SymbolCategory("fas fa-car-side", "Travel");
         DBHelper.save(category7);
 
-        Symbol symbol1 = new Symbol("Banana", category1, "https://s3-eu-west-1.amazonaws.com/ichoose-resources/banana.png", "https://s3-eu-west-1.amazonaws.com/ichoose-resources/piano2-CoolEdit.mp3");
+        Symbol symbol1 = new Symbol("Banana", category1, "https://s3-eu-west-1.amazonaws.com/ichoose-resources/banana+(1).png", "https://s3-eu-west-1.amazonaws.com/ichoose-resources/piano2-CoolEdit.mp3");
         DBHelper.save(symbol1);
 
         Symbol symbol2 = new Symbol("Orange", category1, "https://s3-eu-west-1.amazonaws.com/ichoose-resources/orange.png", "https://s3-eu-west-1.amazonaws.com/ichoose-resources/piano2-CoolEdit.mp3");

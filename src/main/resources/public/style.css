@@ -143,6 +143,14 @@ button:hover {
     margin-right: 0rem !important;
     margin-top: 2rem;
     margin-bottom: 2rem;
+    border: 1px solid #D3D3D3;
+    border-radius: 2%;
+}
+
+.content .new {
+    display: block;
+    margin-top: 1rem;
+    margin-left: 1rem;
 }
 
 /* elements inside the categories area */
@@ -158,6 +166,21 @@ button:hover {
 .categories ul {
     list-style: none;
     width: 100%;
+}
+
+.timetable-link {
+  text-decoration: none;
+    color: inherit;
+    display: block;
+    padding-top: 1.1rem;
+    width: 100%;
+    height: 2.3rem;
+    padding-left: 1rem;
+}
+
+.timetable-link:hover {
+  background-color: #f3d250;
+  padding-left: 1rem;
 }
 
 .categories a {
