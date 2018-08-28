@@ -359,5 +359,12 @@ percent-width-small {
  }
 
  .content .align-buttons {
+
     display: inline-block;
+    font-size: 24px;
+ }
+
+ .content .align-buttons a {
+        text-decoration: none;
+        color: inherit;
  }
