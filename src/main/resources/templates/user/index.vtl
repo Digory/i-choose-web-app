@@ -21,18 +21,11 @@
 <table>
     <tr>
         <th>Name</th>
-        <th>Timetables</th>
         <th></th>
     </tr>
     <tr>
         <td>$user.getName()</td>
-        #foreach($timetable in $timetables)
-    <tr>
-        <td>$timetable.getName()</td>
-        <td><a href="/timetables/$timetable.getId()/show_symbols?user_id=$user.getId()">SHOW DETAILS</a></td>
-    </tr>
 
-    #end
     <td><a href="/users/$user.getId()/edit">EDIT USER</a></td>
     <td>
         <form action="/users/$user.getId()/delete" method="post">
@@ -41,4 +34,3 @@
     </td>
     <tr>
 </table>
-<a href="/timetables/new_for_user?user_id=$user.getId()">MAKE NEW TIMETABLE</a>

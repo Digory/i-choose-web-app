@@ -135,16 +135,16 @@ public class UserController {
         });
 
         //  SHOW ALL TIMETABLES ATTACHED TO USER
-//        get("/users/:id/show_all_timetables", (req, res) -> {
-//            int id = Integer.parseInt(req.params(":id"));
-//            User user = DBHelper.find(id, User.class);
-//            List<Timetable> userTimetables = DBHelper.getUniqueTimetablesForUser(user);
-//            Map<String, Object> model = new HashMap<>();
-//            model.put("template", "templates/user/timetables/all_timetables.vtl");
-//            model.put("user", user);
-//            model.put("userTimetables", userTimetables);
-//            return new ModelAndView(model, "templates/user/layout.vtl");
-//        }, new VelocityTemplateEngine());
+        get("/users/:id/show_all_timetables", (req, res) -> {
+            int id = Integer.parseInt(req.params(":id"));
+            User user = DBHelper.find(id, User.class);
+            List<Timetable> userTimetables = DBHelper.getUniqueTimetablesForUser(user);
+            Map<String, Object> model = new HashMap<>();
+            model.put("template", "templates/user/timetables/all_timetables.vtl");
+            model.put("user", user);
+            model.put("userTimetables", userTimetables);
+            return new ModelAndView(model, "templates/user/layout.vtl");
+        }, new VelocityTemplateEngine());
 
         //  SHOW TIMETABLES BEFORE ADDING SYMBOL
         get("/users/:id/add_symbol", (req, res) -> {
