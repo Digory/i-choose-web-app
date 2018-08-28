@@ -130,11 +130,45 @@ button {
 }
 
 button:hover {
-    background-color: grey;
+    background-color: #f3d250;
+}
+
+a.button {
+text-decoration: none;
+color: inherit;
+   background-color: white;
+    border-radius: 0%;
+
+    font-family: 'Hind Madurai', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: lowercase;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-width: 1px;
+    border-style: ridge;
+    border-color: #989898;
+    display: inline-block;
+}
+
+a.button:hover {
+    background-color: #f3d250;
+
 }
 
 
 /* elements inside the frequent area */
+
+.percent-width {
+    width: 37.5%;
+}
+
+percent-width-small {
+    25%
+}
 
 .frequent-item img {
     width: 5rem !important;
@@ -145,6 +179,10 @@ button:hover {
     margin-bottom: 2rem;
     border: 1px solid #D3D3D3;
     border-radius: 2%;
+}
+
+.category-symbol {
+    margin-right: 1rem;
 }
 
 .content .new {
@@ -273,7 +311,7 @@ button:hover {
 
  .content .table {
      width: 100%;
-     padding-right: 3rem;
+     padding-right: 1rem;
  }
 
  .margin-left {

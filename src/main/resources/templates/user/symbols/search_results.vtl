@@ -9,11 +9,11 @@
 
         #foreach($symbol in $results)
         <tr>
-            <td class="td-image"><a href="/users/$user.getId()/view_symbol?symbol_id=$symbol.getId()"><img src="$symbol.getImageUrl()"/></a></td>
-            <td>$symbol.getCategory().getDescriptor():<br> <strong>$symbol.getName()</strong></td>
-            <td>
+            <td class="percent-width"><a href="/users/$user.getId()/view_symbol?symbol_id=$symbol.getId()"><img src="$symbol.getImageUrl()"/></a></td>
+            <td class="percent-width-small"><span class="category-symbol">$symbol.getCategory().getDescriptor():<br> <strong>$symbol.getName()</strong></span></td>
+            <td class="percent-width">
 
-                <a href="/users/$user.getId()/add_symbol?symbol_id=$symbol.getId()&searchQuery=$searchQuery">ADD TO TIMETABLE</a>
+                <a class="button" href="/users/$user.getId()/add_symbol?symbol_id=$symbol.getId()&searchQuery=$searchQuery">ADD TO&nbsp;&nbsp;<i class="fas fa-calendar-alt"></i></a>
             </td>
         <tr>
             #end
