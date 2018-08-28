@@ -1,3 +1,4 @@
+<h1 class="pageHeader">Hello, $user.getName()!</h1>
 <div class="search">
     <form action="/symbols/search_results?user_id=$user.getId()" class="form-search-box" method="post">
         <input class="input-search" type="text" name="search" id="input-search" placeholder="Find a symbol...">
@@ -18,21 +19,3 @@
         #end
     </ul>
 </div>
-
-<p class="pageHeader">User: $user.getName()</p>
-<table>
-    <tr>
-        <th>Name</th>
-        <th></th>
-    </tr>
-    <tr>
-        <td>$user.getName()</td>
-
-    <td><a href="/users/$user.getId()/edit">EDIT USER</a></td>
-    <td>
-        <form action="/users/$user.getId()/delete" method="post">
-            <input type="submit" value="DELETE USER" class="button center">
-        </form>
-    </td>
-    <tr>
-</table>
