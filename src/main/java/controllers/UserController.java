@@ -148,6 +148,7 @@ public class UserController {
 
         //  SHOW TIMETABLES BEFORE ADDING SYMBOL
         get("/users/:id/add_symbol", (req, res) -> {
+            String searchQuery = req.queryParams("searchQuery");
             int user_id = Integer.parseInt(req.params(":id"));
             User user = DBHelper.find(user_id, User.class);
             int symbolID = Integer.parseInt(req.queryParams("symbol_id"));
@@ -155,6 +156,7 @@ public class UserController {
             List<Timetable> userTimetables = DBHelper.getUniqueTimetablesForUser(user);
             Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/user/timetables/add_symbol.vtl");
+            model.put("searchQuery", searchQuery);
             model.put("symbol", symbol);
             model.put("user", user);
             model.put("userTimetables", userTimetables);

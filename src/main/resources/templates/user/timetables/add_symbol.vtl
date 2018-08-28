@@ -3,11 +3,11 @@
 <div class="categories">
     <ul>
         #foreach($timetable in $userTimetables)
-        <li><form action="/symbols/add/$symbol.getId()?user_id=$user.getId()" method="post">
-                <input type="submit" value="ADD TO TIMETABLE" class="button center">
+        <li>
+            <form action="/symbols/$symbol.getId()/add?user_id=$user.getId()&timetable_id=$timetable.getId()&searchQuery=$searchQuery" method="post">
+                <input type="submit" value="$timetable.getName()" class="center">
             </form>
-
-            $timetable.getName()</li>
+        </li>add_symbol
         #end
     </ul>
 </div>

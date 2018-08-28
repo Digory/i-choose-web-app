@@ -40,7 +40,7 @@ public class SymbolController {
             return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        //  SEARCH RESULTS
+        //  SEARCH RESULTS - POST
         post("/symbols/search_results", (req, res) -> {
             String searchQuery = req.queryParams("search");
             int userID = Integer.parseInt(req.queryParams("user_id"));
@@ -48,6 +48,23 @@ public class SymbolController {
             List<Timetable> allUserTimetables = DBHelper.getUniqueTimetablesForUser(user);
             List<Symbol> searchResults = DBHelper.searchForSymbol(searchQuery);
             Map<String, Object> model = new HashMap<>();
+            model.put("searchQuery", searchQuery);
+            model.put("user", user);
+            model.put("allUserTimetables", allUserTimetables);
+            model.put("results", searchResults);
+            model.put("template", "templates/user/symbols/search_results.vtl");
+            return new ModelAndView(model, "templates/user/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        //  SEARCH RESULTS - GET
+        get("/symbols/search_results", (req, res) -> {
+            String searchQuery = req.queryParams("searchQuery");
+            int userID = Integer.parseInt(req.queryParams("user_id"));
+            User user = DBHelper.find(userID, User.class);
+            List<Timetable> allUserTimetables = DBHelper.getUniqueTimetablesForUser(user);
+            List<Symbol> searchResults = DBHelper.searchForSymbol(searchQuery);
+            Map<String, Object> model = new HashMap<>();
+            model.put("searchQuery", searchQuery);
             model.put("user", user);
             model.put("allUserTimetables", allUserTimetables);
             model.put("results", searchResults);
@@ -59,14 +76,14 @@ public class SymbolController {
         get("/symbols/category", (req, res) -> {
             int userID = Integer.parseInt(req.queryParams("user_id"));
             User user = DBHelper.find(userID, User.class);
-            String categoryName = req.queryParams("category");
-            List<Symbol> searchResults = DBHelper.searchForSymbol(categoryName);
+            String searchQuery = req.queryParams("searchQuery");
+            List<Symbol> searchResults = DBHelper.searchForSymbol(searchQuery);
             List<Timetable> allUserTimetables = DBHelper.getUniqueTimetablesForUser(user);
             Map<String, Object> model = new HashMap<>();
             model.put("user", user);
             model.put("allUserTimetables", allUserTimetables);
             model.put("results", searchResults);
-            model.put("categoryName", categoryName);
+            model.put("searchQuery", searchQuery);
             model.put("template", "templates/user/symbols/search_results.vtl");
             return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
@@ -85,7 +102,8 @@ public class SymbolController {
 //        }, new VelocityTemplateEngine());
 
         //  ADD TO TIMETABLE
-        post("/symbols/add/:id", (req, res) -> {
+        post("/symbols/:id/add", (req, res) -> {
+            String searchQuery = req.queryParams("searchQuery");
             int userID = Integer.parseInt(req.queryParams("user_id"));
             int symbolID = Integer.parseInt(req.params("id"));
             int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
@@ -93,7 +111,7 @@ public class SymbolController {
             Symbol symbol = DBHelper.find(symbolID, Symbol.class);
             Timetable timetable = DBHelper.find(timetableID, Timetable.class);
             DBHelper.addSymbolToTimetable(timetable, symbol);
-            res.redirect("/timetables/"+timetableID+"/show_symbols?user_id="+userID);
+            res.redirect("/symbols/search_results?user_id="+userID+"&searchQuery="+searchQuery);
             return null;
         });
 
