@@ -9,14 +9,16 @@ public class Symbol {
     private String name;
     private SymbolCategory category;
     private String imageUrl;
+    private String soundUrl;
 
     public Symbol() {
     }
 
-    public Symbol(String name, SymbolCategory category, String imageUrl) {
+    public Symbol(String name, SymbolCategory category, String imageUrl, String soundUrl) {
         this.name = name;
         this.category = category;
         this.imageUrl = imageUrl;
+        this.soundUrl = soundUrl;
     }
 
     @Id
@@ -58,5 +60,12 @@ public class Symbol {
         this.imageUrl = imageUrl;
     }
 
+    @Column
+    public String getSoundUrl() {
+        return soundUrl;
+    }
 
+    public void setSoundUrl(String soundUrl) {
+        this.soundUrl = soundUrl;
+    }
 }
