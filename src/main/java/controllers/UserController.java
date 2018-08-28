@@ -47,7 +47,7 @@ public class UserController {
             int id = Integer.parseInt(req.params(":id"));
             User user = DBHelper.find(id, User.class);
             List<Timetable> timetables = DBHelper.getUniqueTimetablesForUser(user);
-            List<SymbolCategory> categories = DBHelper.getAll(SymbolCategory.class);
+            List<SymbolCategory> categories = DBHelper.getAllCategoriesExceptBlank();
             model.put("timetables", timetables);
             model.put("categories", categories);
             model.put("template", "templates/user/index.vtl");

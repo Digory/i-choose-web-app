@@ -290,5 +290,12 @@ public class DBHelper {
         return results;
     }
 
+    public static List<SymbolCategory> getAllCategoriesExceptBlank(){
+        session = HibernateUtil.getSessionFactory().openSession();
+        List<SymbolCategory> allSymbolCategories = getAll(SymbolCategory.class);
+        allSymbolCategories.remove(blank_category);
+        return allSymbolCategories;
+    }
+
 
 }

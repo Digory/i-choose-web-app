@@ -31,7 +31,7 @@ public class SymbolController {
             int userID = Integer.parseInt(req.queryParams("user_id"));
             User user = DBHelper.find(userID, User.class);
             List<Timetable> allUserTimetables = DBHelper.getUniqueTimetablesForUser(user);
-            List<SymbolCategory> categories = DBHelper.getAll(SymbolCategory.class);
+            List<SymbolCategory> categories = DBHelper.getAllCategoriesExceptBlank();
             Map<String, Object> model = new HashMap<>();
             model.put("user", user);
             model.put("categories", categories);
