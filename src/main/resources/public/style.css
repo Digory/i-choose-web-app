@@ -137,9 +137,10 @@ button:hover {
 /* elements inside the frequent area */
 
 .frequent-item img {
-    background-color: blue;
-    height: 5rem;
-    width: 5rem;
+    width: 5rem !important;
+    height: 5rem !important;
+    margin-left: 0rem !important;
+    margin-right: 0rem !important;
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
@@ -252,6 +253,6 @@ button:hover {
      margin-left: 1rem;
  }
 
-  .padding-left {
-      margin-left: 1rem;
-  }
+.padding-left {
+    margin-left: 1rem;
+ }
