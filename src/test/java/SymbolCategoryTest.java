@@ -15,7 +15,7 @@ public class SymbolCategoryTest {
     @Before
     public void before(){
         category = new SymbolCategory("<i class=\"fas fa-utensils\"></i>","Food");
-        symbol = new Symbol("Banana", category, "www.bananapics.co.uk");
+        symbol = new Symbol("Banana", category, "www.bananapics.co.uk", "https://s3-eu-west-1.amazonaws.com/ichoose-resources/piano2-CoolEdit.mp3");
     }
 
     @Test

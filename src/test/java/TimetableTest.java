@@ -19,7 +19,7 @@ public class TimetableTest {
     public void before() {
       //  user = new User("Jennifer");
         category = new SymbolCategory("<i class=\"fas fa-utensils\"></i>", "Food");
-        symbol = new Symbol("Banana", category, "www.nicepictures.com");
+        symbol = new Symbol("Banana", category, "www.nicepictures.com", "https://s3-eu-west-1.amazonaws.com/ichoose-resources/piano2-CoolEdit.mp3");
         timetable = new Timetable("Sports Day");
     }
 

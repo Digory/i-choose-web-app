@@ -170,9 +170,10 @@ public class SymbolController {
         post("/admin/symbols", (req, res) -> {
             String name = req.queryParams("name");
             String imageURL = req.queryParams("imgUrl");
+            String soundUrl = req.queryParams("soundUrl");
             int categoryID = Integer.parseInt(req.queryParams("category"));
             SymbolCategory category = DBHelper.find(categoryID, SymbolCategory.class);
-            Symbol symbol = new Symbol(name, category, imageURL);
+            Symbol symbol = new Symbol(name, category, imageURL, soundUrl);
             DBHelper.save(symbol);
             res.redirect("/admin/symbols");
             return null;
