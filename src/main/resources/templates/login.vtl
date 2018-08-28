@@ -1,15 +1,15 @@
-<form action="/users/login" method="post">
-    <select name="user_id">
+<form class="login" action="/users/login" method="post">
+    <select class="login login-dropdown" name="user_id">
         #foreach($user in $users)
             <option value="$user.getId()">$user.getName()</option>
         #end
     </select>
 
-   <input type="submit" value="LOG IN" class="button center">
+   <input type="submit" value="Log in" class="login button center">
 </form>
 
-<a href="/users/new">Create User Account</a>
+<a class="login" href="/users/new">Create User Account</a>
 
-<a class="admin-login" href="/admin">Login as Admin</a>
+<a class="login" href="/admin">Login as Admin</a>
 
 

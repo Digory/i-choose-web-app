@@ -136,7 +136,7 @@ button:hover {
 
 /* elements inside the frequent area */
 
-.frequent-item {
+.frequent-item img {
     background-color: blue;
     height: 5rem;
     width: 5rem;
