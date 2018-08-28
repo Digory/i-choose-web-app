@@ -1,0 +1,13 @@
+<h1>Add to timetable</h1>
+
+<div class="categories">
+    <ul>
+        #foreach($timetable in $userTimetables)
+        <li><form action="/symbols/add/$symbol.getId()?user_id=$user.getId()" method="post">
+                <input type="submit" value="ADD TO TIMETABLE" class="button center">
+            </form>
+
+            $timetable.getName()</li>
+        #end
+    </ul>
+</div>
