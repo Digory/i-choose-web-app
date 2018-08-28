@@ -154,6 +154,21 @@ public class UserController {
             Symbol symbol = DBHelper.find(symbolID, Symbol.class);
             List<Timetable> userTimetables = DBHelper.getUniqueTimetablesForUser(user);
             Map<String, Object> model = new HashMap<>();
+            model.put("template", "templates/user/timetables/add_symbol.vtl");
+            model.put("symbol", symbol);
+            model.put("user", user);
+            model.put("userTimetables", userTimetables);
+            return new ModelAndView(model, "templates/user/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        //SHOW FULL SIZED SYMBOL
+        get("/users/:id/view_symbol", (req, res) -> {
+            int user_id = Integer.parseInt(req.params(":id"));
+            User user = DBHelper.find(user_id, User.class);
+            int symbolID = Integer.parseInt(req.queryParams("symbol_id"));
+            Symbol symbol = DBHelper.find(symbolID, Symbol.class);
+            List<Timetable> userTimetables = DBHelper.getUniqueTimetablesForUser(user);
+            Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/user/symbols/show.vtl");
             model.put("symbol", symbol);
             model.put("user", user);
@@ -161,20 +176,6 @@ public class UserController {
             return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        //  SHOW FULL SIZED SYMBOL BEFORE ADDING TO TIMETABLE
-//        get("/users/:id/view_symbol", (req, res) -> {
-//            int user_id = Integer.parseInt(req.params(":id"));
-//            User user = DBHelper.find(user_id, User.class);
-//            int symbolID = Integer.parseInt(req.queryParams("symbol_id"));
-//            Symbol symbol = DBHelper.find(symbolID, Symbol.class);
-//            List<Timetable> userTimetables = DBHelper.getUniqueTimetablesForUser(user);
-//            Map<String, Object> model = new HashMap<>();
-//            model.put("template", "templates/user/timetables/add_symbol.vtl");
-//            model.put("user", user);
-//            model.put("userTimetables", userTimetables);
-//            return new ModelAndView(model, "templates/user/layout.vtl");
-//        }, new VelocityTemplateEngine());
-//
 
     }
 }
