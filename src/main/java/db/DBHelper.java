@@ -134,6 +134,9 @@ public class DBHelper {
     // TODO: split this into smaller methods or just do the whole method in a shorter way somehow
 
     public static List<Symbol> findTopThreeMostUsedSymbols(User user){
+
+        // First, we have to get all the symbols attached to a user.
+
         List<Symbol> allSymbolsAttachedToUser = new ArrayList<>();
 
         List<Timetable> allUniqueTimetables = getUniqueTimetablesForUser(user);
@@ -143,10 +146,15 @@ public class DBHelper {
             }
         }
 
+        // Then, because some symbols may be duplicated, we make a Set of the symbols
+        // so we only have one of each type.
+
         Set<Symbol> allUniqueSymbolsSet = new HashSet<Symbol>();
         for (Symbol symbol : allSymbolsAttachedToUser) {
             allUniqueSymbolsSet.add(symbol);
         }
+
+        // For the Collections.sort method, we have to turn that Set back into a List.
 
         List<Symbol> allUniqueSymbols = new ArrayList<>();
 
@@ -154,12 +162,29 @@ public class DBHelper {
             allUniqueSymbols.add(symbol);
         }
 
+        // The if statement deals with the bug of a user not having at least 3 symbols.
+
+        if(allUniqueSymbols.size() < 3){
+            List<Symbol> placeholderSymbols = new ArrayList<>();
+            Symbol placeholder1 = new Symbol("", blank_category, "https://s3-eu-west-1.amazonaws.com/ichoose-resources/default-placeholder.png", "https://s3-eu-west-1.amazonaws.com/ichoose-resources/piano2-CoolEdit.mp3");
+            Symbol placeholder2 = new Symbol("", blank_category, "https://s3-eu-west-1.amazonaws.com/ichoose-resources/default-placeholder.png", "https://s3-eu-west-1.amazonaws.com/ichoose-resources/piano2-CoolEdit.mp3");
+            Symbol placeholder3 = new Symbol("", blank_category, "https://s3-eu-west-1.amazonaws.com/ichoose-resources/default-placeholder.png", "https://s3-eu-west-1.amazonaws.com/ichoose-resources/piano2-CoolEdit.mp3");
+            placeholderSymbols.add(placeholder1);
+            placeholderSymbols.add(placeholder2);
+            placeholderSymbols.add(placeholder3);
+            return placeholderSymbols;
+        }
+
+        // This sorts the symbols in order of how frequently they occur in the original List.
+
         Collections.sort(allUniqueSymbols, new Comparator<Symbol>() {
             @Override
             public int compare(Symbol symbol1, Symbol symbol2) {
                 return Collections.frequency(allSymbolsAttachedToUser, symbol2) - Collections.frequency(allSymbolsAttachedToUser, symbol1);
             }
         });
+
+        // Then we get the top 3 and return.
 
         List<Symbol> top3Symbols = new ArrayList<>();
         for(int i = 0; i < 3; i++){
