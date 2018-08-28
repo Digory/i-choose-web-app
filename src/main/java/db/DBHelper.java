@@ -146,7 +146,7 @@ public class DBHelper {
             }
         }
 
-        // Then, because some symbols may be duplicated, we make a Set of the symbols
+        // Then, because symbols may be duplicated, we make a Set of the symbols
         // so we only have one of each type.
 
         Set<Symbol> allUniqueSymbolsSet = new HashSet<Symbol>();

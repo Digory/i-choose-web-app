@@ -85,7 +85,7 @@ public class Seeds {
         DBHelper.addTimetableToUser(timetable, digory);
         DBHelper.addTimetableToUser(timetable2, vicky);
 
-        List<Symbol> top3mostUsed = DBHelper.findTopThreeMostUsedSymbols(digory);
+   //     List<Symbol> top3mostUsed = DBHelper.findTopThreeMostUsedSymbols(digory);
 
    //     DBHelper.setBlankAllOccurrencesOfThisSymbol(symbol1);
 
