@@ -165,14 +165,12 @@ public class DBHelper {
         // The if statement deals with the bug of a user not having at least 3 symbols.
 
         if(allUniqueSymbols.size() < 3){
-            List<Symbol> placeholderSymbols = new ArrayList<>();
             Symbol placeholder1 = new Symbol("", blank_category, "https://s3-eu-west-1.amazonaws.com/ichoose-resources/default-placeholder.png", "https://s3-eu-west-1.amazonaws.com/ichoose-resources/piano2-CoolEdit.mp3");
-            Symbol placeholder2 = new Symbol("", blank_category, "https://s3-eu-west-1.amazonaws.com/ichoose-resources/default-placeholder.png", "https://s3-eu-west-1.amazonaws.com/ichoose-resources/piano2-CoolEdit.mp3");
-            Symbol placeholder3 = new Symbol("", blank_category, "https://s3-eu-west-1.amazonaws.com/ichoose-resources/default-placeholder.png", "https://s3-eu-west-1.amazonaws.com/ichoose-resources/piano2-CoolEdit.mp3");
-            placeholderSymbols.add(placeholder1);
-            placeholderSymbols.add(placeholder2);
-            placeholderSymbols.add(placeholder3);
-            return placeholderSymbols;
+            int i;
+            for (i=0; i <= (3 - allUniqueSymbols.size()); i++){
+                allUniqueSymbols.add(placeholder1);
+            }
+            return allUniqueSymbols;
         }
 
         // This sorts the symbols in order of how frequently they occur in the original List.
@@ -180,7 +178,14 @@ public class DBHelper {
         Collections.sort(allUniqueSymbols, new Comparator<Symbol>() {
             @Override
             public int compare(Symbol symbol1, Symbol symbol2) {
-                return Collections.frequency(allSymbolsAttachedToUser, symbol2) - Collections.frequency(allSymbolsAttachedToUser, symbol1);
+                int symbol1Frequency = Collections.frequency(allSymbolsAttachedToUser, symbol1);
+                int symbol2Frequency = Collections.frequency(allSymbolsAttachedToUser, symbol2);
+                if (symbol1Frequency != symbol2Frequency){
+                    return symbol2Frequency - symbol1Frequency;
+                }
+                else {
+                    return symbol1.getName().compareTo(symbol2.getName());
+                }
             }
         });
 
