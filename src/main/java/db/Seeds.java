@@ -16,6 +16,8 @@ public class Seeds {
         DBHelper.deleteAll(Symbol.class);
         DBHelper.deleteAll(SymbolCategory.class);
 
+        DBHelper.createBlankCategory();
+
         User digory = new User("Digory");
         DBHelper.save(digory);
 

@@ -13,6 +13,12 @@ public class DBHelper {
 
     private static Transaction transaction;
     private static Session session;
+    private static SymbolCategory blank_category;
+
+    public static void createBlankCategory(){
+        blank_category = new SymbolCategory( "fas fa-utensils", "Deleted by admin");
+        save(blank_category);
+    }
 
     public static void save(Object object) {
         session = HibernateUtil.getSessionFactory().openSession();
@@ -207,8 +213,6 @@ public class DBHelper {
     }
 
     public static void setBlankAllOccurrencesOfThisSymbol(Symbol symbol){
-        SymbolCategory category1 = new SymbolCategory( "fas fa-utensils", "Deleted by admin");
-        DBHelper.save(category1);
         session = HibernateUtil.getSessionFactory().openSession();
         List<Timetable> allTimetables = getAll(Timetable.class);
 
@@ -216,13 +220,13 @@ public class DBHelper {
             if(timetable.getSymbols() != null){
             for(Symbol each_symbol : timetable.getSymbols()){
                 if(symbol.getName().equals(each_symbol.getName())){
-                    each_symbol.setCategory(category1);
+                    each_symbol.setCategory(blank_category);
                     each_symbol.setImageUrl("https://s3-eu-west-1.amazonaws.com/ichoose-resources/default-placeholder.png");
                     save(each_symbol);
                 }
             }}
         }
-        symbol.setCategory(category1);
+        symbol.setCategory(blank_category);
         symbol.setImageUrl("https://s3-eu-west-1.amazonaws.com/ichoose-resources/default-placeholder.png");
         save(symbol);
     }
