@@ -1,21 +1,18 @@
 <h1>$timetable.getName()</h1>
-<table>
-    <th>Name</th>
-    <th>Category</th>
-    <th>Image URL</th>
-    <th></th>
-    <th></th>
-
+<table class="content">
     #foreach($symbol in $symbols)
     <tr>
-        <td>$symbol.getName()</td>
-        <td>$symbol.getCategory().getDescriptor()</td>
-        <td>$symbol.getImageUrl()</td>
-        <td> <form action="/symbols/remove_from_timetable/$symbol.getId()?timetable_id=$timetable.getId()&user_id=$user.getId()&symbol_position=$velocityCount" method="post">
-            <input type="submit" value="REMOVE FROM TIMETABLE" class="button center">
-        </form> </td>
-        <td><a href="/symbols/move_up?timetable_id=$timetable.getId()&user_id=$user.getId()&symbol_position=$velocityCount">MOVE UP</a></td>
-        <td><a href="/symbols/move_down?timetable_id=$timetable.getId()&user_id=$user.getId()&symbol_position=$velocityCount">MOVE DOWN</a></td>
+        <td><div class="big-image"><img src="$symbol.getImageUrl()"/></div>$symbol.getName()</td>
+
+        <td class="td-actions">
+            <div class="align-buttons"><a href="/symbols/move_up?timetable_id=$timetable.getId()&user_id=$user.getId()&symbol_position=$velocityCount"><i class="fas fa-sort-up"></i></a><br>
+            <a href="/symbols/move_down?timetable_id=$timetable.getId()&user_id=$user.getId()&symbol_position=$velocityCount"><i class="fas fa-sort-down"></i></a>
+            </div>
+            <form class="delete-form" action="/symbols/remove_from_timetable/$symbol.getId()?timetable_id=$timetable.getId()&user_id=$user.getId()&symbol_position=$velocityCount" method="post">
+                <button><i class="delete fas fa-trash-alt"></i></button>
+            </form>
+        </td>
+
     <tr>
         #end
 
