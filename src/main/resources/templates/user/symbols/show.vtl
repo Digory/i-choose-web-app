@@ -1,0 +1,41 @@
+<p class="pageHeader">Symbol: $symbol.getName()</p>
+<table>
+    <tr>
+        <th>Name</th><td>$symbol.getName()</td>
+    </tr>
+    <tr>
+        <th>Category</th><td>$symbol.getCategory().getDescriptor()</td>
+    </tr>
+    <tr>
+        <th>Image URL</th><td>$symbol.getImageUrl()</td>
+    </tr>
+        <th></th>
+
+    <tr>
+
+        #foreach($symbol in $results)
+    <tr>
+        <td class="td-image"><img src="$symbol.getImageUrl()"/></td>
+        <td>$symbol.getName()</td>
+        <td>$symbol.getCategory().getDescriptor()</td>
+        <td>
+
+            <form action="/symbols/add/$symbol.getId()?user_id=$user.getId()" method="post">
+                <input type="submit" value="ADD TO TIMETABLE" class="button center">
+                <label for="timetable_id">Timetable name:</label>
+                <select id="timetable_id" name="timetable_id"/>
+                #foreach($timetable in $userTimetables)
+                <option value="$timetable.getId()">$timetable.getName()</option>
+
+                #end
+            </form>
+        </td>
+    <tr>
+        #end
+</table>
+
+<a href="/symbols/search?user_id=$user.getId()">Search again</a>
+
+
+
+
