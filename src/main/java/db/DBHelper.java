@@ -270,6 +270,16 @@ public class DBHelper {
 
     public static List<Symbol> searchForSymbol(String keyword){
         List<Symbol> allSymbols = getAll(Symbol.class);
+        List<Symbol> toBeRemoved = new ArrayList<>();
+        for(Symbol symbol : allSymbols){
+            if(symbol.getCategory().getDescriptor().equals(blank_category.getDescriptor())){
+                toBeRemoved.add(symbol);
+            }
+        }
+        allSymbols.removeAll(toBeRemoved);
+        if(keyword.isEmpty()){
+            return allSymbols;
+        }
         List<Symbol> results = new ArrayList<>();
         for(Symbol symbol : allSymbols){
             if(symbol.getName().toLowerCase().equals(keyword.toLowerCase()) ||
