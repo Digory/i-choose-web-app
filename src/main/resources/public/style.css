@@ -321,3 +321,8 @@ percent-width-small {
 .padding-left {
     margin-left: 1rem;
  }
+
+ .search-again {
+    text-align: right;
+    margin-right: 2rem;
+ }
