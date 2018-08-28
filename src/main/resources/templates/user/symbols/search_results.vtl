@@ -13,7 +13,7 @@
             <td>$symbol.getCategory().getDescriptor():<br> <strong>$symbol.getName()</strong></td>
             <td>
 
-                <a href="/users/:id/add_symbol?symbol_id=$symbol.getId()">ADD TO TIMETABLE</a>
+                <a href="/users/$user.getId()/add_symbol?symbol_id=$symbol.getId()">ADD TO TIMETABLE</a>
                 <label for="timetable_id">Timetable name:</label>
                 <select id="timetable_id" name="timetable_id"/>
                     #foreach($timetable in $allUserTimetables)
