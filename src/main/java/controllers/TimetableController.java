@@ -92,7 +92,7 @@ public class TimetableController {
             User user = DBHelper.find(userID, User.class);
             Timetable timetable = new Timetable(name);
             DBHelper.addTimetableToUser(timetable, user);
-            res.redirect("/users/"+user.getId());
+            res.redirect("/users/"+user.getId()+"/show_all_timetables");
             return null;
         });
 
