@@ -19,6 +19,12 @@ public class UserController {
 
     public UserController() {
 
+        post("/users/login", (req, res) -> {
+            int id = Integer.parseInt(req.queryParams("user_id"));
+            res.redirect("/users/"+id);
+            return null;
+        });
+
         //  INDEX FOR ADMIN
         get("/admin/users", (req, res) -> {
             Map<String, Object> model = new HashMap<>();

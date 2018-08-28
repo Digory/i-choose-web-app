@@ -179,14 +179,18 @@ button:hover {
 }
 
 .categories input {
-     background:none!important;
+     background:none;
      color:inherit;
      border:none;
-     padding:0!important;
      font: inherit;
+     padding-left: 1rem;
+     display: block;
+     width: 100%;
+     height: 2.3rem;
+     text-align: left;
 }
 
-.categories input:hover {
+.categories input[type="submit"]:hover {
     background-color: #f3d250;
 }
 
