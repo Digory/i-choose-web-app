@@ -192,6 +192,10 @@ button:hover {
     height: 2.3rem;
 }
 
+.hr {
+      border: 1px solid #E8E8E8;
+}
+
 .categories a:hover {
     background-color: #f3d250;
 }

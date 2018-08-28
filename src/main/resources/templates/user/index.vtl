@@ -9,10 +9,12 @@
     <div class="frequent-item"><a href="/users/$user.getId()/view_symbol?symbol_id=$symbol2.getId()"><img src="$symbol2.getImageUrl()"/></a></div>
     <div class="frequent-item"><a href="/users/$user.getId()/view_symbol?symbol_id=$symbol3.getId()"><img src="$symbol3.getImageUrl()"/></a></div>
 </div>
+<hr class="hr">
 <div class="categories">
+
     <ul>
         #foreach($category in $categories)
-        <li><a href="/symbols/category?searchQuery=$category.getDescriptor()&user_id=$user.getId()"><span><i class="category-icon $category.getIcon()"></i></span>$category.getDescriptor()</a></li>
+        <li><a href="/symbols/category?searchQuery=$category.getDescriptor()&user_id=$user.getId()"><span><i class="category-icon $category.getIcon()"></i></span>$category.getDescriptor()</a><hr class="hr"></li>
         #end
     </ul>
 </div>

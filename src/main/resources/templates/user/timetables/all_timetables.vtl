@@ -2,9 +2,13 @@
 
 <h1>My timetables</h1>
 
+<hr class="hr">
 #foreach($timetable in $userTimetables)
 <div class="categories">
     <a class="timetable-link" href="/timetables/$timetable.getId()/show_symbols?user_id=$user.getId()">$timetable.getName()</a>
+
 </div>
+
+<hr class="hr">
 #end
 </table>
