@@ -293,7 +293,13 @@ public class DBHelper {
     public static List<SymbolCategory> getAllCategoriesExceptBlank(){
         session = HibernateUtil.getSessionFactory().openSession();
         List<SymbolCategory> allSymbolCategories = getAll(SymbolCategory.class);
-        allSymbolCategories.remove(blank_category);
+        List<SymbolCategory> toBeRemoved = new ArrayList<>();
+        for(SymbolCategory category : allSymbolCategories){
+            if(category.getDescriptor().equals(blank_category.getDescriptor())){
+                toBeRemoved.add(category);
+            }
+        }
+        allSymbolCategories.removeAll(toBeRemoved);
         return allSymbolCategories;
     }
 
