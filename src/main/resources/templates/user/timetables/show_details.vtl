@@ -3,7 +3,6 @@
     <th>Name</th>
     <th>Category</th>
     <th>Image URL</th>
-    <th>Popularity Rating</th>
     <th></th>
     <th></th>
 
@@ -12,7 +11,6 @@
         <td>$symbol.getName()</td>
         <td>$symbol.getCategory().getDescriptor()</td>
         <td>$symbol.getImageUrl()</td>
-        <td>$symbol.getPopularityRating()</td>
         <td> <form action="/symbols/remove_from_timetable/$symbol.getId()?timetable_id=$timetable.getId()&user_id=$user.getId()&symbol_position=$velocityCount" method="post">
             <input type="submit" value="REMOVE FROM TIMETABLE" class="button center">
         </form> </td>

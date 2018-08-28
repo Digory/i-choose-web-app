@@ -49,22 +49,6 @@ public class SymbolTest {
         assertEquals("www.okpictures.org", symbol.getImageUrl());
     }
 
-    @Test
-    public void getPopularityRating() {
-        assertEquals(0, symbol.getPopularityRating());
-    }
-
-    @Test
-    public void setPopularityRating() {
-        symbol.setPopularityRating(3);
-        assertEquals(3, symbol.getPopularityRating());
-    }
-
-    @Test
-    public void increasePopularityRating(){
-        symbol.increasePopularity();
-        assertEquals(1, symbol.getPopularityRating());
-    }
 
 
 }

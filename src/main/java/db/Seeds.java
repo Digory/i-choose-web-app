@@ -55,7 +55,6 @@ public class Seeds {
         DBHelper.save(symbol2);
 
         Symbol symbol3 = new Symbol("Car", category7, "https://s3-eu-west-1.amazonaws.com/ichoose-resources/car.png");
-        symbol3.increasePopularity();
         DBHelper.save(symbol3);
 
         Symbol symbol4 = new Symbol("Bike", category7, "https://s3-eu-west-1.amazonaws.com/ichoose-resources/bike.png");
