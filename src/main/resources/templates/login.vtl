@@ -1,17 +1,15 @@
-<table class="table padding-left">
+<form action="/users/login" method="post">
+    <select name="user_id">
+        #foreach($user in $users)
+            <option value="$user.getId()">$user.getName()</option>
+        #end
+    </select>
 
-    #foreach($user in $users)
-    <tr>
-        <td>$user.getName()</td>
-        <td><a href="/users/$user.getId()">LOG IN</a></td>
-    </tr>
+   <input type="submit" value="LOG IN" class="button center">
+</form>
 
-    #end
+<a href="/users/new">Create User Account</a>
 
-</table>
-
-<a class="new" href="/users/new">Create User Account</a>
-
-<a href="/admin">Login as Admin</a>
+<a class="admin-login" href="/admin">Login as Admin</a>
 
 
