@@ -2,7 +2,7 @@
 <table class="content">
     #foreach($symbol in $symbols)
     <tr>
-        <td><div class="big-image"><img src="$symbol.getImageUrl()"/></div>$symbol.getName()</td>
+        <td><div class="big-image"><img src="$symbol.getImageUrl()"/></div>then...</td>
 
         <td class="td-actions">
             <div class="align-buttons"><a href="/symbols/move_up?timetable_id=$timetable.getId()&user_id=$user.getId()&symbol_position=$velocityCount"><i class="fas fa-sort-up"></i></a><br>
@@ -15,12 +15,8 @@
 
     <tr>
         #end
-
 </table>
-<a href="/symbols/search?user_id=$user.getId()">Add another symbol to the timetable</a>
 
 <form action="/timetables/$timetable.getId()/delete?user_id=$user.getId()" method="post">
     <input type="submit" value="DELETE TIMETABLE" class="button center">
 </form>
-
-<a href="/timetables/$timetable.getId()/edit?user_id=$user.getId()">EDIT TIMETABLE</a>
