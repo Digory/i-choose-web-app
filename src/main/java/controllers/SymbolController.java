@@ -33,6 +33,13 @@ public class SymbolController {
             List<Timetable> allUserTimetables = DBHelper.getUniqueTimetablesForUser(user);
             List<SymbolCategory> categories = DBHelper.getAllCategoriesExceptBlank();
             Map<String, Object> model = new HashMap<>();
+            List<Symbol> topThreeSymbols = DBHelper.findTopThreeMostUsedSymbols(user);
+            Symbol symbol1 = topThreeSymbols.get(0);
+            Symbol symbol2 = topThreeSymbols.get(1);
+            Symbol symbol3 = topThreeSymbols.get(2);
+            model.put("symbol1", symbol1);
+            model.put("symbol2", symbol2);
+            model.put("symbol3", symbol3);
             model.put("user", user);
             model.put("categories", categories);
             model.put("allUserTimetables", allUserTimetables);

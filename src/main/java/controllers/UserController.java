@@ -49,6 +49,13 @@ public class UserController {
             User user = DBHelper.find(id, User.class);
             List<Timetable> timetables = DBHelper.getUniqueTimetablesForUser(user);
             List<SymbolCategory> categories = DBHelper.getAllCategoriesExceptBlank();
+            List<Symbol> topThreeSymbols = DBHelper.findTopThreeMostUsedSymbols(user);
+            Symbol symbol1 = topThreeSymbols.get(0);
+            Symbol symbol2 = topThreeSymbols.get(1);
+            Symbol symbol3 = topThreeSymbols.get(2);
+            model.put("symbol1", symbol1);
+            model.put("symbol2", symbol2);
+            model.put("symbol3", symbol3);
             model.put("timetables", timetables);
             model.put("categories", categories);
             model.put("template", "templates/user/index.vtl");
