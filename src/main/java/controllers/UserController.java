@@ -1,6 +1,7 @@
 package controllers;
 
 import db.DBHelper;
+import models.Symbol;
 import models.SymbolCategory;
 import models.Timetable;
 import models.User;
@@ -132,5 +133,32 @@ public class UserController {
             res.redirect("/");
             return null;
         });
+
+        //  SHOW ALL TIMETABLES ATTACHED TO USER
+//        get("/users/:id/show_all_timetables", (req, res) -> {
+//            int id = Integer.parseInt(req.params(":id"));
+//            User user = DBHelper.find(id, User.class);
+//            List<Timetable> userTimetables = DBHelper.getUniqueTimetablesForUser(user);
+//            Map<String, Object> model = new HashMap<>();
+//            model.put("template", "templates/user/timetables/all_timetables.vtl");
+//            model.put("user", user);
+//            model.put("userTimetables", userTimetables);
+//            return new ModelAndView(model, "templates/user/layout.vtl");
+//        }, new VelocityTemplateEngine());
+
+        //  SHOW TIMETABLES BEFORE ADDING SYMBOL
+        get("/users/:id/add_symbol", (req, res) -> {
+            int user_id = Integer.parseInt(req.params(":id"));
+            User user = DBHelper.find(user_id, User.class);
+            int symbolID = Integer.parseInt(req.queryParams("symbol_id"));
+            Symbol symbol = DBHelper.find(symbolID, Symbol.class);
+            List<Timetable> userTimetables = DBHelper.getUniqueTimetablesForUser(user);
+            Map<String, Object> model = new HashMap<>();
+            model.put("template", "templates/user/timetables/add_symbol.vtl");
+            model.put("user", user);
+            model.put("userTimetables", userTimetables);
+            return new ModelAndView(model, "templates/user/layout.vtl");
+        }, new VelocityTemplateEngine());
+
     }
 }
