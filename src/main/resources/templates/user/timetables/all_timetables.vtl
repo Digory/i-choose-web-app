@@ -1,10 +1,10 @@
-<td>$user.getName() timetables</td>
+<a class="new" href="/timetables/new_for_user?user_id=$user.getId()">Add new timetable</a>
+
+<h1>My timetables</h1>
+
 #foreach($timetable in $userTimetables)
-<tr>
-    <td>$timetable.getName()</td>
-    <td><a href="/timetables/$timetable.getId()/show_symbols?user_id=$user.getId()">SHOW DETAILS</a></td>
-</tr>
-
+<div class="categories">
+    <a class="timetable-link" href="/timetables/$timetable.getId()/show_symbols?user_id=$user.getId()">$timetable.getName()</a>
+</div>
 #end
-
-<a href="/timetables/new_for_user?user_id=$user.getId()">MAKE NEW TIMETABLE</a>
+</table>
