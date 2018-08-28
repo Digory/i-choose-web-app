@@ -2,6 +2,11 @@
 
     <table class="table">
 
+        #if( $results.size() == 0 )
+        <p class="margin-left">There are no symbols matching ☹</p>
+
+        #else
+
         #foreach($symbol in $results)
         <tr>
             <td class="td-image"><img src="$symbol.getImageUrl()"/></td>
@@ -9,7 +14,7 @@
             <td>$symbol.getCategory().getDescriptor()</td>
             <td>
 
-                <form action="/symbols/add/$symbol.getId()?timetable_id=$timetableID" method="post">
+                <form action="/symbols/add/$symbol.getId()?user_id=$user.getId()" method="post">
                 <input type="submit" value="ADD TO TIMETABLE" class="button center">
                 <label for="timetable_id">Timetable name:</label>
                 <select id="timetable_id" name="timetable_id"/>
@@ -21,6 +26,7 @@
             </td>
         <tr>
             #end
+        #end
     </table>
 </div>
 

@@ -67,7 +67,7 @@ public class SymbolController {
             model.put("allUserTimetables", allUserTimetables);
             model.put("results", searchResults);
             model.put("categoryName", categoryName);
-            model.put("template", "templates/user/symbols/category_search_results.vtl");
+            model.put("template", "templates/user/symbols/search_results.vtl");
             return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
 
