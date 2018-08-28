@@ -45,5 +45,23 @@ public class MainController {
             model.put("template", "templates/admin/index.vtl");
             return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
+
+        get("/mysentences", (req,res) -> {
+            int userID = Integer.parseInt(req.queryParams("user_id"));
+            User user = DBHelper.find(userID, User.class);
+            Map<String, Object> model = new HashMap<>();
+            model.put("user", user);
+            model.put("template", "templates/user/mysentences.vtl");
+            return new ModelAndView(model, "templates/user/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        get("/help", (req,res) -> {
+            int userID = Integer.parseInt(req.queryParams("user_id"));
+            User user = DBHelper.find(userID, User.class);
+            Map<String, Object> model = new HashMap<>();
+            model.put("user", user);
+            model.put("template", "templates/user/help.vtl");
+            return new ModelAndView(model, "templates/user/layout.vtl");
+        }, new VelocityTemplateEngine());
     }
 }
