@@ -14,8 +14,13 @@
         <td class="td-actions td-actions-margins">
 
            <div class="timetable-actions">
-            <div class="align-buttons"><a href="/symbols/move_up?timetable_id=$timetable.getId()&user_id=$user.getId()&symbol_position=$velocityCount"><i class="fas fa-sort-up"></i></a><br>
-                <a href="/symbols/move_down?timetable_id=$timetable.getId()&user_id=$user.getId()&symbol_position=$velocityCount"><i class="fas fa-sort-down"></i></a>
+            <div class="align-buttons">
+                #if($velocityCount > 1)
+                 <a href="/symbols/move_up?timetable_id=$timetable.getId()&user_id=$user.getId()&symbol_position=$velocityCount"><i class="fas fa-sort-up"></i></a><br>
+                #end
+               #if($velocityCount < $symbols.size())
+                    <a href="/symbols/move_down?timetable_id=$timetable.getId()&user_id=$user.getId()&symbol_position=$velocityCount"><i class="fas fa-sort-down"></i></a>
+                #end
             </div>
                 <div class="delete-button">
                     <form class="delete-form" action="/symbols/remove_from_timetable/$symbol.getId()?timetable_id=$timetable.getId()&user_id=$user.getId()&symbol_position=$velocityCount" method="post">

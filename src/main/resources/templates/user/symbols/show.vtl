@@ -1,22 +1,22 @@
 <h1 class="pageHeader">$symbol.getName()</h1>
-<table>
-
-
-    <div class="big-image">
-    <audio id="audio" src="$symbol.getSoundUrl()" autostart="false" ></audio>
-    <a onclick="playSound();"> <img src="$symbol.getImageUrl()"/></a>
-    <script>
+<table class="timetables-content">
+    <tr>
+    <td align="center">
+        <div class="bigger-image">
+            <audio id="audio" src="$symbol.getSoundUrl()" autostart="false" ></audio>
+            <a onclick="playSound();"> <img src="$symbol.getImageUrl()"/></a>
+            <script>
     function playSound() {
           var sound = document.getElementById("audio");
           sound.play();
       }
     </script>
-    </div>
-    <a class="padding-left button" href="/users/$user.getId()/add_symbol?symbol_id=$symbol.getId()&searchQuery=">ADD TO&nbsp;&nbsp;<i class="fas fa-calendar-alt"></i></a>
+            <br>
+            <a class="padding-left button" href="/users/$user.getId()/add_symbol?symbol_id=$symbol.getId()&searchQuery=">ADD TO&nbsp;&nbsp;<i class="fas fa-calendar-alt"></i></a>
 
-
-
-
+        </div>
+    </td>
+</tr>
 </table>
 
 
