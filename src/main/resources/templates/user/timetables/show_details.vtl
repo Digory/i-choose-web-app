@@ -9,15 +9,15 @@
           var sound = document.getElementById("audio");
           sound.play();
       }
-    </script></div>then...</td>
+    </script></div><div class="margins"><strong>$symbol.getName()</strong></div></td>
 
-        <td class="td-actions">
+        <td class="td-actions td-actions-margins">
             <div class="align-buttons"><a href="/symbols/move_up?timetable_id=$timetable.getId()&user_id=$user.getId()&symbol_position=$velocityCount"><i class="fas fa-sort-up"></i></a><br>
             <a href="/symbols/move_down?timetable_id=$timetable.getId()&user_id=$user.getId()&symbol_position=$velocityCount"><i class="fas fa-sort-down"></i></a>
             </div>
-            <form class="delete-form" action="/symbols/remove_from_timetable/$symbol.getId()?timetable_id=$timetable.getId()&user_id=$user.getId()&symbol_position=$velocityCount" method="post">
-                <button><i class="delete fas fa-trash-alt"></i></button>
-            </form>
+                <form class="delete-form" action="/symbols/remove_from_timetable/$symbol.getId()?timetable_id=$timetable.getId()&user_id=$user.getId()&symbol_position=$velocityCount" method="post">
+                    <button><i class="delete fas fa-trash-alt"></i></button>
+                </form>
         </td>
 
     <tr>
