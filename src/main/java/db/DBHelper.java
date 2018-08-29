@@ -284,6 +284,7 @@ public class DBHelper {
         for(Timetable timetable : timetablesAttachedToUser){
             timetable.setSymbols(null);
             save(timetable);
+            delete(timetable);
             save(user);
         }
         delete(user);
