@@ -118,7 +118,12 @@ public class SymbolController {
             Symbol symbol = DBHelper.find(symbolID, Symbol.class);
             Timetable timetable = DBHelper.find(timetableID, Timetable.class);
             DBHelper.addSymbolToTimetable(timetable, symbol);
-            res.redirect("/symbols/search_results?user_id="+userID+"&searchQuery="+searchQuery);
+            if (searchQuery.length() != 0){
+                res.redirect("/symbols/search_results?user_id=" + userID + "&searchQuery=" + searchQuery);
+            }
+            else{
+                res.redirect("/users/"+ userID + "/view_symbol?symbol_id=" + symbolID);
+            }
             return null;
         });
 

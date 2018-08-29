@@ -185,6 +185,7 @@ public class UserController {
             List<Timetable> userTimetables = DBHelper.getUniqueTimetablesForUser(user);
             Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/user/symbols/show.vtl");
+            model.put("searchQuery", "");
             model.put("symbol", symbol);
             model.put("user", user);
             model.put("userTimetables", userTimetables);
