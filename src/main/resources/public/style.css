@@ -401,3 +401,59 @@ percent-width-small {
 
 
 
+.user-form {
+    margin-left: 1rem;
+}
+
+.user-form-item {
+    margin-bottom: 1rem;
+}
+
+.user-form input {
+  background-color: white;
+  display: inline-block;
+  height: 1.5rem;
+  width: 50%;
+  font-family: 'Hind Madurai', sans-serif;
+  font-size: 14px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-width: 1px;
+}
+
+.user-form label {
+  margin-right: 0.5rem;
+}
+
+.cancel {
+    margin-left: 1rem;
+}
+
+.user-form-button {
+  background-color: white !important;
+  border-radius: 0% !important;
+  height: 2rem !important;
+  width: auto !important;
+  font-family: 'Hind Madurai', sans-serif !important;
+  font-size: 18px !important;
+  font-weight: bold !important;
+  text-transform: lowercase !important;
+  margin-top: 0.5rem !important;
+  padding-top: 0.2rem !important;
+  padding-bottom: 0.2rem !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  border-width: 1px !important;
+  border-style: ridge !important;
+  border-color: #989898 !important;
+  display: inline-block !important;
+}
+
+.user-form-button:hover {
+    background-color: grey;
+}
+
+
+
+
+
