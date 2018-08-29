@@ -1,7 +1,7 @@
 <h1>$timetable.getName()</h1>
-<table class="content">
+<table class="content timetables-content">
     #foreach($symbol in $symbols)
-    <tr>
+    <tr class="help-me">
         <td><div class="big-image"><audio id="audio" src="$symbol.getSoundUrl()" autostart="false" ></audio>
             <a onclick="playSound();"> <img src="$symbol.getImageUrl()"/></a>
             <script>

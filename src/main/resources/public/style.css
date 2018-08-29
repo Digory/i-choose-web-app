@@ -311,6 +311,7 @@ percent-width-small {
 
  .content .table {
      width: 100%;
+     margin-left: 3rem;
      padding-right: 1rem;
  }
 
@@ -379,3 +380,11 @@ percent-width-small {
     padding-bottom: 4rem;
 
  }
+
+.help-me {
+    margin-left:10rem;
+}
+
+.border-on-images {
+    border: 1px solid #D3D3D3;
+}
