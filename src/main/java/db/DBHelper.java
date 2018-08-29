@@ -311,6 +311,7 @@ public class DBHelper {
 
     public static List<Symbol> searchForSymbol(String keyword){
         List<Symbol> allSymbols = getAll(Symbol.class);
+        getSortedAlphabetically(allSymbols);
         List<Symbol> toBeRemoved = new ArrayList<>();
         for(Symbol symbol : allSymbols){
             if(symbol.getCategory().getDescriptor().equals(blank_category.getDescriptor())){
@@ -328,7 +329,6 @@ public class DBHelper {
                 results.add(symbol);
             }
         }
-        getSortedAlphabetically(results);
         return results;
     }
 
