@@ -328,7 +328,8 @@ public class DBHelper {
                 results.add(symbol);
             }
         }
-        return getSortedAlphabetically(results);
+        getSortedAlphabetically(results);
+        return results;
     }
 
     public static List<SymbolCategory> getAllCategoriesExceptBlank(){
