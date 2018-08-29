@@ -23,9 +23,15 @@ public class Seeds {
 
         User vicky = new User("Vicky");
         DBHelper.save(vicky);
-//
-//        Timetable timetable = new Timetable("Party Day");
-//        DBHelper.save(timetable);
+
+        Timetable funDay = new Timetable("Fun Day");
+        DBHelper.save(funDay);
+
+        Timetable relaxDay = new Timetable("Relax day");
+        DBHelper.save(relaxDay);
+
+        Timetable schoolDay = new Timetable("School day");
+        DBHelper.save(schoolDay);
 
         SymbolCategory categoryFood = new SymbolCategory( "fas fa-utensils", "Food");
         DBHelper.save(categoryFood);
@@ -130,6 +136,42 @@ public class Seeds {
         DBHelper.save(water);
         DBHelper.save(zoo);
         DBHelper.save(colin);
+
+        DBHelper.addTimetableToUser(schoolDay, vicky);
+        DBHelper.addTimetableToUser(relaxDay, vicky);
+        DBHelper.addTimetableToUser(funDay, digory);
+
+        DBHelper.addSymbolToTimetable(schoolDay, shower);
+        DBHelper.addSymbolToTimetable(schoolDay, getDressed);
+        DBHelper.addSymbolToTimetable(schoolDay, breakfast);
+        DBHelper.addSymbolToTimetable(schoolDay, brushTeeth);
+        DBHelper.addSymbolToTimetable(schoolDay, car);
+        DBHelper.addSymbolToTimetable(schoolDay, school);
+        DBHelper.addSymbolToTimetable(schoolDay, car);
+        DBHelper.addSymbolToTimetable(schoolDay, home);
+        DBHelper.addSymbolToTimetable(schoolDay, dinner);
+        DBHelper.addSymbolToTimetable(schoolDay, play);
+        DBHelper.addSymbolToTimetable(schoolDay, brushTeeth);
+        DBHelper.addSymbolToTimetable(schoolDay, bed);
+
+        DBHelper.addSymbolToTimetable(relaxDay, breakfast);
+        DBHelper.addSymbolToTimetable(relaxDay, brushTeeth);
+        DBHelper.addSymbolToTimetable(relaxDay, play);
+        DBHelper.addSymbolToTimetable(relaxDay, lunch);
+        DBHelper.addSymbolToTimetable(relaxDay, play);
+        DBHelper.addSymbolToTimetable(relaxDay, dinner);
+        DBHelper.addSymbolToTimetable(relaxDay, television);
+        DBHelper.addSymbolToTimetable(relaxDay, bath);
+        DBHelper.addSymbolToTimetable(relaxDay, brushTeeth);
+        DBHelper.addSymbolToTimetable(relaxDay, bed);
+
+        DBHelper.addSymbolToTimetable(funDay, breakfast);
+        DBHelper.addSymbolToTimetable(funDay, zoo);
+        DBHelper.addSymbolToTimetable(funDay, lunch);
+        DBHelper.addSymbolToTimetable(funDay, softPlay);
+        DBHelper.addSymbolToTimetable(funDay, dinner);
+        DBHelper.addSymbolToTimetable(funDay, television);
+
         //        Symbol symbol1 = new Symbol("Banana", category1, "https://s3-eu-west-1.amazonaws.com/ichoose-resources/banana+(1).png", "https://s3-eu-west-1.amazonaws.com/ichoose-resources/piano2-CoolEdit.mp3");
 //        DBHelper.save(symbol1);
 
@@ -157,9 +199,6 @@ public class Seeds {
 //        DBHelper.addSymbolToTimetable(timetable, symbol4);
 //
 //        DBHelper.addSymbolToTimetable(timetable, symbol4);
-//
-//        Timetable timetable2 = new Timetable("Relax day");
-//        DBHelper.save(timetable2);
 //
 //        DBHelper.addSymbolToTimetable(timetable2, symbol1);
 //        DBHelper.addSymbolToTimetable(timetable2, symbol1);
