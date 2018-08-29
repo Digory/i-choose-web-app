@@ -368,3 +368,14 @@ percent-width-small {
         text-decoration: none;
         color: inherit;
  }
+
+ .margins{
+    text-align: center;
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+ }
+
+ .td-actions-margins {
+    padding-bottom: 4rem;
+
+ }
