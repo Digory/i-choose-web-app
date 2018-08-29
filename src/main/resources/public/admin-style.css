@@ -264,7 +264,33 @@ form .submit:hover {
 }
 
 .login-dropdown {
+    height: 2rem;
+    width: 10rem;
+    font-size: 14px;
     margin-top: 4rem;
+}
+
+.login-page-links {
+    display: flex;
+    justify-content: center;
+}
+
+.login-button {
+    width: 10rem !important;
+    font-family: 'Hind Madurai', sans-serif !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+    text-transform: lowercase !important;
+    background-color: white !important;
+    border-radius: 0% !important;
+    height: 2rem !important;
+    border-width: 1px !important;
+    border-style: ridge !important;
+    border-color: #989898 !important;
+}
+
+.login-button:hover {
+    background-color: #f3d250 !important;
 }
 
 
