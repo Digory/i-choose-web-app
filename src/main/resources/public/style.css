@@ -345,6 +345,13 @@ percent-width-small {
    border: none;
  }
 
+
+.timetable-actions {
+    display: flex;
+    flex-direction: row;
+}
+
+
  .content .delete-form {
       display: inline;
   }
