@@ -131,6 +131,16 @@ public class DBHelper {
         save(timetable);
     }
 
+    public static List<Symbol> getSortedAlphabetically(List<Symbol> listToSort){
+        Collections.sort(listToSort, new Comparator<Symbol>() {
+                    @Override
+                    public int compare(Symbol symbol1, Symbol symbol2) {
+                            return symbol1.getName().compareTo(symbol2.getName());
+                    }
+    });
+    return listToSort;
+    }
+
     // TODO: split this into smaller methods or just do the whole method in a shorter way somehow
 
     public static List<Symbol> findTopThreeMostUsedSymbols(User user){
@@ -164,16 +174,17 @@ public class DBHelper {
 
         // The if statement deals with the bug of a user not having at least 3 symbols.
 
-        if(allUniqueSymbols.size() < 3){
+        if(allUniqueSymbols.size() <= 3){
             Symbol placeholder1 = new Symbol("", blank_category, "https://s3-eu-west-1.amazonaws.com/ichoose-resources/default-placeholder.png", "https://s3-eu-west-1.amazonaws.com/ichoose-resources/piano2-CoolEdit.mp3");
             int i;
-            for (i=0; i <= (3 - allUniqueSymbols.size()); i++){
+            int allUniqueSymbolsSize = allUniqueSymbols.size();
+            for (i=0; i < (3 - allUniqueSymbolsSize); i++){
                 allUniqueSymbols.add(placeholder1);
             }
-            return allUniqueSymbols;
         }
 
         // This sorts the symbols in order of how frequently they occur in the original List.
+        // If symbols have the same frequency of occurence, they are sorted alphabetically.
 
         Collections.sort(allUniqueSymbols, new Comparator<Symbol>() {
             @Override
@@ -317,7 +328,7 @@ public class DBHelper {
                 results.add(symbol);
             }
         }
-        return results;
+        return getSortedAlphabetically(results);
     }
 
     public static List<SymbolCategory> getAllCategoriesExceptBlank(){
