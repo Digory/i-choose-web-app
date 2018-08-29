@@ -177,8 +177,6 @@ percent-width-small {
     margin-right: 0rem !important;
     margin-top: 2rem;
     margin-bottom: 2rem;
-    border: 1px solid #D3D3D3;
-    border-radius: 2%;
 }
 
 .category-symbol {
@@ -329,13 +327,14 @@ percent-width-small {
  }
 
  .big-image {
-
     display: block;
  }
 
  .big-image img {
      width: 200px;
      height: 200px;
+     border: 3px solid black;
+     border-radius: 4px;
  }
 
  .content .delete {
@@ -386,5 +385,6 @@ percent-width-small {
 }
 
 .border-on-images {
-    border: 1px solid #D3D3D3;
+    border: 2px solid black;
+    border-radius: 3px;
 }
