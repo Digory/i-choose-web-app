@@ -247,10 +247,11 @@ percent-width-small {
      color:inherit;
      border:none;
      font: inherit;
+     padding-top: 0.1rem;
      padding-left: 1rem;
      display: block;
      width: 100%;
-     height: 2.3rem;
+     height: 3.3rem;
      text-align: left;
 }
 

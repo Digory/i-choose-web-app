@@ -256,17 +256,20 @@ public class DBHelper {
     public static void setBlankAllOccurrencesOfThisSymbol(Symbol symbol){
         session = HibernateUtil.getSessionFactory().openSession();
         List<Timetable> allTimetables = getAll(Timetable.class);
+        String symbolName = symbol.getName();
 
         for(Timetable timetable : allTimetables){
             if(timetable.getSymbols() != null){
             for(Symbol each_symbol : timetable.getSymbols()){
                 if(symbol.getName().equals(each_symbol.getName())){
+                    each_symbol.setName(symbolName +" - deleted by admin");
                     each_symbol.setCategory(blank_category);
                     each_symbol.setImageUrl("https://s3-eu-west-1.amazonaws.com/ichoose-resources/default-placeholder.png");
                     save(each_symbol);
                 }
             }}
         }
+        symbol.setName(symbolName + " - deleted by admin");
         symbol.setCategory(blank_category);
         symbol.setImageUrl("https://s3-eu-west-1.amazonaws.com/ichoose-resources/default-placeholder.png");
         save(symbol);
