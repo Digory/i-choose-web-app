@@ -1,15 +1,21 @@
 <h1>$timetable.getName()</h1>
+<script>
+function playSound(audioId) {
+var sound = document.getElementById(audioId);
+sound.play();
+}
+</script>
 <table class="content timetables-content">
     #foreach($symbol in $symbols)
     <tr class="help-me">
-        <td><div class="big-image"><audio id="audio" src="$symbol.getSoundUrl()" autostart="false" ></audio>
-            <a onclick="playSound();"> <img src="$symbol.getImageUrl()"/></a>
-            <script>
-    function playSound() {
-          var sound = document.getElementById("audio");
-          sound.play();
-      }
-    </script></div><div class="margins"><strong>$symbol.getName()</strong></div></td>
+        <td><div class="big-image"><audio id="audio$symbol.getId()" src="$symbol.getSoundUrl()" autostart="false" ></audio>
+            <a> <img src="$symbol.getImageUrl()"/></a>
+
+
+
+        </div>
+            <div class="margins"><a onclick="playSound('audio$symbol.getId()');"><strong>$symbol.getName()&nbsp; <i class="fas fa-volume-up"></i></strong></a></div>
+        </td>
 
         <td class="td-actions td-actions-margins">
 
@@ -30,7 +36,7 @@
            </div>
         </td>
 
-    <tr>
+    </tr>
         #end
 </table>
 
