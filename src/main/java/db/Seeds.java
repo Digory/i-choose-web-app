@@ -13,7 +13,7 @@ public class Seeds {
     public static void seedData(){
 //        DBHelper.deleteAll(Timetable.class);
 //        DBHelper.deleteAll(User.class);
-//        DBHelper.deleteAll(Symbol.class);
+        DBHelper.deleteAll(Symbol.class);
         DBHelper.deleteAll(SymbolCategory.class);
 //
         DBHelper.createBlankCategory();
@@ -47,12 +47,12 @@ public class Seeds {
 
         SymbolCategory category7 = new SymbolCategory("fas fa-car-side", "Travel");
         DBHelper.save(category7);
-//
-//        Symbol symbol1 = new Symbol("Banana", category1, "https://s3-eu-west-1.amazonaws.com/ichoose-resources/banana+(1).png", "https://s3-eu-west-1.amazonaws.com/ichoose-resources/piano2-CoolEdit.mp3");
-//        DBHelper.save(symbol1);
-//
-//        Symbol symbol2 = new Symbol("Orange", category1, "https://s3-eu-west-1.amazonaws.com/ichoose-resources/orange.png", "https://s3-eu-west-1.amazonaws.com/ichoose-resources/piano2-CoolEdit.mp3");
-//        DBHelper.save(symbol2);
+
+        Symbol symbol1 = new Symbol("Banana", category1, "https://s3-eu-west-1.amazonaws.com/ichoose-resources/banana+(1).png", "https://s3-eu-west-1.amazonaws.com/ichoose-resources/piano2-CoolEdit.mp3");
+        DBHelper.save(symbol1);
+
+        Symbol symbol2 = new Symbol("Orange", category1, "https://s3-eu-west-1.amazonaws.com/ichoose-resources/orange.png", "https://s3-eu-west-1.amazonaws.com/ichoose-resources/piano2-CoolEdit.mp3");
+        DBHelper.save(symbol2);
 //
 //        Symbol symbol3 = new Symbol("Car", category7, "https://s3-eu-west-1.amazonaws.com/ichoose-resources/car.png", "https://s3-eu-west-1.amazonaws.com/ichoose-resources/piano2-CoolEdit.mp3");
 //        DBHelper.save(symbol3);
