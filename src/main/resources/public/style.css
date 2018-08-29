@@ -114,19 +114,16 @@ body {
 
 .input-search {
     width: 100%;
-    background-color: #f5f5f5;
     font-size: 14px;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-    border-width: 2px;
 }
 
 button {
   height: 100%;
   width: 2.5rem;
-  border: none;
+   border-width: 1px;
+   border-style: ridge;
+   border-color: #989898;
   font-size: 1rem;
-  background-color: Gainsboro;
 }
 
 button:hover {
