@@ -126,6 +126,11 @@ button {
   font-size: 1rem;
 }
 
+button.button-new {
+
+  border-style: none !important;
+}
+
 button:hover {
     background-color: #f3d250;
 }
