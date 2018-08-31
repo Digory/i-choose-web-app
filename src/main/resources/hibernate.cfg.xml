@@ -7,9 +7,9 @@
     <session-factory>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <!--<property name="hibernate.connection.username"></property>-->
-        <!--<property name="hibernate.connection.password"></property>-->
-        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/ichoosedb</property>
+        <property name="hibernate.connection.username">fqginvshebhvfm</property>
+        <property name="hibernate.connection.password">a59ee93ace69880134f96e98bfb21a23d9ca99eeaa6bbc907afac24619be3b9d</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://ec2-50-17-194-186.compute-1.amazonaws.com:5432/dbed2bmpcv7fhn</property>
         <property name="connection_pool_size">1</property>
         <property name="hbm2ddl.auto">update</property>
         <property name="show_sql">true</property>
@@ -20,3 +20,4 @@
         <mapping class="models.User"/>
     </session-factory>
 </hibernate-configuration>
+
