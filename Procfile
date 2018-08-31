@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* MainController
+web: java $JAVA_OPTS -cp target/classes:target/dependency/* controllers.MainController
