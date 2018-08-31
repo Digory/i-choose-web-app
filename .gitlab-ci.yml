@@ -1,8 +1,15 @@
 stages:
-- pre-build
+- build
+- staging
 
 unit test:
   image: maven:latest
-  stage: pre-build
+  stage: build
   script:
   - mvn $MAVEN_CLI_OPTS compile
+
+deploy staging:
+  image: maven:latest
+  stage: staging
+  script:
+  - dpl --provider=heroku --app=i-choose --api-key=$HEROKU_STAGING_API_KEY
