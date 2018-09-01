@@ -55,7 +55,7 @@ public class TimetableController {
             return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        // SHOW SYMBOLS IN TIMETABLE TO CHILD
+        // SHOW SYMBOLS IN TIMETABLE TO CHILD BEFORE LOCK
         get("/timetables/:id/show_symbols/child_view", (req, res) ->{
             int timetableId = Integer.parseInt(req.params("id"));
             int userId = Integer.parseInt(req.queryParams("user_id"));
@@ -68,6 +68,21 @@ public class TimetableController {
             model.put("timetable", timetable);
             model.put("user", user);
             return new ModelAndView(model, "templates/user/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        // SHOW SYMBOLS IN TIMETABLE TO CHILD AFTER LOCK
+        get("/timetables/:id/show_symbols/child_view_locked", (req, res) ->{
+            int timetableId = Integer.parseInt(req.params("id"));
+            int userId = Integer.parseInt(req.queryParams("user_id"));
+            Timetable timetable = DBHelper.find(timetableId, Timetable.class);
+            User user = DBHelper.find(userId, User.class);
+            List<Symbol> symbols = timetable.getSymbols();
+            Map<String, Object> model = new HashMap<>();
+            model.put("template", "templates/child/timetables/show_details.vtl");
+            model.put("symbols", symbols);
+            model.put("timetable", timetable);
+            model.put("user", user);
+            return new ModelAndView(model, "templates/child/layout.vtl");
         }, new VelocityTemplateEngine());
 
         //  CREATE FOR ADMIN
