@@ -40,7 +40,7 @@ public class TimetableController {
             return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        // SHOW SYMBOLS IN TIMETABLE TO USER
+        // SHOW SYMBOLS IN TIMETABLE TO USER (CARER)
         get("/timetables/:id/show_symbols", (req, res) ->{
             int timetableId = Integer.parseInt(req.params("id"));
             int userId = Integer.parseInt(req.queryParams("user_id"));
@@ -49,6 +49,21 @@ public class TimetableController {
             List<Symbol> symbols = timetable.getSymbols();
             Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/user/timetables/show_details.vtl");
+            model.put("symbols", symbols);
+            model.put("timetable", timetable);
+            model.put("user", user);
+            return new ModelAndView(model, "templates/user/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        // SHOW SYMBOLS IN TIMETABLE TO CHILD
+        get("/timetables/:id/show_symbols/child_view", (req, res) ->{
+            int timetableId = Integer.parseInt(req.params("id"));
+            int userId = Integer.parseInt(req.queryParams("user_id"));
+            Timetable timetable = DBHelper.find(timetableId, Timetable.class);
+            User user = DBHelper.find(userId, User.class);
+            List<Symbol> symbols = timetable.getSymbols();
+            Map<String, Object> model = new HashMap<>();
+            model.put("template", "templates/user/timetables/child_view.vtl");
             model.put("symbols", symbols);
             model.put("timetable", timetable);
             model.put("user", user);
