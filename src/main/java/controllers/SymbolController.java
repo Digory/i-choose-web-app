@@ -67,9 +67,12 @@ public class SymbolController {
         post("/symbols/search_results/child_view", (req, res) -> {
             String searchQuery = req.queryParams("search");
             int userID = Integer.parseInt(req.queryParams("user_id"));
+            int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
+            Timetable timetable = DBHelper.find(timetableID, Timetable.class);
             User user = DBHelper.find(userID, User.class);
             List<Symbol> searchResults = DBHelper.searchForSymbol(searchQuery);
             Map<String, Object> model = new HashMap<>();
+            model.put("timetable", timetable);
             model.put("searchQuery", searchQuery);
             model.put("user", user);
             model.put("results", searchResults);
@@ -97,9 +100,12 @@ public class SymbolController {
         get("/symbols/search_results/child_view", (req, res) -> {
             String searchQuery = req.queryParams("searchQuery");
             int userID = Integer.parseInt(req.queryParams("user_id"));
+            int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
+            Timetable timetable = DBHelper.find(timetableID, Timetable.class);
             User user = DBHelper.find(userID, User.class);
             List<Symbol> searchResults = DBHelper.searchForSymbol(searchQuery);
             Map<String, Object> model = new HashMap<>();
+            model.put("timetable", timetable);
             model.put("searchQuery", searchQuery);
             model.put("user", user);
             model.put("results", searchResults);
