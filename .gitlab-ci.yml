@@ -11,4 +11,4 @@ deploy:
   image: maven:latest
   stage: deploy
   script:
-  - HEROKU_API_KEY=$HEROKU_STAGING_API_KEY mvn clean heroku:deploy
+  - HEROKU_API_KEY=$HEROKU_STAGING_API_KEY mvn clean heroku:deploy-war
