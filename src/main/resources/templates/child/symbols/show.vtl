@@ -1,0 +1,24 @@
+<a onclick="playSound();"><h1 class="pageHeader">$symbol.getName()&nbsp; <i class="fas fa-volume-up"></i></h1></a>
+
+<table class="timetables-content">
+    <tr>
+    <td align="center">
+        <div class="bigger-image">
+            <audio id="audio" src="$symbol.getSoundUrl()" autostart="false" ></audio>
+            <a> <img src="$symbol.getImageUrl()"/></a>
+            <script>
+    function playSound() {
+          var sound = document.getElementById("audio");
+          sound.play();
+      }
+    </script>
+
+        </div>
+    </td>
+</tr>
+</table>
+
+
+
+
+

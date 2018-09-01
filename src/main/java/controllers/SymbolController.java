@@ -63,6 +63,23 @@ public class SymbolController {
             return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        //  SEARCH RESULTS - CHILD VIEW
+        post("/symbols/search_results/child_view", (req, res) -> {
+            String searchQuery = req.queryParams("search");
+            int userID = Integer.parseInt(req.queryParams("user_id"));
+            int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
+            Timetable timetable = DBHelper.find(timetableID, Timetable.class);
+            User user = DBHelper.find(userID, User.class);
+            List<Symbol> searchResults = DBHelper.searchForSymbol(searchQuery);
+            Map<String, Object> model = new HashMap<>();
+            model.put("timetable", timetable);
+            model.put("searchQuery", searchQuery);
+            model.put("user", user);
+            model.put("results", searchResults);
+            model.put("template", "templates/child/symbols/search_results.vtl");
+            return new ModelAndView(model, "templates/child/layout.vtl");
+        }, new VelocityTemplateEngine());
+
         //  SEARCH RESULTS - GET
         get("/symbols/search_results", (req, res) -> {
             String searchQuery = req.queryParams("searchQuery");
@@ -79,33 +96,37 @@ public class SymbolController {
             return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        //  SHOW CATEGORY
-        get("/symbols/category", (req, res) -> {
-            int userID = Integer.parseInt(req.queryParams("user_id"));
-            User user = DBHelper.find(userID, User.class);
+        //  SEARCH RESULTS - GET - CHILD'S VIEW
+        get("/symbols/search_results/child_view", (req, res) -> {
             String searchQuery = req.queryParams("searchQuery");
+            int userID = Integer.parseInt(req.queryParams("user_id"));
+            int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
+            Timetable timetable = DBHelper.find(timetableID, Timetable.class);
+            User user = DBHelper.find(userID, User.class);
             List<Symbol> searchResults = DBHelper.searchForSymbol(searchQuery);
-            List<Timetable> allUserTimetables = DBHelper.getUniqueTimetablesForUser(user);
             Map<String, Object> model = new HashMap<>();
-            model.put("user", user);
-            model.put("allUserTimetables", allUserTimetables);
-            model.put("results", searchResults);
+            model.put("timetable", timetable);
             model.put("searchQuery", searchQuery);
-            model.put("template", "templates/user/symbols/search_results.vtl");
-            return new ModelAndView(model, "templates/user/layout.vtl");
+            model.put("user", user);
+            model.put("results", searchResults);
+            model.put("template", "templates/child/symbols/search_results.vtl");
+            return new ModelAndView(model, "templates/child/layout.vtl");
         }, new VelocityTemplateEngine());
-
-//        //  SHOW BEFORE ADDING TO TIMETABLE
-//        get("/symbols/add", (req, res) -> {
+//
+//        //  SHOW CATEGORY
+//        get("/symbols/category", (req, res) -> {
 //            int userID = Integer.parseInt(req.queryParams("user_id"));
 //            User user = DBHelper.find(userID, User.class);
+//            String searchQuery = req.queryParams("searchQuery");
+//            List<Symbol> searchResults = DBHelper.searchForSymbol(searchQuery);
 //            List<Timetable> allUserTimetables = DBHelper.getUniqueTimetablesForUser(user);
 //            Map<String, Object> model = new HashMap<>();
-//            List<Symbol> symbols = DBHelper.getAll(Symbol.class);
-//            model.put("symbols", symbols);
-//            model.put("template", "templates/symbols/add.vtl");
-//
-//            return new ModelAndView(model, "templates/admin/layout.vtl");
+//            model.put("user", user);
+//            model.put("allUserTimetables", allUserTimetables);
+//            model.put("results", searchResults);
+//            model.put("searchQuery", searchQuery);
+//            model.put("template", "templates/user/symbols/search_results.vtl");
+//            return new ModelAndView(model, "templates/user/layout.vtl");
 //        }, new VelocityTemplateEngine());
 
         //  ADD TO TIMETABLE

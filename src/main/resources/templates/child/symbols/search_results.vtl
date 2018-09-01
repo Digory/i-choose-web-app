@@ -1,0 +1,27 @@
+<h1 class="pageHeader">Search results:</h1>
+
+    <table class="table">
+
+        #if( $results.size() == 0 )
+        <p class="margin-left">There are no symbols matching ☹</p>
+
+        #else
+
+        #foreach($symbol in $results)
+        <tr>
+            <td class="percent-width"><a href="/users/$user.getId()/view_symbol/child_view?symbol_id=$symbol.getId()&timetable_id=$timetable.getId()"><img class="border-on-images" src="$symbol.getImageUrl()"/></a></td>
+            <td class="percent-width-small"><span class="category-symbol">$symbol.getCategory().getDescriptor():<br> <strong>$symbol.getName()</strong></span></td>
+            <td class="percent-width">
+
+            </td>
+        <tr>
+            #end
+        #end
+        <tr>
+    </tr>
+    </table>
+</div>
+
+
+
+

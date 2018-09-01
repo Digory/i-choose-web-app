@@ -1,0 +1,37 @@
+<a href="/timetables/$timetable.getId()/show_symbols?user_id=$user.getId()">UNLOCK</a>
+
+
+
+<script>
+function playSound(audioId) {
+var sound = document.getElementById(audioId);
+sound.play();
+}
+
+function tickImage(tickId) {
+    var element = document.getElementById(tickId);
+    element.classList.toggle("big-image-tick");
+}
+
+function toggleElement(elementId) {
+    var element = document.getElementById(elementId);
+    element.style.display = element.style.display == "none" ? "block" : "none";
+}
+</script>
+<table class="content timetables-content">
+    #foreach($symbol in $symbols)
+    <tr class="help-me">
+        <td><div class="a-post" onclick="tickImage('tick$velocityCount'); toggleElement('element$velocityCount');"><div class="big-image"><audio id="audio$symbol.getId()" src="$symbol.getSoundUrl()" autostart="false" ></audio>
+            <a><img src="$symbol.getImageUrl()" id="tick$velocityCount" /></a>
+        </div></div>
+            <div class="margins" id="element$velocityCount"><a onclick="playSound('audio$symbol.getId()');"><strong>$symbol.getName()&nbsp; <i class="fas fa-volume-up"></i></strong></a></div>
+        </td>
+
+        <td class="td-actions td-actions-margins">
+
+
+        </td>
+
+    </tr>
+    #end
+</table>

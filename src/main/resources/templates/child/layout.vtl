@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>I-Choose Web App</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="/style.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Hind+Madurai:400,500,600,700" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" rel="stylesheet">
+  </head>
+  <body>
+    <!-- begin inner template-->
+
+
+      <div class="content">
+        #parse( $template )
+      </div>
+      <nav class="footer">
+        <ul>
+          <a href="/users/$user.getId()/child_view?timetable_id=$timetable.getId()"><li class="nav-item"><i class="fas fa-home"></i></li></a>
+          <a href="/timetables/$timetable.getId()/show_symbols/child_view_locked?user_id=$user.getId()"><li class="nav-item"><i class="fas fa-calendar-alt"></i></li></a>
+        </ul>
+      </nav>
+    </div>
+    <!-- end inner template-->
+  </body>
+</html>
