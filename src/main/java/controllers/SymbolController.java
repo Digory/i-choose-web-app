@@ -92,22 +92,22 @@ public class SymbolController {
             model.put("template", "templates/user/symbols/search_results.vtl");
             return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
-
-        //  SHOW CATEGORY
-        get("/symbols/category", (req, res) -> {
-            int userID = Integer.parseInt(req.queryParams("user_id"));
-            User user = DBHelper.find(userID, User.class);
-            String searchQuery = req.queryParams("searchQuery");
-            List<Symbol> searchResults = DBHelper.searchForSymbol(searchQuery);
-            List<Timetable> allUserTimetables = DBHelper.getUniqueTimetablesForUser(user);
-            Map<String, Object> model = new HashMap<>();
-            model.put("user", user);
-            model.put("allUserTimetables", allUserTimetables);
-            model.put("results", searchResults);
-            model.put("searchQuery", searchQuery);
-            model.put("template", "templates/user/symbols/search_results.vtl");
-            return new ModelAndView(model, "templates/user/layout.vtl");
-        }, new VelocityTemplateEngine());
+//
+//        //  SHOW CATEGORY
+//        get("/symbols/category", (req, res) -> {
+//            int userID = Integer.parseInt(req.queryParams("user_id"));
+//            User user = DBHelper.find(userID, User.class);
+//            String searchQuery = req.queryParams("searchQuery");
+//            List<Symbol> searchResults = DBHelper.searchForSymbol(searchQuery);
+//            List<Timetable> allUserTimetables = DBHelper.getUniqueTimetablesForUser(user);
+//            Map<String, Object> model = new HashMap<>();
+//            model.put("user", user);
+//            model.put("allUserTimetables", allUserTimetables);
+//            model.put("results", searchResults);
+//            model.put("searchQuery", searchQuery);
+//            model.put("template", "templates/user/symbols/search_results.vtl");
+//            return new ModelAndView(model, "templates/user/layout.vtl");
+//        }, new VelocityTemplateEngine());
 
         //  ADD TO TIMETABLE
         post("/symbols/:id/add", (req, res) -> {

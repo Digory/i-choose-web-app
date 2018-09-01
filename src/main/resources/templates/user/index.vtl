@@ -15,7 +15,7 @@
 
     <ul>
         #foreach($category in $categories)
-        <li><a href="/symbols/category?searchQuery=$category.getDescriptor()&user_id=$user.getId()"><span><i class="category-icon $category.getIcon()"></i></span>$category.getDescriptor()</a><hr class="hr"></li>
+        <li><a href="/symbols/search_results?searchQuery=$category.getDescriptor()&user_id=$user.getId()"><span><i class="category-icon $category.getIcon()"></i></span>$category.getDescriptor()</a><hr class="hr"></li>
         #end
     </ul>
 </div>
