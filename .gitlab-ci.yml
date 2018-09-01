@@ -13,3 +13,5 @@ deploy staging:
   stage: deploy staging
   script:
   - HEROKU_API_KEY=$HEROKU_STAGING_API_KEY mvn clean heroku:deploy
+  only:
+  - master
