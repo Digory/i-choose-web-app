@@ -1,17 +1,26 @@
 stages:
-#- build
+- build
 - deploy staging
-#
-#build:
-#  image: maven:latest
-#  stage: build
-#  script: mvn clean package
-#    -
+
+variables:
+  MAVEN_CLI_OPTS: "--batch-mode"
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+
+cache:
+  paths:
+  - .m2/repository/
+  - target/
+
+build:
+  image: maven:latest
+  stage: build
+  script:
+    - mvn $MAVEN_CLI_OPTS compile
 
 deploy staging:
   image: maven:latest
   stage: deploy staging
   script:
-  - HEROKU_API_KEY=$HEROKU_STAGING_API_KEY mvn clean heroku:deploy
+  - HEROKU_API_KEY=$HEROKU_STAGING_API_KEY mvn heroku:deploy
   only:
   - master
