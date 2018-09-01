@@ -31,7 +31,7 @@
                     </includes>
                     <jdkVersion>${java.version}</jdkVersion>
                     <processTypes>
-                        <web>java $JAVA_OPTS -jar /app/target/${project.build.finalName}.jar</web>
+                        <web>java $JAVA_OPTS -jar /app/target/${project.build.finalName}.jar/* controllers.MainController</web>
                     </processTypes>
                 </configuration>
             </plugin>
