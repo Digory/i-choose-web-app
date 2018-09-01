@@ -3,6 +3,10 @@
 <a href="/timetables/$timetable.getId()/show_symbols?user_id=$user.getId()">SEE CARER VIEW</a>
 <a href="/timetables/$timetable.getId()/show_symbols/child_view_locked?user_id=$user.getId()">LOCK</a>
 
+<form action="/users/$user.getId()/child_name" class="form-search-box" method="post">
+    <input type="text" name="child" id="input-search" placeholder="Child's name">
+    <button type="submit"></button>
+</form>
 
 
 <script>

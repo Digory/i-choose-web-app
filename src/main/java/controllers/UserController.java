@@ -231,5 +231,15 @@ public class UserController {
             return new ModelAndView(model, "templates/child/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        //  CHANGE CHILD NAME
+        post("/users/:id/child_name", (req, res) -> {
+            int id = Integer.parseInt(req.params(":id"));
+            User user = DBHelper.find(id, User.class);
+            String childName = req.queryParams("child");
+
+            res.redirect("/");
+            return null;
+        });
+
     }
 }

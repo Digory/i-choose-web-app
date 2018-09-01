@@ -10,6 +10,7 @@ public class User {
     private int id;
     private String name;
     private List<Timetable> timetables;
+    private String childName;
 
     public User(){}
 
@@ -49,5 +50,14 @@ public class User {
 
     public void addTimetable(Timetable timetable){
         this.timetables.add(timetable);
+    }
+
+    @Column
+    public String getChildName() {
+        return childName;
+    }
+
+    public void setChildName(String childName) {
+        this.childName = childName;
     }
 }
