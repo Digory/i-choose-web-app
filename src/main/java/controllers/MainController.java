@@ -30,7 +30,7 @@ public class MainController {
 
         port(getHerokuAssignedPort());
 
-        Seeds.seedData();
+        //Seeds.seedData();
 
         staticFileLocation("/public");
 
