@@ -337,7 +337,22 @@ percent-width-small {
      height: 200px;
      border: 3px solid black;
      border-radius: 4px;
+     z-index: 1;
  }
+
+ .big-image-tick {
+       object-position: center;
+       margin-left: 1rem;
+       margin-right: 1rem;
+       width: 200px;
+       height: 200px;
+       border: 3px solid black;
+       border-radius: 4px;
+       z-index: 2;
+       content: url('https://s3-eu-west-1.amazonaws.com/i-choose-symbols/tick.png');
+       opacity: 0.5;
+       margin-bottom: 0.75rem;
+   }
 
   .bigger-image {
      display: inline-block;

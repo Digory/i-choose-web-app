@@ -4,13 +4,18 @@ function playSound(audioId) {
 var sound = document.getElementById(audioId);
 sound.play();
 }
+
+var toggleShow = function(){
+    var element = document.querySelector(".big-image");
+    element.classList.toggle("big-image-tick");
+}
 </script>
 <table class="content timetables-content">
     #foreach($symbol in $symbols)
     <tr class="help-me">
-        <td><div class="big-image"><audio id="audio$symbol.getId()" src="$symbol.getSoundUrl()" autostart="false" ></audio>
-            <a> <img src="$symbol.getImageUrl()"/></a>
-        </div>
+        <td><div class="a-post" onclick="toggleShow()"><div class="big-image"><audio id="audio$symbol.getId()" src="$symbol.getSoundUrl()" autostart="false" ></audio>
+            <a><img src="$symbol.getImageUrl()"/></a>
+        </div></div>
             <div class="margins"><a onclick="playSound('audio$symbol.getId()');"><strong>$symbol.getName()&nbsp; <i class="fas fa-volume-up"></i></strong></a></div>
         </td>
 
