@@ -69,6 +69,25 @@ public class UserController {
             return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        //  INDEX FOR CHILD
+        get("/users/:id/child_view", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int id = Integer.parseInt(req.params(":id"));
+            User user = DBHelper.find(id, User.class);
+            List<SymbolCategory> categories = DBHelper.getAllCategoriesExceptBlank();
+            List<Symbol> topThreeSymbols = DBHelper.findTopThreeMostUsedSymbols(user);
+            Symbol symbol1 = topThreeSymbols.get(0);
+            Symbol symbol2 = topThreeSymbols.get(1);
+            Symbol symbol3 = topThreeSymbols.get(2);
+            model.put("symbol1", symbol1);
+            model.put("symbol2", symbol2);
+            model.put("symbol3", symbol3);
+            model.put("categories", categories);
+            model.put("template", "templates/child/index.vtl");
+            model.put("user", user);
+            return new ModelAndView(model, "templates/child/layout.vtl");
+        }, new VelocityTemplateEngine());
+
         //  CREATE FOR ADMIN
         post("/admin/users", (req, res) -> {
             String name = req.queryParams("name");
