@@ -1,4 +1,4 @@
-<h1 class="pageHeader">Hello!</h1>
+<h1 class="pageHeader">Hello $user.getChildName()!</h1>
 <div class="search">
     <form action="/symbols/search_results/child_view?user_id=$user.getId()&timetable_id=$timetable.getId()" class="form-search-box" method="post">
         <input class="user-form input-search" type="text" name="search" id="input-search" placeholder="Find a symbol...">

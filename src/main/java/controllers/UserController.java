@@ -234,10 +234,12 @@ public class UserController {
         //  CHANGE CHILD NAME
         post("/users/:id/child_name", (req, res) -> {
             int id = Integer.parseInt(req.params(":id"));
+            int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
             User user = DBHelper.find(id, User.class);
             String childName = req.queryParams("child");
-
-            res.redirect("/");
+            user.setChildName(childName);
+            DBHelper.save(user);
+            res.redirect("/timetables/"+timetableID+"/show_symbols/child_view?user_id="+id);
             return null;
         });
 
