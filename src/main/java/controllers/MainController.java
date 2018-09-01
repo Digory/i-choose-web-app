@@ -31,6 +31,7 @@ public class MainController {
         port(getHerokuAssignedPort());
 
         //Seeds.seedData();
+        DBHelper.createBlankCategory();
 
         staticFileLocation("/public");
 
