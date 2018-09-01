@@ -63,6 +63,20 @@ public class SymbolController {
             return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        //  SEARCH RESULTS - CHILD VIEW
+        post("/symbols/search_results/child_view", (req, res) -> {
+            String searchQuery = req.queryParams("search");
+            int userID = Integer.parseInt(req.queryParams("user_id"));
+            User user = DBHelper.find(userID, User.class);
+            List<Symbol> searchResults = DBHelper.searchForSymbol(searchQuery);
+            Map<String, Object> model = new HashMap<>();
+            model.put("searchQuery", searchQuery);
+            model.put("user", user);
+            model.put("results", searchResults);
+            model.put("template", "templates/child/symbols/search_results.vtl");
+            return new ModelAndView(model, "templates/child/layout.vtl");
+        }, new VelocityTemplateEngine());
+
         //  SEARCH RESULTS - GET
         get("/symbols/search_results", (req, res) -> {
             String searchQuery = req.queryParams("searchQuery");
