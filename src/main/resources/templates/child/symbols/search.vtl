@@ -1,0 +1,18 @@
+<div class="search">
+    <form action="/symbols/search_results?user_id=$user.getId()/child_view" class="form-search-box" method="post">
+        <input class="input-search" type="text" name="search" id="input-search" placeholder="Find a symbol...">
+        <button type="submit"><i class="fas fa-search"></i></button>
+    </form>
+</div>
+<div class="most-used">
+    <div class="frequent-item"><a href="/users/$user.getId()/view_symbol?symbol_id=$symbol1.getId()/child_view"><img src="$symbol1.getImageUrl()"/></a></div>
+    <div class="frequent-item"><a href="/users/$user.getId()/view_symbol?symbol_id=$symbol2.getId()/child_view"><img src="$symbol2.getImageUrl()"/></a></div>
+    <div class="frequent-item"><a href="/users/$user.getId()/view_symbol?symbol_id=$symbol3.getId()/child_view"><img src="$symbol3.getImageUrl()"/></a></div>
+</div>
+<div class="categories">
+    <ul>
+        #foreach($category in $categories)
+        <li><a href="/symbols/category?searchQuery=$category.getDescriptor()&user_id=$user.getId()/child_view"><span><i class="category-icon $category.getIcon()"></i></span>$category.getDescriptor()</a></li>
+        #end
+    </ul>
+</div>
