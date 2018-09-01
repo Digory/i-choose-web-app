@@ -1,6 +1,6 @@
-#stages:
+stages:
 #- build
-#- deploy staging
+- deploy staging
 #
 #build:
 #  image: maven:latest
