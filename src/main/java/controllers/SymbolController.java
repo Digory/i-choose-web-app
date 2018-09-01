@@ -109,19 +109,6 @@ public class SymbolController {
             return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
 
-//        //  SHOW BEFORE ADDING TO TIMETABLE
-//        get("/symbols/add", (req, res) -> {
-//            int userID = Integer.parseInt(req.queryParams("user_id"));
-//            User user = DBHelper.find(userID, User.class);
-//            List<Timetable> allUserTimetables = DBHelper.getUniqueTimetablesForUser(user);
-//            Map<String, Object> model = new HashMap<>();
-//            List<Symbol> symbols = DBHelper.getAll(Symbol.class);
-//            model.put("symbols", symbols);
-//            model.put("template", "templates/symbols/add.vtl");
-//
-//            return new ModelAndView(model, "templates/admin/layout.vtl");
-//        }, new VelocityTemplateEngine());
-
         //  ADD TO TIMETABLE
         post("/symbols/:id/add", (req, res) -> {
             String searchQuery = req.queryParams("searchQuery");

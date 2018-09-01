@@ -195,7 +195,7 @@ public class UserController {
             return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        //SHOW FULL SIZED SYMBOL
+        //  SHOW FULL SIZED SYMBOL
         get("/users/:id/view_symbol", (req, res) -> {
             int user_id = Integer.parseInt(req.params(":id"));
             User user = DBHelper.find(user_id, User.class);
@@ -211,6 +211,19 @@ public class UserController {
             return new ModelAndView(model, "templates/user/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        //  SHOW FULL SIZED SYMBOL TO CHILD
+        get("/users/:id/view_symbol/child_view", (req, res) -> {
+            int user_id = Integer.parseInt(req.params(":id"));
+            User user = DBHelper.find(user_id, User.class);
+            int symbolID = Integer.parseInt(req.queryParams("symbol_id"));
+            Symbol symbol = DBHelper.find(symbolID, Symbol.class);
+            Map<String, Object> model = new HashMap<>();
+            model.put("template", "templates/child/symbols/show.vtl");
+            model.put("searchQuery", "");
+            model.put("symbol", symbol);
+            model.put("user", user);
+            return new ModelAndView(model, "templates/child/layout.vtl");
+        }, new VelocityTemplateEngine());
 
     }
 }
