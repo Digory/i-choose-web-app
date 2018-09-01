@@ -1,8 +1,15 @@
 stages:
-- pre-build
+#- build
+- deploy staging
+#
+#build:
+#  image: maven:latest
+#  stage: build
+#  script: mvn clean package
+#    -
 
-unit test:
+deploy staging:
   image: maven:latest
-  stage: pre-build
+  stage: deploy staging
   script:
-  - mvn $MAVEN_CLI_OPTS compile
+  - HEROKU_API_KEY=$HEROKU_STAGING_API_KEY mvn clean heroku:deploy
