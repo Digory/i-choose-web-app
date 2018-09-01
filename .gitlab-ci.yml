@@ -1,14 +1,15 @@
-stages:
+#stages:
 #- build
-- deploy
-
+#- deploy staging
+#
 #build:
 #  image: maven:latest
 #  stage: build
 #  script: mvn clean package
+#    -
 
-deploy:
+deploy staging:
   image: maven:latest
-  stage: deploy
+  stage: deploy staging
   script:
   - HEROKU_API_KEY=$HEROKU_STAGING_API_KEY mvn clean heroku:deploy

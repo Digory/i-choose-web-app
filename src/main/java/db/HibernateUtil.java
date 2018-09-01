@@ -1,11 +1,7 @@
 package db;
 
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class HibernateUtil {
 
@@ -14,8 +10,17 @@ public class HibernateUtil {
     private static SessionFactory buildSessionFactory() {
 
         try {
+            Configuration config = new Configuration().configure();
             // Create the SessionFactory from hibernate.cfg.xml
-            return new Configuration().configure().buildSessionFactory();
+
+            String jdbcDbUrl = System.getenv("JDBC_DATABASE_URL");
+            if (null != jdbcDbUrl) {
+                config.setProperty("hibernate.connection.url", System.getenv("JDBC_DATABASE_URL"));
+                config.setProperty("hibernate.connection.username", "JDBC_DATABASE_USERNAME");
+                config.setProperty("hibernate.connection.password", "JDBC_DATABASE_PASSWORD");
+            }
+
+            return config.buildSessionFactory();
         }
         catch (Throwable ex) {
             // Make sure you log the exception, as it might be swallowed
