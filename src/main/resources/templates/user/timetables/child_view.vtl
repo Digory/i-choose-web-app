@@ -10,7 +10,7 @@
 
 #if($user.getChildName())
 <p>currently assigned child is $user.getChildName()</p>
-<a href="/timetables/$timetable.getId()/show_symbols/child_view_locked?user_id=$user.getId()"><h3><i class="fas fa-lock"></i> LOCK</h3></a>
+<a href="/timetables/$timetable.getId()/show_symbols/child_view_locked?user_id=$user.getId()"><button class="lock-button"><i class="fas fa-lock"></i></button></a>
 #end
 
 

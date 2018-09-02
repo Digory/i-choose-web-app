@@ -1,16 +1,5 @@
 <h1>$user.getChildName()'s timetable</h1>
 
-<button class="open-button" onclick="toggleForm()"><i class="fas fa-lock-open"></button>
-
-<div class="form-popup" id="inputCodeForm">
-    <form action="/timetables/$timetable.getId()/show_symbols?user_id=$user.getId()" class="form-container" method="post">
-        <h2>Enter unlock code</h2>
-        <input type="text" placeholder="Enter Code" name="code" required>
-
-        <button type="submit" class="btn">Unlock</button>
-    </form>
-</div>
-
 <script>
 
 function toggleForm() {
@@ -41,6 +30,17 @@ function toggleElement(elementId) {
     element.style.display = element.style.display == "none" ? "block" : "none";
 }
 </script>
+
+<button class="lock-button" onclick="toggleForm()"><i class="fas fa-lock-open"></i></button>
+
+<div class="form-popup" id="inputCodeForm">
+    <form action="/timetables/$timetable.getId()/show_symbols?user_id=$user.getId()" class="form-container" method="post">
+        <input type="text" placeholder="Enter code" name="code" required>
+
+        <button type="submit" class="btn">Unlock</button>
+    </form>
+</div>
+
 <table class="content timetables-content">
     #foreach($symbol in $symbols)
     <tr class="help-me">
@@ -56,4 +56,5 @@ function toggleElement(elementId) {
     </tr>
     #end
 </table>
+
 <br>
