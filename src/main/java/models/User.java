@@ -11,6 +11,7 @@ public class User {
     private String name;
     private List<Timetable> timetables;
     private String childName;
+    private String timetableUnlockCode;
 
     public User(){}
 
@@ -59,5 +60,14 @@ public class User {
 
     public void setChildName(String childName) {
         this.childName = childName;
+    }
+
+    @Column
+    public String getTimetableUnlockCode() {
+        return timetableUnlockCode;
+    }
+
+    public void setTimetableUnlockCode(String timetableUnlockCode) {
+        this.timetableUnlockCode = timetableUnlockCode;
     }
 }
