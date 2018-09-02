@@ -231,6 +231,19 @@ public class UserController {
             return new ModelAndView(model, "templates/child/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        //  FORM FOR CHANGING CHILD NAME
+        get("/users/:id/child_name", (req, res) -> {
+            int user_id = Integer.parseInt(req.params(":id"));
+            User user = DBHelper.find(user_id, User.class);
+            int timetableID = Integer.parseInt(req.queryParams("timetable_id"));
+            Timetable timetable = DBHelper.find(timetableID, Timetable.class);
+            Map<String, Object> model = new HashMap<>();
+            model.put("template", "templates/user/timetables/set_child_name.vtl");
+            model.put("user", user);
+            model.put("timetable", timetable);
+            return new ModelAndView(model, "templates/user/layout.vtl");
+        }, new VelocityTemplateEngine());
+
         //  CHANGE CHILD NAME
         post("/users/:id/child_name", (req, res) -> {
             int id = Integer.parseInt(req.params(":id"));

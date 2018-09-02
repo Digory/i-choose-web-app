@@ -1,0 +1,16 @@
+<h1 class="pageHeader">Child name</h1>
+
+
+<form class="user-form" action="/users/$user.getId()/child_name?timetable_id=$timetable.getId()" method="post">
+
+    <div>
+        <input class="inputbox" type="text" name="child" required="true" id="code"
+               #if($user.getChildName())
+               placeholder="current child name is: $user.getChildName()"
+               #else
+               placeholder="no child name currently set"
+               #end>
+    </div>
+
+    <input type="submit" value="Save" class="user-form-button">
+</form>
