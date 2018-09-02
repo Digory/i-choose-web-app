@@ -12,6 +12,11 @@
 <hr class="hr">
 #end
 </table>
-
-<a href="/users/$user.getId()/set_passcode"><button class="switch-views-button">change timetable passcode</button></a>
+<br>
+<a href="/users/$user.getId()/set_passcode"><button class="change-passcode-button">
+    #if($user.getTimetableUnlockCode())
+    change timetable unlock code
+#else
+    set timetable unlock code
+#end</button></a>
 

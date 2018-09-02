@@ -1,11 +1,16 @@
-<h1 class="pageHeader">Set timetable passcode</h1>
+<h1 class="pageHeader">Timetable unlock code</h1>
+
 
 <form class="user-form" action="/users/$user.getId()/set_passcode" method="post">
 
     <div>
-        <label for="code">Code:</label>
-        <input class="inputbox" type="text" name="code" required="true" id="code">
+        <input class="inputbox" type="text" name="code" required="true" id="code"
+               #if($user.getTimetableUnlockCode())
+        placeholder="current code is: $user.getTimetableUnlockCode()"
+               #else
+               placeholder="no code currently set"
+        #end>
     </div>
 
-    <input type="submit" value="Save" class="user-form-button"><
+    <input type="submit" value="Save" class="user-form-button">
 </form>
