@@ -18,3 +18,5 @@ The aim of our app is to have the same functionality as the paper symbols and ti
 Why? With an app, symbols can’t get lost, a carer can keep a list of timetables to re-use, a carer doesn’t have to physically print symbols out and a carer can easily create new symbols specific to the needs of a child (e.g. a symbol for granny’s house). Also, it is possible to create additional functionalities to aid in a child's communication. 
 
 This is not a new idea and there are a small number of other apps that do the same thing. However, these require either a large upfront payment or a monthly fee. The idea of our app is to provide an alternative that is open-source and free. 
+
+Give it a try here: http://i-choose.herokuapp.com/
