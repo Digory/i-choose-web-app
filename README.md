@@ -1,3 +1,6 @@
+# i-choose-web-app
+Joint project completed in conjunction with Vicky Jackson ( https://github.com/vickyjackson ). An extension of the i-choose mobile app, utilising a Java/Hibernate/Spark framework.
+
 **BACKGROUND**
 
 There are many children who struggle to communicate their needs verbally. e.g. children with autism, learning disabilities etc. A common communication method is to use picture symbols made out of paper, with which they can show a carer what they want or need. Using the same picture symbols, it is common for a carer to create a daily timetable for a child to structure their day. 
@@ -16,4 +19,4 @@ Why? With an app, symbols can’t get lost, a carer can keep a list of timetable
 
 This is not a new idea and there are a small number of other apps that do the same thing. However, these require either a large upfront payment or a monthly fee. The idea of our app is to provide an alternative that is open-source and free. 
 
-Give it a try here: http://i-choose.herokuapp.com/ 
+Give it a try here: http://i-choose.herokuapp.com/
