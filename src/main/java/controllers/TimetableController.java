@@ -85,6 +85,22 @@ public class TimetableController {
             return new ModelAndView(model, "templates/child/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        //  CHECK TIMETABLE UNLOCK CODE
+        post("/timetables/:id/show_symbols", (req, res) -> {
+            String unlockCode = req.queryParams("code");
+            int timetableID = Integer.parseInt(req.params("id"));
+            Timetable timetable = DBHelper.find(timetableID, Timetable.class);
+            int userID = Integer.parseInt(req.queryParams("user_id"));
+            User user = DBHelper.find(userID, User.class);
+            if(user.getTimetableUnlockCode().equals(unlockCode)){
+                res.redirect("/timetables/"+timetableID+"/show_symbols?user_id="+userID);
+            }
+            else{
+                res.redirect("/timetables/"+timetableID+"/show_symbols/child_view_locked?user_id="+userID);
+            }
+            return null;
+        });
+
         //  CREATE FOR ADMIN
         post("/admin/timetables", (req, res) -> {
             String name = req.queryParams("name");

@@ -1,8 +1,31 @@
-<a href="/timetables/$timetable.getId()/show_symbols?user_id=$user.getId()"><h3><i class="fas fa-lock-open"></i>UNLOCK</h3></a>
+<h1>$user.getChildName()'s timetable</h1>
 
+<button class="open-button" onclick="toggleForm()"><i class="fas fa-lock-open"></button>
 
+<div class="form-popup" id="inputCodeForm">
+    <form action="/timetables/$timetable.getId()/show_symbols?user_id=$user.getId()" class="form-container" method="post">
+        <h2>Enter unlock code</h2>
+        <input type="text" placeholder="Enter Code" name="code" required>
+
+        <button type="submit" class="btn">Unlock</button>
+    </form>
+</div>
 
 <script>
+
+function toggleForm() {
+    var form = document.getElementById("inputCodeForm");
+    form.style.display = form.style.display == "none" ? "block" : "none";
+}
+
+function openForm() {
+    document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+}
+
 function playSound(audioId) {
 var sound = document.getElementById(audioId);
 sound.play();
