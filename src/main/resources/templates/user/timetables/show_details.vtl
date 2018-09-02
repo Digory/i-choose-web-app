@@ -1,17 +1,15 @@
 <h1>$timetable.getName()</h1>
 
+#if($user.getChildName())
+<a href="/timetables/$timetable.getId()/show_symbols/child_view_locked?user_id=$user.getId()"><button class="switch-views-button">$user.getChildName()'s view</button></a>
+#end
+<br><br>
 <a href="/users/$user.getId()/child_name?timetable_id=$timetable.getId()"><button class="switch-views-button">
     #if($user.getChildName())
     change child name
     #else
     assign child name
     #end</button></a>
-
-<br><br>
-#if($user.getChildName())
-<a href="/timetables/$timetable.getId()/show_symbols/child_view_locked?user_id=$user.getId()"><button class="switch-views-button">$user.getChildName()'s view</button></a>
-#end
-
 
 
 <script>
