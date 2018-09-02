@@ -243,5 +243,25 @@ public class UserController {
             return null;
         });
 
+        //  FORM FOR CHANGING TIMETABLE PASSCODE
+        get("/users/:id/set_passcode", (req, res) -> {
+            int user_id = Integer.parseInt(req.params(":id"));
+            User user = DBHelper.find(user_id, User.class);
+            Map<String, Object> model = new HashMap<>();
+            model.put("template", "templates/user/timetables/set_passcode.vtl");
+            model.put("user", user);
+            return new ModelAndView(model, "templates/user/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        //  CHANGE TIMETABLE PASSCODE
+        post("/users/:id/set_passcode", (req, res) -> {
+            int id = Integer.parseInt(req.params(":id"));
+            User user = DBHelper.find(id, User.class);
+            String passcode = req.queryParams("code");
+            user.setTimetableUnlockCode(passcode);
+            DBHelper.save(user);
+            res.redirect("/users/"+id+"/show_all_timetables");
+            return null;
+        });
     }
 }
