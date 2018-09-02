@@ -534,12 +534,15 @@ percent-width-small {
   float: left;
   border: 3px solid #f1f1f1;
   z-index: 9;
+  position: absolute;
+  margin-left: 50px;
 }
 
 .form-container {
   max-width: 110px;
   padding: 10px;
   background-color: white;
+  z-index: 9;
 }
 
 .form-container input[type=text]{
@@ -548,11 +551,13 @@ percent-width-small {
   margin: 5px 0 22px 0;
   border: none;
   background: #f1f1f1;
+  z-index: 9;
 }
 
 .form-container input[type=text]:focus{
   background-color: #ddd;
   outline: none;
+  z-index: 9;
 }
 
 .form-container .btn {
@@ -564,10 +569,12 @@ percent-width-small {
   width: 100%;
   margin-bottom:10px;
   opacity: 0.8;
+  z-index: 9;
 }
 
 .form-container .btn:hover, .open-button:hover {
   opacity: 1;
+  z-index: 9;
 }
 
 .change-child-name-box {
@@ -578,6 +585,7 @@ percent-width-small {
     padding-left: 1rem;
     padding-right: 1rem;
     display: flex;
+
 }
 
 
