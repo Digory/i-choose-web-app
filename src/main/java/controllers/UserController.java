@@ -239,7 +239,7 @@ public class UserController {
             String childName = req.queryParams("child");
             user.setChildName(childName);
             DBHelper.save(user);
-            res.redirect("/timetables/"+timetableID+"/show_symbols/child_view?user_id="+id);
+            res.redirect("/timetables/"+timetableID+"/show_symbols?user_id="+id);
             return null;
         });
 

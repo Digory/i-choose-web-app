@@ -125,7 +125,6 @@ body {
     text-transform: lowercase !important;
     background-color: white !important;
     border-radius: 0% !important;
-    height: 2rem !important;
     border-width: 1px;
     border-style: ridge;
     border-color: #989898;
@@ -571,6 +570,15 @@ percent-width-small {
   opacity: 1;
 }
 
+.change-child-name-box {
+    width: 150px;
+    font-size: 14px !important;
+    height: 14px;
+    padding-top: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    display: flex;
+}
 
 
 

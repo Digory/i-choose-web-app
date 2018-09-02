@@ -1,8 +1,29 @@
-<h1>$timetable.getName() - Carer's View</h1>
+<h1>$timetable.getName()</h1>
 
-<a href="/timetables/$timetable.getId()/show_symbols/child_view?user_id=$user.getId()"><button class="switch-views-button">child view</button></a>
+<form action="/users/$user.getId()/child_name?timetable_id=$timetable.getId()" method="post">
+    <input type="text" name="child" id="input-search" class="change-child-name-box" placeholder="
+    #if($user.getChildName())
+    change child's name
+    #else
+    enter child's name
+    #end">
+    <input type="submit" value="
+#if($user.getChildName())
+    change
+    #else
+    submit
+    #end">
+</form>
+
+<br>
+#if($user.getChildName())
+<a href="/timetables/$timetable.getId()/show_symbols/child_view_locked?user_id=$user.getId()"><button class="switch-views-button">$user.getChildName()'s view</button></a>
+#end
+
+
 
 <script>
+
 function playSound(audioId) {
 var sound = document.getElementById(audioId);
 sound.play();
