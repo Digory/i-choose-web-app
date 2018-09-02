@@ -3,7 +3,7 @@
 <p>currently assigned child is $user.getChildName()</p>
 #end
 
-<a href="/timetables/$timetable.getId()/show_symbols?user_id=$user.getId()">SEE CARER VIEW</a>
+<a href="/timetables/$timetable.getId()/show_symbols?user_id=$user.getId()"><button class="switch-views-button">carer view</button></a>
 
 #if($user.getChildName())
 <a href="/timetables/$timetable.getId()/show_symbols/child_view_locked?user_id=$user.getId()">LOCK</a>
