@@ -1,18 +1,18 @@
 <h1>$timetable.getName() - Child's View</h1>
-#if($user.getChildName())
-<p>currently assigned child is $user.getChildName()</p>
-#end
 
 <a href="/timetables/$timetable.getId()/show_symbols?user_id=$user.getId()"><button class="switch-views-button">carer view</button></a>
 
-#if($user.getChildName())
-<a href="/timetables/$timetable.getId()/show_symbols/child_view_locked?user_id=$user.getId()">LOCK</a>
-#end
 
 <form action="/users/$user.getId()/child_name?timetable_id=$timetable.getId()" class="form-search-box" method="post">
     <input type="text" name="child" id="input-search" placeholder="Child's name">
     <input type="submit" value="Assign">
 </form>
+
+#if($user.getChildName())
+<p>currently assigned child is $user.getChildName()</p>
+<a href="/timetables/$timetable.getId()/show_symbols/child_view_locked?user_id=$user.getId()"><h3><i class="fas fa-lock"></i> LOCK</h3></a>
+#end
+
 
 
 <script>
