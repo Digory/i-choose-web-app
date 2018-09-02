@@ -23,12 +23,18 @@
         #parse( $template )
       </div>
       <nav class="footer">
-        <ul>
+          #if( $user.getId().class.name == "java.lang.Integer" )
+          <ul>
           <a href="/users/$user.getId()"><li class="nav-item"><i class="fas fa-home"></i></li></a>
           <a href="/users/$user.getId()/show_all_timetables"><li class="nav-item"><i class="fas fa-calendar-alt"></i></li></a>
           <a href="/mysentences?user_id=$user.getId()"><li class="nav-item"><i class="fas fa-comments"></i></li></a>
           <a href="/help?user_id=$user.getId()"><li class="nav-item"><i class="fas fa-question-circle"></i></li></a>
         </ul>
+          #else
+          <ul>
+              <a href="/"><li class="nav-item"><i class="fas fa-home"></i></li></a>
+          </ul>
+          #end
 
       </nav>
     </div>
